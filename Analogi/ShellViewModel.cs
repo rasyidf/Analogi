@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using Yaudah.Core;
 
 namespace Analogi
 {
@@ -15,13 +16,13 @@ namespace Analogi
 
         public ObservableCollection<string> Algorithms { get => algorithms; set { algorithms = value; NotifyProps(nameof(Algorithms)); } }
         public ICommand CalculateCommand => new DelegateCommand(CalculateDistance);
-        public ObservableCollection<DistanceResult> Distances { get => distances; set { distances = value; NotifyProps(nameof(Distances)); } }
+        public ObservableCollection<DetectionResult> Distances { get => distances; set { distances = value; NotifyProps(nameof(Distances)); } }
         public string Path { get => path; set { path = value; NotifyProps(nameof(Path)); } }
         public ICommand ScanCommand => new DelegateCommand(ScanFolder);
-        public ObservableCollection<ScriptItem> Scripts { get => scripts; set { scripts = value; NotifyProps(nameof(Scripts)); } }
+        public ObservableCollection<CodeFile> Scripts { get => scripts; set { scripts = value; NotifyProps(nameof(Scripts)); } }
         public string SelectedAlgorithm { get => selectedAlgorithm; set { selectedAlgorithm = value; NotifyProps(nameof(SelectedAlgorithm)); } }
 
-        public ScriptItem Script { get => script; set { script = value;  NotifyProps(nameof(Script)); } }
+        public CodeFile Script { get => script; set { script = value;  NotifyProps(nameof(Script)); } }
 
         #endregion Properties
 
@@ -29,10 +30,10 @@ namespace Analogi
 
         ObservableCollection<String> algorithms = new ObservableCollection<string>()
         { "Cosine", "Levenshtein", "Jaccard", "Damerau", "Jaro Winkler", "LCS" };
-        private ObservableCollection<DistanceResult> distances;
+        private ObservableCollection<DetectionResult> distances;
         string path = @"D:\DEV\Code\py_3";
-        ObservableCollection<ScriptItem> scripts = new ObservableCollection<ScriptItem>();
-        ScriptItem script = null;
+        ObservableCollection<CodeFile> scripts = new ObservableCollection<CodeFile>();
+        CodeFile script = null;
         string selectedAlgorithm = "Cosine";
 
         #endregion Fields
@@ -50,14 +51,14 @@ namespace Analogi
             CalculateDistanceWith(script, Scripts);
         }
 
-        private void CalculateDistanceWith(ScriptItem script, ObservableCollection<ScriptItem> scripts)
+        private void CalculateDistanceWith(CodeFile script, ObservableCollection<CodeFile> scripts)
         {
-            Distances = new ObservableCollection<DistanceResult>();
+            Distances = new ObservableCollection<DetectionResult>();
             foreach (var item in Scripts)
             {
                 if (item == script) continue; 
 
-                var Dist = new DistanceResult(selectedAlgorithm, script, item);
+                var Dist = new DetectionResult(script);
                 Distances.Add(Dist);
             }
 
@@ -76,9 +77,8 @@ namespace Analogi
                 MessageBox.Show("What should i do, you've entered wrong directory, it doesn't exist");
                 return;
             }
-
-            Scripts = new ObservableCollection<ScriptItem>();
-            var p = new Yaudah.Core.PlagiarismDetect(path);
+             
+            var p = new PlagiarismDetect(path);
         }
 
         #endregion Methods
