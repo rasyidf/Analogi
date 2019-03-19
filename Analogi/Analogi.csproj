@@ -100,5 +100,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Analogi.Core\Analogi.Core.csproj">
+      <Project>{84fb9de9-222c-4e54-80fd-b9689558fd88}</Project>
+      <Name>Analogi.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

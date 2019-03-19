@@ -55,11 +55,7 @@ namespace Analogi
             Distances = new ObservableCollection<DistanceResult>();
             foreach (var item in Scripts)
             {
-                if (item == script)
-                {
-                    continue;
-
-                }
+                if (item == script) continue; 
 
                 var Dist = new DistanceResult(selectedAlgorithm, script, item);
                 Distances.Add(Dist);
@@ -82,11 +78,7 @@ namespace Analogi
             }
 
             Scripts = new ObservableCollection<ScriptItem>();
-            foreach (var item in System.IO.Directory.EnumerateFiles(path,"*.py"))
-            {
-                var a = new ScriptItem(item);
-                Scripts.Add(a);
-            }
+            var p = new Yaudah.Core.PlagiarismDetect(path);
         }
 
         #endregion Methods

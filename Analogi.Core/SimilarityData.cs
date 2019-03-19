@@ -84,7 +84,7 @@ namespace Yaudah.Core
         }
         public DetectionResult(string path)
         {
-            this.CodeFile = path; Reasons = new List<IReason>();
+            this.CodeFile = new CodeFile(path); Reasons = new List<IReason>();
         }
 
     }

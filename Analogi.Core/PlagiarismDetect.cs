@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using F23.StringSimilarity;
+using System.Text; 
 using System.Threading.Tasks;
  
 using System.IO;
@@ -12,13 +11,18 @@ namespace Yaudah.Core
     public class PlagiarismDetect
     {
         public List<DetectionResult> DetectionResult { get; private set; }
-     
-        public void Start(string path)
+        public string Path { get; }
+
+        public PlagiarismDetect(string path)
+        {
+            Path = path;
+        }
+        public void Start()
         {
             DetectionResult = new List<DetectionResult>();
             // List All Souce Code
 
-            var files = System.IO.Directory.EnumerateFiles(path, "*.cpp|*.c|*.cs|*.py").ToArray();
+            var files = System.IO.Directory.EnumerateFiles(Path, "*.cpp|*.c|*.cs|*.py").ToArray();
 
              
             DetectionResult dr;
@@ -37,13 +41,7 @@ namespace Yaudah.Core
             }
              
         }
-
-        private double Factorial(int v)
-        {
-            if (v == 0) return 1;
-            return Factorial(v - 1) * v;
-        }
-
+         
         private List<IReason> CheckSimilarity(string path1, string path2)
         {
             List<IReason> tmpReasons = new List<IReason>();
