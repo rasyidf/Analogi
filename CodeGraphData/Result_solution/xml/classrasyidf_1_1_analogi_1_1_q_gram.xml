@@ -1,0 +1,185 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="classrasyidf_1_1_analogi_1_1_q_gram" kind="class" prot="public">
+    <compoundname>rasyidf::Analogi::QGram</compoundname>
+    <basecompoundref refid="classrasyidf_1_1_analogi_1_1_shingle_based" prot="public" virt="non-virtual">rasyidf.Analogi.ShingleBased</basecompoundref>
+    <basecompoundref refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_string_distance" prot="public" virt="non-virtual">rasyidf.Analogi.Interfaces.IStringDistance</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrasyidf_1_1_analogi_1_1_q_gram_1a1d1b0ce1a4db2046b534a401ea2466f4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>rasyidf.Analogi.QGram.QGram</definition>
+        <argsstring>(int k)</argsstring>
+        <name>QGram</name>
+        <param>
+          <type>int</type>
+          <declname>k</declname>
+        </param>
+        <briefdescription>
+<para>Q-gram similarity and distance. Defined by Ukkonen in &quot;Approximate
+string-matching with q-grams and maximal matches&quot;, <ulink url="http://www.sciencedirect.com/science/article/pii/0304397592901434">http://www.sciencedirect.com/science/article/pii/0304397592901434</ulink> The distance between two strings is defined as the L1 norm of the difference of their profiles (the number of occurences of each k-shingle). Q-gram distance is a lower bound on <ref refid="classrasyidf_1_1_analogi_1_1_levenshtein" kindref="compound">Levenshtein</ref> distance, but can be computed in O(|A| + |B|), where <ref refid="classrasyidf_1_1_analogi_1_1_levenshtein" kindref="compound">Levenshtein</ref> requires O(|A|.|B|) </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>k</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi.Core/QGram.cs" line="29" column="1" bodyfile="D:/repo/algi/Analogi/Analogi.Core/QGram.cs" bodystart="29" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classrasyidf_1_1_analogi_1_1_q_gram_1adb1835fab0e2dc8893caac8aea6d3694" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>rasyidf.Analogi.QGram.QGram</definition>
+        <argsstring>()</argsstring>
+        <name>QGram</name>
+        <briefdescription>
+<para>Q-gram similarity and distance. Defined by Ukkonen in &quot;Approximate
+string-matching with q-grams and maximal matches&quot;, <ulink url="http://www.sciencedirect.com/science/article/pii/0304397592901434">http://www.sciencedirect.com/science/article/pii/0304397592901434</ulink> The distance between two strings is defined as the L1 norm of the difference of their profiles (the number of occurence of each k-shingle). Q-gram distance is a lower bound on <ref refid="classrasyidf_1_1_analogi_1_1_levenshtein" kindref="compound">Levenshtein</ref> distance, but can be computed in O(|A| + |B|), where <ref refid="classrasyidf_1_1_analogi_1_1_levenshtein" kindref="compound">Levenshtein</ref> requires O(|A|.|B|) Default k is 3. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi.Core/QGram.cs" line="41" column="1" bodyfile="D:/repo/algi/Analogi/Analogi.Core/QGram.cs" bodystart="41" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="classrasyidf_1_1_analogi_1_1_q_gram_1a64cab21164e00b9dd3098f70210b6ef4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double rasyidf.Analogi.QGram.Distance</definition>
+        <argsstring>(string s1, string s2)</argsstring>
+        <name>Distance</name>
+        <reimplements refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_string_distance_1a3c65e3f4f4758f3b0772de2eb9f3e41f">Distance</reimplements>
+        <param>
+          <type>string</type>
+          <declname>s1</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>s2</declname>
+        </param>
+        <briefdescription>
+<para>The distance between two strings is defined as the L1 norm of the difference of their profiles (the number of occurence of each k-shingle). </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>s1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The first string to compare.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>s2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second string to compare.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The computed Q-gram distance.</para></simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>ArgumentNullException</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If s1 or s2 is null.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi.Core/QGram.cs" line="51" column="1" bodyfile="D:/repo/algi/Analogi/Analogi.Core/QGram.cs" bodystart="51" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="classrasyidf_1_1_analogi_1_1_q_gram_1a3438b867ae1697b8d6ab575d83d8640c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double rasyidf.Analogi.QGram.Distance</definition>
+        <argsstring>(IDictionary&lt; string, int &gt; profile1, IDictionary&lt; string, int &gt; profile2)</argsstring>
+        <name>Distance</name>
+        <param>
+          <type>IDictionary&lt; string, int &gt;</type>
+          <declname>profile1</declname>
+        </param>
+        <param>
+          <type>IDictionary&lt; string, int &gt;</type>
+          <declname>profile2</declname>
+        </param>
+        <briefdescription>
+<para>Compute <ref refid="classrasyidf_1_1_analogi_1_1_q_gram" kindref="compound">QGram</ref> distance using precomputed profiles. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>profile1</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>profile2</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi.Core/QGram.cs" line="80" column="1" bodyfile="D:/repo/algi/Analogi/Analogi.Core/QGram.cs" bodystart="80" bodyend="106"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Q-gram distance, as defined by Ukkonen in &quot;Approximate string-matching with
+q-grams and maximal matches&quot;. The distance between two strings is defined as the L1 norm of the difference of their profiles (the number of occurences of each n-gram): SUM( |V1_i - V2_i| ). Q-gram distance is a lower bound on <ref refid="classrasyidf_1_1_analogi_1_1_levenshtein" kindref="compound">Levenshtein</ref> distance, but can be computed in O(m + n), where <ref refid="classrasyidf_1_1_analogi_1_1_levenshtein" kindref="compound">Levenshtein</ref> requires O(m.n). </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="161">
+        <label>IStringDistance</label>
+        <link refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_string_distance"/>
+      </node>
+      <node id="159">
+        <label>rasyidf.Analogi.QGram</label>
+        <link refid="classrasyidf_1_1_analogi_1_1_q_gram"/>
+        <childnode refid="160" relation="public-inheritance">
+        </childnode>
+        <childnode refid="161" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="160">
+        <label>ShingleBased</label>
+        <link refid="classrasyidf_1_1_analogi_1_1_shingle_based"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="164">
+        <label>IStringDistance</label>
+        <link refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_string_distance"/>
+      </node>
+      <node id="162">
+        <label>rasyidf.Analogi.QGram</label>
+        <link refid="classrasyidf_1_1_analogi_1_1_q_gram"/>
+        <childnode refid="163" relation="public-inheritance">
+        </childnode>
+        <childnode refid="164" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="163">
+        <label>ShingleBased</label>
+        <link refid="classrasyidf_1_1_analogi_1_1_shingle_based"/>
+      </node>
+    </collaborationgraph>
+    <location file="D:/repo/algi/Analogi/Analogi.Core/QGram.cs" line="18" column="1" bodyfile="D:/repo/algi/Analogi/Analogi.Core/QGram.cs" bodystart="17" bodyend="107"/>
+    <listofallmembers>
+      <member refid="classrasyidf_1_1_analogi_1_1_q_gram_1a64cab21164e00b9dd3098f70210b6ef4" prot="public" virt="non-virtual"><scope>rasyidf::Analogi::QGram</scope><name>Distance</name></member>
+      <member refid="classrasyidf_1_1_analogi_1_1_q_gram_1a3438b867ae1697b8d6ab575d83d8640c" prot="public" virt="non-virtual"><scope>rasyidf::Analogi::QGram</scope><name>Distance</name></member>
+      <member refid="classrasyidf_1_1_analogi_1_1_shingle_based_1ae718d1f5dfd9c30698137f5a52844e1c" prot="protected" virt="non-virtual"><scope>rasyidf::Analogi::QGram</scope><name>GetProfile</name></member>
+      <member refid="classrasyidf_1_1_analogi_1_1_shingle_based_1a290ffb4fbf286cc7f8d155d78b67037f" prot="protected" virt="non-virtual"><scope>rasyidf::Analogi::QGram</scope><name>k</name></member>
+      <member refid="classrasyidf_1_1_analogi_1_1_q_gram_1a1d1b0ce1a4db2046b534a401ea2466f4" prot="public" virt="non-virtual"><scope>rasyidf::Analogi::QGram</scope><name>QGram</name></member>
+      <member refid="classrasyidf_1_1_analogi_1_1_q_gram_1adb1835fab0e2dc8893caac8aea6d3694" prot="public" virt="non-virtual"><scope>rasyidf::Analogi::QGram</scope><name>QGram</name></member>
+      <member refid="classrasyidf_1_1_analogi_1_1_shingle_based_1a894c3b01ceda710aff7f05d15bfea700" prot="protected" virt="non-virtual"><scope>rasyidf::Analogi::QGram</scope><name>ShingleBased</name></member>
+      <member refid="classrasyidf_1_1_analogi_1_1_shingle_based_1a3da3829c42ffad6ae365aaa19d58cacf" prot="protected" virt="non-virtual"><scope>rasyidf::Analogi::QGram</scope><name>ShingleBased</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

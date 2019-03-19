@@ -1,0 +1,281 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="classrasyidf_1_1_analogi_1_1_weighted_levenshtein" kind="class" prot="public">
+    <compoundname>rasyidf::Analogi::WeightedLevenshtein</compoundname>
+    <basecompoundref refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_string_distance" prot="public" virt="non-virtual">rasyidf.Analogi.Interfaces.IStringDistance</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classrasyidf_1_1_analogi_1_1_weighted_levenshtein_1a4a2ff6dd1f11292652100469d735f378" prot="private" static="no" mutable="no">
+        <type>readonly <ref refid="interfacerasyidf_1_1_analogi_1_1_i_character_substitution" kindref="compound">ICharacterSubstitution</ref></type>
+        <definition>readonly ICharacterSubstitution rasyidf.Analogi.WeightedLevenshtein._characterSubstitution</definition>
+        <argsstring></argsstring>
+        <name>_characterSubstitution</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi.Core/WeightedLevenshtein.cs" line="18" column="1" bodyfile="D:/repo/algi/Analogi/Analogi.Core/WeightedLevenshtein.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrasyidf_1_1_analogi_1_1_weighted_levenshtein_1ab0a744594f5c95853ccb5a6640fad96e" prot="private" static="no" mutable="no">
+        <type>readonly <ref refid="interfacerasyidf_1_1_analogi_1_1_i_character_ins_del" kindref="compound">ICharacterInsDel</ref></type>
+        <definition>readonly ICharacterInsDel rasyidf.Analogi.WeightedLevenshtein._characterInsDel</definition>
+        <argsstring></argsstring>
+        <name>_characterInsDel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi.Core/WeightedLevenshtein.cs" line="19" column="1" bodyfile="D:/repo/algi/Analogi/Analogi.Core/WeightedLevenshtein.cs" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrasyidf_1_1_analogi_1_1_weighted_levenshtein_1a9cf0ce4077ef28b0aeaba504c59376a5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>rasyidf.Analogi.WeightedLevenshtein.WeightedLevenshtein</definition>
+        <argsstring>(ICharacterSubstitution characterSubstitution)</argsstring>
+        <name>WeightedLevenshtein</name>
+        <param>
+          <type><ref refid="interfacerasyidf_1_1_analogi_1_1_i_character_substitution" kindref="compound">ICharacterSubstitution</ref></type>
+          <declname>characterSubstitution</declname>
+        </param>
+        <briefdescription>
+<para>Instantiate with provided character substitution. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>characterSubstitution</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The strategy to determine character substitution weights.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi.Core/WeightedLevenshtein.cs" line="25" column="1" bodyfile="D:/repo/algi/Analogi/Analogi.Core/WeightedLevenshtein.cs" bodystart="25" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="function" id="classrasyidf_1_1_analogi_1_1_weighted_levenshtein_1a689efd197f7be362a74c40114cca3898" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>rasyidf.Analogi.WeightedLevenshtein.WeightedLevenshtein</definition>
+        <argsstring>(ICharacterSubstitution characterSubstitution, ICharacterInsDel characterInsDel)</argsstring>
+        <name>WeightedLevenshtein</name>
+        <param>
+          <type><ref refid="interfacerasyidf_1_1_analogi_1_1_i_character_substitution" kindref="compound">ICharacterSubstitution</ref></type>
+          <declname>characterSubstitution</declname>
+        </param>
+        <param>
+          <type><ref refid="interfacerasyidf_1_1_analogi_1_1_i_character_ins_del" kindref="compound">ICharacterInsDel</ref></type>
+          <declname>characterInsDel</declname>
+        </param>
+        <briefdescription>
+<para>Instantiate with provided character substitution, insertion, and deletion weights. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>characterSubstitution</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The strategy to determine character substitution weights.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>characterInsDel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The strategy to determine character insertion/deletion weights.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi.Core/WeightedLevenshtein.cs" line="36" column="1" bodyfile="D:/repo/algi/Analogi/Analogi.Core/WeightedLevenshtein.cs" bodystart="36" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="classrasyidf_1_1_analogi_1_1_weighted_levenshtein_1afbe38473cee15e43815e64f950fe4f04" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double rasyidf.Analogi.WeightedLevenshtein.Distance</definition>
+        <argsstring>(string s1, string s2)</argsstring>
+        <name>Distance</name>
+        <reimplements refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_string_distance_1a3c65e3f4f4758f3b0772de2eb9f3e41f">Distance</reimplements>
+        <param>
+          <type>string</type>
+          <declname>s1</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>s2</declname>
+        </param>
+        <briefdescription>
+<para>Equivalent to Distance(s1, s2, Double.MaxValue). </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>s1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The first string to compare.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>s2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second string to compare.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The computed weighted <ref refid="classrasyidf_1_1_analogi_1_1_levenshtein" kindref="compound">Levenshtein</ref> distance.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi.Core/WeightedLevenshtein.cs" line="49" column="1" bodyfile="D:/repo/algi/Analogi/Analogi.Core/WeightedLevenshtein.cs" bodystart="49" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="classrasyidf_1_1_analogi_1_1_weighted_levenshtein_1ad6959d49f53ee8688b53b3a976e23a1b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double rasyidf.Analogi.WeightedLevenshtein.Distance</definition>
+        <argsstring>(string s1, string s2, double limit)</argsstring>
+        <name>Distance</name>
+        <param>
+          <type>string</type>
+          <declname>s1</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>s2</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>limit</declname>
+        </param>
+        <briefdescription>
+<para>Compute <ref refid="classrasyidf_1_1_analogi_1_1_levenshtein" kindref="compound">Levenshtein</ref> distance using provided weights for substitution. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>s1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The first string to compare.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>s2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second string to compare.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>limit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The maximum result to compute before stopping. This means that the calculation can terminate early if you only care about strings with a certain similarity. Set this to Double.MaxValue if you want to run the calculation to completion in every case.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The computed weighted <ref refid="classrasyidf_1_1_analogi_1_1_levenshtein" kindref="compound">Levenshtein</ref> distance.</para></simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>ArgumentNullException</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If s1 or s2 is null.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi.Core/WeightedLevenshtein.cs" line="66" column="1" bodyfile="D:/repo/algi/Analogi/Analogi.Core/WeightedLevenshtein.cs" bodystart="66" bodyend="156"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classrasyidf_1_1_analogi_1_1_weighted_levenshtein_1ac12c08c1bd11db3e5fab36d029ceaa03" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double rasyidf.Analogi.WeightedLevenshtein.InsertionCost</definition>
+        <argsstring>(char c)</argsstring>
+        <name>InsertionCost</name>
+        <param>
+          <type>char</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi.Core/WeightedLevenshtein.cs" line="158" column="1" bodyfile="D:/repo/algi/Analogi/Analogi.Core/WeightedLevenshtein.cs" bodystart="158" bodyend="161"/>
+      </memberdef>
+      <memberdef kind="function" id="classrasyidf_1_1_analogi_1_1_weighted_levenshtein_1a0c133011a7d6cd244997a085533e1993" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double rasyidf.Analogi.WeightedLevenshtein.DeletionCost</definition>
+        <argsstring>(char c)</argsstring>
+        <name>DeletionCost</name>
+        <param>
+          <type>char</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi.Core/WeightedLevenshtein.cs" line="163" column="1" bodyfile="D:/repo/algi/Analogi/Analogi.Core/WeightedLevenshtein.cs" bodystart="163" bodyend="166"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Implementation of <ref refid="classrasyidf_1_1_analogi_1_1_levenshtein" kindref="compound">Levenshtein</ref> that allows to define different weights for different character substitutions. </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="207">
+        <label>rasyidf.Analogi.WeightedLevenshtein</label>
+        <link refid="classrasyidf_1_1_analogi_1_1_weighted_levenshtein"/>
+        <childnode refid="208" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="208">
+        <label>IStringDistance</label>
+        <link refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_string_distance"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="209">
+        <label>rasyidf.Analogi.WeightedLevenshtein</label>
+        <link refid="classrasyidf_1_1_analogi_1_1_weighted_levenshtein"/>
+        <childnode refid="210" relation="public-inheritance">
+        </childnode>
+        <childnode refid="211" relation="usage">
+          <edgelabel>_characterSubstitution</edgelabel>
+        </childnode>
+        <childnode refid="212" relation="usage">
+          <edgelabel>_characterInsDel</edgelabel>
+        </childnode>
+      </node>
+      <node id="212">
+        <label>rasyidf.Analogi.ICharacterInsDel</label>
+        <link refid="interfacerasyidf_1_1_analogi_1_1_i_character_ins_del"/>
+      </node>
+      <node id="211">
+        <label>rasyidf.Analogi.ICharacterSubstitution</label>
+        <link refid="interfacerasyidf_1_1_analogi_1_1_i_character_substitution"/>
+      </node>
+      <node id="210">
+        <label>IStringDistance</label>
+        <link refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_string_distance"/>
+      </node>
+    </collaborationgraph>
+    <location file="D:/repo/algi/Analogi/Analogi.Core/WeightedLevenshtein.cs" line="17" column="1" bodyfile="D:/repo/algi/Analogi/Analogi.Core/WeightedLevenshtein.cs" bodystart="16" bodyend="167"/>
+    <listofallmembers>
+      <member refid="classrasyidf_1_1_analogi_1_1_weighted_levenshtein_1ab0a744594f5c95853ccb5a6640fad96e" prot="private" virt="non-virtual"><scope>rasyidf::Analogi::WeightedLevenshtein</scope><name>_characterInsDel</name></member>
+      <member refid="classrasyidf_1_1_analogi_1_1_weighted_levenshtein_1a4a2ff6dd1f11292652100469d735f378" prot="private" virt="non-virtual"><scope>rasyidf::Analogi::WeightedLevenshtein</scope><name>_characterSubstitution</name></member>
+      <member refid="classrasyidf_1_1_analogi_1_1_weighted_levenshtein_1a0c133011a7d6cd244997a085533e1993" prot="private" virt="non-virtual"><scope>rasyidf::Analogi::WeightedLevenshtein</scope><name>DeletionCost</name></member>
+      <member refid="classrasyidf_1_1_analogi_1_1_weighted_levenshtein_1afbe38473cee15e43815e64f950fe4f04" prot="public" virt="non-virtual"><scope>rasyidf::Analogi::WeightedLevenshtein</scope><name>Distance</name></member>
+      <member refid="classrasyidf_1_1_analogi_1_1_weighted_levenshtein_1ad6959d49f53ee8688b53b3a976e23a1b" prot="public" virt="non-virtual"><scope>rasyidf::Analogi::WeightedLevenshtein</scope><name>Distance</name></member>
+      <member refid="classrasyidf_1_1_analogi_1_1_weighted_levenshtein_1ac12c08c1bd11db3e5fab36d029ceaa03" prot="private" virt="non-virtual"><scope>rasyidf::Analogi::WeightedLevenshtein</scope><name>InsertionCost</name></member>
+      <member refid="classrasyidf_1_1_analogi_1_1_weighted_levenshtein_1a9cf0ce4077ef28b0aeaba504c59376a5" prot="public" virt="non-virtual"><scope>rasyidf::Analogi::WeightedLevenshtein</scope><name>WeightedLevenshtein</name></member>
+      <member refid="classrasyidf_1_1_analogi_1_1_weighted_levenshtein_1a689efd197f7be362a74c40114cca3898" prot="public" virt="non-virtual"><scope>rasyidf::Analogi::WeightedLevenshtein</scope><name>WeightedLevenshtein</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

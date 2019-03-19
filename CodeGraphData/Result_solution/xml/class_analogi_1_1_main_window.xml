@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_analogi_1_1_main_window" kind="class" prot="public">
+    <compoundname>Analogi::MainWindow</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">Window</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_analogi_1_1_main_window_1ab763537f0e1b8b56cf40783b7a82788f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Analogi.MainWindow.MainWindow</definition>
+        <argsstring>()</argsstring>
+        <name>MainWindow</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi/MainWindow.xaml.cs" line="23" column="1" bodyfile="D:/repo/algi/Analogi/Analogi/MainWindow.xaml.cs" bodystart="23" bodyend="26"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Interaction logic for MainWindow.xaml </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="123">
+        <label>Window</label>
+      </node>
+      <node id="122">
+        <label>Analogi.MainWindow</label>
+        <link refid="class_analogi_1_1_main_window"/>
+        <childnode refid="123" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="125">
+        <label>Window</label>
+      </node>
+      <node id="124">
+        <label>Analogi.MainWindow</label>
+        <link refid="class_analogi_1_1_main_window"/>
+        <childnode refid="125" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="D:/repo/algi/Analogi/Analogi/MainWindow.xaml.cs" line="22" column="1" bodyfile="D:/repo/algi/Analogi/Analogi/MainWindow.xaml.cs" bodystart="21" bodyend="27"/>
+    <listofallmembers>
+      <member refid="class_analogi_1_1_main_window_1ab763537f0e1b8b56cf40783b7a82788f" prot="public" virt="non-virtual"><scope>Analogi::MainWindow</scope><name>MainWindow</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

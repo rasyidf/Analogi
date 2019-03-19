@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="_i_normalized_string_distance_8cs" kind="file">
+    <compoundname>INormalizedStringDistance.cs</compoundname>
+    <innerclass refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_normalized_string_distance" prot="public">rasyidf::Analogi::Interfaces::INormalizedStringDistance</innerclass>
+    <innernamespace refid="namespacerasyidf_1_1_analogi_1_1_interfaces">rasyidf::Analogi::Interfaces</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>MIT</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">rasyidf.Analogi.Interfaces</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="7" refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_normalized_string_distance" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">interface<sp/></highlight><highlight class="normal"><ref refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_normalized_string_distance" kindref="compound">INormalizedStringDistance</ref><sp/>:<sp/><ref refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_string_distance" kindref="compound">IStringDistance</ref></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="10"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="D:/repo/algi/Analogi/Analogi.Core/Interfaces/INormalizedStringDistance.cs"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="dir_89f99d042923d2ca8a3ff23d1bfbea00" kind="dir">
+    <compoundname>D:/repo/algi</compoundname>
+    <innerdir refid="dir_0b5af1cdc9ef5bea366e502141535e9c">D:/repo/algi/Analogi</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="D:/repo/algi/"/>
+  </compounddef>
+</doxygen>

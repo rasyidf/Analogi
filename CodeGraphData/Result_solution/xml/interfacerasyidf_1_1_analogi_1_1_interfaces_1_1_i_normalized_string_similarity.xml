@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_normalized_string_similarity" kind="interface" prot="public">
+    <compoundname>rasyidf::Analogi::Interfaces::INormalizedStringSimilarity</compoundname>
+    <basecompoundref refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_string_similarity" prot="public" virt="non-virtual">rasyidf.Analogi.Interfaces.IStringSimilarity</basecompoundref>
+    <derivedcompoundref refid="classrasyidf_1_1_analogi_1_1_cosine" prot="public" virt="non-virtual">rasyidf.Analogi.Cosine</derivedcompoundref>
+    <derivedcompoundref refid="classrasyidf_1_1_analogi_1_1_jaccard" prot="public" virt="non-virtual">rasyidf.Analogi.Jaccard</derivedcompoundref>
+    <derivedcompoundref refid="classrasyidf_1_1_analogi_1_1_jaro_winkler" prot="public" virt="non-virtual">rasyidf.Analogi.JaroWinkler</derivedcompoundref>
+    <derivedcompoundref refid="classrasyidf_1_1_analogi_1_1_normalized_levenshtein" prot="public" virt="non-virtual">rasyidf.Analogi.NormalizedLevenshtein</derivedcompoundref>
+    <derivedcompoundref refid="classrasyidf_1_1_analogi_1_1_sorensen_dice" prot="public" virt="non-virtual">rasyidf.Analogi.SorensenDice</derivedcompoundref>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="56">
+        <label>rasyidf.Analogi.Jaccard</label>
+        <link refid="classrasyidf_1_1_analogi_1_1_jaccard"/>
+        <childnode refid="53" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="58">
+        <label>rasyidf.Analogi.NormalizedLevenshtein</label>
+        <link refid="classrasyidf_1_1_analogi_1_1_normalized_levenshtein"/>
+        <childnode refid="53" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="57">
+        <label>rasyidf.Analogi.JaroWinkler</label>
+        <link refid="classrasyidf_1_1_analogi_1_1_jaro_winkler"/>
+        <childnode refid="53" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="55">
+        <label>rasyidf.Analogi.Cosine</label>
+        <link refid="classrasyidf_1_1_analogi_1_1_cosine"/>
+        <childnode refid="53" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="53">
+        <label>rasyidf.Analogi.Interfaces.INormalizedStringSimilarity</label>
+        <link refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_normalized_string_similarity"/>
+        <childnode refid="54" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="54">
+        <label>IStringSimilarity</label>
+        <link refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_string_similarity"/>
+      </node>
+      <node id="59">
+        <label>rasyidf.Analogi.SorensenDice</label>
+        <link refid="classrasyidf_1_1_analogi_1_1_sorensen_dice"/>
+        <childnode refid="53" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="60">
+        <label>rasyidf.Analogi.Interfaces.INormalizedStringSimilarity</label>
+        <link refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_normalized_string_similarity"/>
+        <childnode refid="61" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="61">
+        <label>IStringSimilarity</label>
+        <link refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_string_similarity"/>
+      </node>
+    </collaborationgraph>
+    <location file="D:/repo/algi/Analogi/Analogi.Core/Interfaces/INormalizedStringSimilarity.cs" line="8" column="1" bodyfile="D:/repo/algi/Analogi/Analogi.Core/Interfaces/INormalizedStringSimilarity.cs" bodystart="7" bodyend="9"/>
+    <listofallmembers>
+      <member refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_string_similarity_1af89d159a9625464d8b02ebf10ef33d2b" prot="public" virt="non-virtual"><scope>rasyidf::Analogi::Interfaces::INormalizedStringSimilarity</scope><name>Similarity</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

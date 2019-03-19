@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_analogi_1_1_delegate_command" kind="class" prot="public">
+    <compoundname>Analogi::DelegateCommand</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ICommand</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_analogi_1_1_delegate_command_1a157c33612e13feb11a6d67da13bb9093" prot="private" static="no" mutable="no">
+        <type>readonly Action</type>
+        <definition>readonly Action Analogi.DelegateCommand.action</definition>
+        <argsstring></argsstring>
+        <name>action</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi/ViewModelBase.cs" line="17" column="1" bodyfile="D:/repo/algi/Analogi/Analogi/ViewModelBase.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="event">
+      <memberdef kind="event" id="class_analogi_1_1_delegate_command_1a0135a0383b69929224ac925da1125982" prot="public" static="no" add="no" remove="no" raise="no">
+        <type>EventHandler</type>
+        <definition>EventHandler Analogi.DelegateCommand.CanExecuteChanged</definition>
+        <argsstring></argsstring>
+        <name>CanExecuteChanged</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi/ViewModelBase.cs" line="21" column="1" bodyfile="D:/repo/algi/Analogi/Analogi/ViewModelBase.cs" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_analogi_1_1_delegate_command_1a6f50f6eb0f824b526d50e74a0dbae776" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Analogi.DelegateCommand.DelegateCommand</definition>
+        <argsstring>(Action act)</argsstring>
+        <name>DelegateCommand</name>
+        <param>
+          <type>Action</type>
+          <declname>act</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi/ViewModelBase.cs" line="19" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_analogi_1_1_delegate_command_1a477bc404d7802ee1c48e2030902d9c43" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Analogi.DelegateCommand.CanExecute</definition>
+        <argsstring>(object parameter)</argsstring>
+        <name>CanExecute</name>
+        <param>
+          <type>object</type>
+          <declname>parameter</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi/ViewModelBase.cs" line="23" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_analogi_1_1_delegate_command_1a4e4c9fcb33e396c31a27306b9429d100" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Analogi.DelegateCommand.Execute</definition>
+        <argsstring>(object parameter)</argsstring>
+        <name>Execute</name>
+        <param>
+          <type>object</type>
+          <declname>parameter</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi/ViewModelBase.cs" line="25" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="25">
+        <label>ICommand</label>
+      </node>
+      <node id="24">
+        <label>Analogi.DelegateCommand</label>
+        <link refid="class_analogi_1_1_delegate_command"/>
+        <childnode refid="25" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="27">
+        <label>ICommand</label>
+      </node>
+      <node id="26">
+        <label>Analogi.DelegateCommand</label>
+        <link refid="class_analogi_1_1_delegate_command"/>
+        <childnode refid="27" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="D:/repo/algi/Analogi/Analogi/ViewModelBase.cs" line="15" column="1" bodyfile="D:/repo/algi/Analogi/Analogi/ViewModelBase.cs" bodystart="14" bodyend="26"/>
+    <listofallmembers>
+      <member refid="class_analogi_1_1_delegate_command_1a157c33612e13feb11a6d67da13bb9093" prot="private" virt="non-virtual"><scope>Analogi::DelegateCommand</scope><name>action</name></member>
+      <member refid="class_analogi_1_1_delegate_command_1a477bc404d7802ee1c48e2030902d9c43" prot="public" virt="non-virtual"><scope>Analogi::DelegateCommand</scope><name>CanExecute</name></member>
+      <member refid="class_analogi_1_1_delegate_command_1a0135a0383b69929224ac925da1125982" prot="public" virt="non-virtual"><scope>Analogi::DelegateCommand</scope><name>CanExecuteChanged</name></member>
+      <member refid="class_analogi_1_1_delegate_command_1a6f50f6eb0f824b526d50e74a0dbae776" prot="public" virt="non-virtual"><scope>Analogi::DelegateCommand</scope><name>DelegateCommand</name></member>
+      <member refid="class_analogi_1_1_delegate_command_1a4e4c9fcb33e396c31a27306b9429d100" prot="public" virt="non-virtual"><scope>Analogi::DelegateCommand</scope><name>Execute</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,245 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="classrasyidf_1_1_analogi_1_1_jaccard" kind="class" prot="public">
+    <compoundname>rasyidf::Analogi::Jaccard</compoundname>
+    <basecompoundref refid="classrasyidf_1_1_analogi_1_1_shingle_based" prot="public" virt="non-virtual">rasyidf.Analogi.ShingleBased</basecompoundref>
+    <basecompoundref refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_metric_string_distance" prot="public" virt="non-virtual">rasyidf.Analogi.Interfaces.IMetricStringDistance</basecompoundref>
+    <basecompoundref refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_normalized_string_distance" prot="public" virt="non-virtual">rasyidf.Analogi.Interfaces.INormalizedStringDistance</basecompoundref>
+    <basecompoundref refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_normalized_string_similarity" prot="public" virt="non-virtual">rasyidf.Analogi.Interfaces.INormalizedStringSimilarity</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrasyidf_1_1_analogi_1_1_jaccard_1ab588d750861629e884504ff9dd643c1d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>rasyidf.Analogi.Jaccard.Jaccard</definition>
+        <argsstring>(int k)</argsstring>
+        <name>Jaccard</name>
+        <param>
+          <type>int</type>
+          <declname>k</declname>
+        </param>
+        <briefdescription>
+<para>The strings are first transformed into sets of k-shingles (sequences of k characters), then <ref refid="classrasyidf_1_1_analogi_1_1_jaccard" kindref="compound">Jaccard</ref> index is computed as |A inter B| / |A union B|. The default value of k is 3. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>k</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi.Core/Jaccard.cs" line="30" column="1" bodyfile="D:/repo/algi/Analogi/Analogi.Core/Jaccard.cs" bodystart="30" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="classrasyidf_1_1_analogi_1_1_jaccard_1af06a365d6798773f0bf4297e6a777508" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>rasyidf.Analogi.Jaccard.Jaccard</definition>
+        <argsstring>()</argsstring>
+        <name>Jaccard</name>
+        <briefdescription>
+<para>The strings are first transformed into sets of k-shingles (sequences of k characters), then <ref refid="classrasyidf_1_1_analogi_1_1_jaccard" kindref="compound">Jaccard</ref> index is computed as |A inter B| / |A union B|. The default value of k is 3. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi.Core/Jaccard.cs" line="37" column="1" bodyfile="D:/repo/algi/Analogi/Analogi.Core/Jaccard.cs" bodystart="37" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="classrasyidf_1_1_analogi_1_1_jaccard_1add2a0c1082f7b422c32829bde46f12b4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double rasyidf.Analogi.Jaccard.Similarity</definition>
+        <argsstring>(string s1, string s2)</argsstring>
+        <name>Similarity</name>
+        <reimplements refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_string_similarity_1af89d159a9625464d8b02ebf10ef33d2b">Similarity</reimplements>
+        <param>
+          <type>string</type>
+          <declname>s1</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>s2</declname>
+        </param>
+        <briefdescription>
+<para>Compute jaccard index: |A inter B| / |A union B|. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>s1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The first string to compare.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>s2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second string to compare.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The <ref refid="classrasyidf_1_1_analogi_1_1_jaccard" kindref="compound">Jaccard</ref> index in the range [0, 1]</para></simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>ArgumentNullException</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If s1 or s2 is null.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi.Core/Jaccard.cs" line="46" column="1" bodyfile="D:/repo/algi/Analogi/Analogi.Core/Jaccard.cs" bodystart="46" bodyend="74"/>
+      </memberdef>
+      <memberdef kind="function" id="classrasyidf_1_1_analogi_1_1_jaccard_1a487ac737c4d6c916d521268af35e65a8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double rasyidf.Analogi.Jaccard.Distance</definition>
+        <argsstring>(string s1, string s2)</argsstring>
+        <name>Distance</name>
+        <reimplements refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_metric_string_distance_1a681ede8e4a5e25c85fa3bf55cd92674d">Distance</reimplements>
+        <param>
+          <type>string</type>
+          <declname>s1</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>s2</declname>
+        </param>
+        <briefdescription>
+<para>Distance is computed as 1 - similarity. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>s1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The first string to compare.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>s2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second string to compare.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>1 - the <ref refid="classrasyidf_1_1_analogi_1_1_jaccard" kindref="compound">Jaccard</ref> similarity.</para></simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>ArgumentNullException</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If s1 or s2 is null.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi.Core/Jaccard.cs" line="83" column="1" bodyfile="D:/repo/algi/Analogi/Analogi.Core/Jaccard.cs" bodystart="83" bodyend="86"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Each input string is converted into a set of n-grams, the <ref refid="classrasyidf_1_1_analogi_1_1_jaccard" kindref="compound">Jaccard</ref> index is then computed as |V1 inter V2| / |V1 union V2|. Like Q-Gram distance, the input strings are first converted into sets of n-grams (sequences of n characters, also called k-shingles), but this time the cardinality of each n-gram is not taken into account. Distance is computed as 1 - cosine similarity. <ref refid="classrasyidf_1_1_analogi_1_1_jaccard" kindref="compound">Jaccard</ref> index is a metric distance. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="88">
+        <label>rasyidf.Analogi.Jaccard</label>
+        <link refid="classrasyidf_1_1_analogi_1_1_jaccard"/>
+        <childnode refid="89" relation="public-inheritance">
+        </childnode>
+        <childnode refid="90" relation="public-inheritance">
+        </childnode>
+        <childnode refid="92" relation="public-inheritance">
+        </childnode>
+        <childnode refid="93" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="93">
+        <label>INormalizedStringSimilarity</label>
+        <link refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_normalized_string_similarity"/>
+        <childnode refid="94" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="91">
+        <label>IStringDistance</label>
+        <link refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_string_distance"/>
+      </node>
+      <node id="89">
+        <label>ShingleBased</label>
+        <link refid="classrasyidf_1_1_analogi_1_1_shingle_based"/>
+      </node>
+      <node id="92">
+        <label>INormalizedStringDistance</label>
+        <link refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_normalized_string_distance"/>
+        <childnode refid="91" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="90">
+        <label>IMetricStringDistance</label>
+        <link refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_metric_string_distance"/>
+        <childnode refid="91" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="94">
+        <label>IStringSimilarity</label>
+        <link refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_string_similarity"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="95">
+        <label>rasyidf.Analogi.Jaccard</label>
+        <link refid="classrasyidf_1_1_analogi_1_1_jaccard"/>
+        <childnode refid="96" relation="public-inheritance">
+        </childnode>
+        <childnode refid="97" relation="public-inheritance">
+        </childnode>
+        <childnode refid="99" relation="public-inheritance">
+        </childnode>
+        <childnode refid="100" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="100">
+        <label>INormalizedStringSimilarity</label>
+        <link refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_normalized_string_similarity"/>
+        <childnode refid="101" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="98">
+        <label>IStringDistance</label>
+        <link refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_string_distance"/>
+      </node>
+      <node id="96">
+        <label>ShingleBased</label>
+        <link refid="classrasyidf_1_1_analogi_1_1_shingle_based"/>
+      </node>
+      <node id="99">
+        <label>INormalizedStringDistance</label>
+        <link refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_normalized_string_distance"/>
+        <childnode refid="98" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="97">
+        <label>IMetricStringDistance</label>
+        <link refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_metric_string_distance"/>
+        <childnode refid="98" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="101">
+        <label>IStringSimilarity</label>
+        <link refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_string_similarity"/>
+      </node>
+    </collaborationgraph>
+    <location file="D:/repo/algi/Analogi/Analogi.Core/Jaccard.cs" line="23" column="1" bodyfile="D:/repo/algi/Analogi/Analogi.Core/Jaccard.cs" bodystart="22" bodyend="87"/>
+    <listofallmembers>
+      <member refid="classrasyidf_1_1_analogi_1_1_jaccard_1a487ac737c4d6c916d521268af35e65a8" prot="public" virt="non-virtual"><scope>rasyidf::Analogi::Jaccard</scope><name>Distance</name></member>
+      <member refid="classrasyidf_1_1_analogi_1_1_shingle_based_1ae718d1f5dfd9c30698137f5a52844e1c" prot="protected" virt="non-virtual"><scope>rasyidf::Analogi::Jaccard</scope><name>GetProfile</name></member>
+      <member refid="classrasyidf_1_1_analogi_1_1_jaccard_1ab588d750861629e884504ff9dd643c1d" prot="public" virt="non-virtual"><scope>rasyidf::Analogi::Jaccard</scope><name>Jaccard</name></member>
+      <member refid="classrasyidf_1_1_analogi_1_1_jaccard_1af06a365d6798773f0bf4297e6a777508" prot="public" virt="non-virtual"><scope>rasyidf::Analogi::Jaccard</scope><name>Jaccard</name></member>
+      <member refid="classrasyidf_1_1_analogi_1_1_shingle_based_1a290ffb4fbf286cc7f8d155d78b67037f" prot="protected" virt="non-virtual"><scope>rasyidf::Analogi::Jaccard</scope><name>k</name></member>
+      <member refid="classrasyidf_1_1_analogi_1_1_shingle_based_1a894c3b01ceda710aff7f05d15bfea700" prot="protected" virt="non-virtual"><scope>rasyidf::Analogi::Jaccard</scope><name>ShingleBased</name></member>
+      <member refid="classrasyidf_1_1_analogi_1_1_shingle_based_1a3da3829c42ffad6ae365aaa19d58cacf" prot="protected" virt="non-virtual"><scope>rasyidf::Analogi::Jaccard</scope><name>ShingleBased</name></member>
+      <member refid="classrasyidf_1_1_analogi_1_1_jaccard_1add2a0c1082f7b422c32829bde46f12b4" prot="public" virt="non-virtual"><scope>rasyidf::Analogi::Jaccard</scope><name>Similarity</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

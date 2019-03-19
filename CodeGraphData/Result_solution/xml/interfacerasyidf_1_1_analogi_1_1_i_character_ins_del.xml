@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="interfacerasyidf_1_1_analogi_1_1_i_character_ins_del" kind="interface" prot="public">
+    <compoundname>rasyidf::Analogi::ICharacterInsDel</compoundname>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="interfacerasyidf_1_1_analogi_1_1_i_character_ins_del_1a46aabda2ce8d080d06d8cde4dac95c61" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double rasyidf.Analogi.ICharacterInsDel.DeletionCost</definition>
+        <argsstring>(char c)</argsstring>
+        <name>DeletionCost</name>
+        <param>
+          <type>char</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+<para>Computes the deletion cost. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>c</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The character being deleted.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The cost to be allocated to deleting the given character, in the range [0, 1].</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi.Core/Interfaces/ICharacterInsDel.cs" line="16" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interfacerasyidf_1_1_analogi_1_1_i_character_ins_del_1a974a751d35825c33d332e8876e47abfa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double rasyidf.Analogi.ICharacterInsDel.InsertionCost</definition>
+        <argsstring>(char c)</argsstring>
+        <name>InsertionCost</name>
+        <param>
+          <type>char</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+<para>Computes the insertion cost. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>c</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The character being inserted.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The cost to be allocated to inserting the given character, in the range [0, 1].</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi.Core/Interfaces/ICharacterInsDel.cs" line="24" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>As an adjunct to <ref refid="interfacerasyidf_1_1_analogi_1_1_i_character_substitution" kindref="compound">ICharacterSubstitution</ref>, this interface allows you to specify the cost of deletion or insertion of a character. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="D:/repo/algi/Analogi/Analogi.Core/Interfaces/ICharacterInsDel.cs" line="9" column="1" bodyfile="D:/repo/algi/Analogi/Analogi.Core/Interfaces/ICharacterInsDel.cs" bodystart="8" bodyend="25"/>
+    <listofallmembers>
+      <member refid="interfacerasyidf_1_1_analogi_1_1_i_character_ins_del_1a46aabda2ce8d080d06d8cde4dac95c61" prot="public" virt="non-virtual"><scope>rasyidf::Analogi::ICharacterInsDel</scope><name>DeletionCost</name></member>
+      <member refid="interfacerasyidf_1_1_analogi_1_1_i_character_ins_del_1a974a751d35825c33d332e8876e47abfa" prot="public" virt="non-virtual"><scope>rasyidf::Analogi::ICharacterInsDel</scope><name>InsertionCost</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

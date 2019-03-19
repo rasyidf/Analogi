@@ -1,0 +1,317 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="classrasyidf_1_1_analogi_1_1_cosine" kind="class" prot="public">
+    <compoundname>rasyidf::Analogi::Cosine</compoundname>
+    <basecompoundref refid="classrasyidf_1_1_analogi_1_1_shingle_based" prot="public" virt="non-virtual">rasyidf.Analogi.ShingleBased</basecompoundref>
+    <basecompoundref refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_normalized_string_similarity" prot="public" virt="non-virtual">rasyidf.Analogi.Interfaces.INormalizedStringSimilarity</basecompoundref>
+    <basecompoundref refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_normalized_string_distance" prot="public" virt="non-virtual">rasyidf.Analogi.Interfaces.INormalizedStringDistance</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrasyidf_1_1_analogi_1_1_cosine_1a6f18828e7621ed1100e6fb9c1039b928" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>rasyidf.Analogi.Cosine.Cosine</definition>
+        <argsstring>(int k)</argsstring>
+        <name>Cosine</name>
+        <param>
+          <type>int</type>
+          <declname>k</declname>
+        </param>
+        <briefdescription>
+<para>Implements <ref refid="classrasyidf_1_1_analogi_1_1_cosine" kindref="compound">Cosine</ref> Similarity between strings.The strings are first transformed in vectors of occurrences of k-shingles(sequences of k characters). In this n-dimensional space, the similarity between the two strings is the cosine of their respective vectors. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>k</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi.Core/Cosine.cs" line="24" column="1" bodyfile="D:/repo/algi/Analogi/Analogi.Core/Cosine.cs" bodystart="24" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classrasyidf_1_1_analogi_1_1_cosine_1ab448323943543e654c77a4731d685659" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>rasyidf.Analogi.Cosine.Cosine</definition>
+        <argsstring>()</argsstring>
+        <name>Cosine</name>
+        <briefdescription>
+<para>Implements <ref refid="classrasyidf_1_1_analogi_1_1_cosine" kindref="compound">Cosine</ref> Similarity between strings.The strings are first transformed in vectors of occurrences of k-shingles(sequences of k characters). In this n-dimensional space, the similarity between the two strings is the cosine of their respective vectors. </para>        </briefdescription>
+        <detaileddescription>
+<para>Default k is 3. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi.Core/Cosine.cs" line="34" column="1" bodyfile="D:/repo/algi/Analogi/Analogi.Core/Cosine.cs" bodystart="34" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="classrasyidf_1_1_analogi_1_1_cosine_1ac4141d219f5eb99e2ef0ee1029ebe91c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double rasyidf.Analogi.Cosine.Distance</definition>
+        <argsstring>(string s1, string s2)</argsstring>
+        <name>Distance</name>
+        <reimplements refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_string_distance_1a3c65e3f4f4758f3b0772de2eb9f3e41f">Distance</reimplements>
+        <param>
+          <type>string</type>
+          <declname>s1</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>s2</declname>
+        </param>
+        <briefdescription>
+<para>Returns 1.0 - similarity. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>s1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The first string to compare.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>s2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second string to compare.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>1.0 - the cosine similarity in the range [0, 1]</para></simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>ArgumentNullException</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If s1 or s2 is null.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi.Core/Cosine.cs" line="47" column="1" bodyfile="D:/repo/algi/Analogi/Analogi.Core/Cosine.cs" bodystart="47" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classrasyidf_1_1_analogi_1_1_cosine_1a50e10a8888c1d6b2914c688e7a329103" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double rasyidf.Analogi.Cosine.Similarity</definition>
+        <argsstring>(string s1, string s2)</argsstring>
+        <name>Similarity</name>
+        <reimplements refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_string_similarity_1af89d159a9625464d8b02ebf10ef33d2b">Similarity</reimplements>
+        <param>
+          <type>string</type>
+          <declname>s1</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>s2</declname>
+        </param>
+        <briefdescription>
+<para>Compute the cosine similarity between strings. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>s1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The first string to compare.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>s2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second string to compare.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The cosine similarity in the range [0, 1]</para></simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>T:System.ArgumentNullException</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If s1 or s2 is null.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi.Core/Cosine.cs" line="59" column="1" bodyfile="D:/repo/algi/Analogi/Analogi.Core/Cosine.cs" bodystart="59" bodyend="85"/>
+      </memberdef>
+      <memberdef kind="function" id="classrasyidf_1_1_analogi_1_1_cosine_1a549a2aaa3abdc43dc896f8831d6e7cd5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double rasyidf.Analogi.Cosine.Similarity</definition>
+        <argsstring>(IDictionary&lt; string, int &gt; profile1, IDictionary&lt; string, int &gt; profile2)</argsstring>
+        <name>Similarity</name>
+        <param>
+          <type>IDictionary&lt; string, int &gt;</type>
+          <declname>profile1</declname>
+        </param>
+        <param>
+          <type>IDictionary&lt; string, int &gt;</type>
+          <declname>profile2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>profile1</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>profile2</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi.Core/Cosine.cs" line="93" column="1" bodyfile="D:/repo/algi/Analogi/Analogi.Core/Cosine.cs" bodystart="93" bodyend="97"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classrasyidf_1_1_analogi_1_1_cosine_1aefa368de1227f889642bfa713ccd6b66" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double rasyidf.Analogi.Cosine.DotProduct</definition>
+        <argsstring>(IDictionary&lt; string, int &gt; profile1, IDictionary&lt; string, int &gt; profile2)</argsstring>
+        <name>DotProduct</name>
+        <param>
+          <type>IDictionary&lt; string, int &gt;</type>
+          <declname>profile1</declname>
+        </param>
+        <param>
+          <type>IDictionary&lt; string, int &gt;</type>
+          <declname>profile2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi.Core/Cosine.cs" line="99" column="1" bodyfile="D:/repo/algi/Analogi/Analogi.Core/Cosine.cs" bodystart="99" bodyend="124"/>
+      </memberdef>
+      <memberdef kind="function" id="classrasyidf_1_1_analogi_1_1_cosine_1a41e33697b6557c4cd6da654d3aefa660" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double rasyidf.Analogi.Cosine.Norm</definition>
+        <argsstring>(IDictionary&lt; string, int &gt; profile)</argsstring>
+        <name>Norm</name>
+        <param>
+          <type>IDictionary&lt; string, int &gt;</type>
+          <declname>profile</declname>
+        </param>
+        <briefdescription>
+<para>Compute the norm L2 : sqrt(Sum_i( v_i²)). </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>profile</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi.Core/Cosine.cs" line="131" column="1" bodyfile="D:/repo/algi/Analogi/Analogi.Core/Cosine.cs" bodystart="131" bodyend="141"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="8">
+        <label>INormalizedStringSimilarity</label>
+        <link refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_normalized_string_similarity"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>IStringDistance</label>
+        <link refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_string_distance"/>
+      </node>
+      <node id="7">
+        <label>ShingleBased</label>
+        <link refid="classrasyidf_1_1_analogi_1_1_shingle_based"/>
+      </node>
+      <node id="6">
+        <label>rasyidf.Analogi.Cosine</label>
+        <link refid="classrasyidf_1_1_analogi_1_1_cosine"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>INormalizedStringDistance</label>
+        <link refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_normalized_string_distance"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>IStringSimilarity</label>
+        <link refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_string_similarity"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="14">
+        <label>INormalizedStringSimilarity</label>
+        <link refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_normalized_string_similarity"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>IStringDistance</label>
+        <link refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_string_distance"/>
+      </node>
+      <node id="13">
+        <label>ShingleBased</label>
+        <link refid="classrasyidf_1_1_analogi_1_1_shingle_based"/>
+      </node>
+      <node id="12">
+        <label>rasyidf.Analogi.Cosine</label>
+        <link refid="classrasyidf_1_1_analogi_1_1_cosine"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>INormalizedStringDistance</label>
+        <link refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_normalized_string_distance"/>
+        <childnode refid="17" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>IStringSimilarity</label>
+        <link refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_string_similarity"/>
+      </node>
+    </collaborationgraph>
+    <location file="D:/repo/algi/Analogi/Analogi.Core/Cosine.cs" line="14" column="1" bodyfile="D:/repo/algi/Analogi/Analogi.Core/Cosine.cs" bodystart="13" bodyend="144"/>
+    <listofallmembers>
+      <member refid="classrasyidf_1_1_analogi_1_1_cosine_1a6f18828e7621ed1100e6fb9c1039b928" prot="public" virt="non-virtual"><scope>rasyidf::Analogi::Cosine</scope><name>Cosine</name></member>
+      <member refid="classrasyidf_1_1_analogi_1_1_cosine_1ab448323943543e654c77a4731d685659" prot="public" virt="non-virtual"><scope>rasyidf::Analogi::Cosine</scope><name>Cosine</name></member>
+      <member refid="classrasyidf_1_1_analogi_1_1_cosine_1ac4141d219f5eb99e2ef0ee1029ebe91c" prot="public" virt="non-virtual"><scope>rasyidf::Analogi::Cosine</scope><name>Distance</name></member>
+      <member refid="classrasyidf_1_1_analogi_1_1_cosine_1aefa368de1227f889642bfa713ccd6b66" prot="private" virt="non-virtual"><scope>rasyidf::Analogi::Cosine</scope><name>DotProduct</name></member>
+      <member refid="classrasyidf_1_1_analogi_1_1_shingle_based_1ae718d1f5dfd9c30698137f5a52844e1c" prot="protected" virt="non-virtual"><scope>rasyidf::Analogi::Cosine</scope><name>GetProfile</name></member>
+      <member refid="classrasyidf_1_1_analogi_1_1_shingle_based_1a290ffb4fbf286cc7f8d155d78b67037f" prot="protected" virt="non-virtual"><scope>rasyidf::Analogi::Cosine</scope><name>k</name></member>
+      <member refid="classrasyidf_1_1_analogi_1_1_cosine_1a41e33697b6557c4cd6da654d3aefa660" prot="private" virt="non-virtual"><scope>rasyidf::Analogi::Cosine</scope><name>Norm</name></member>
+      <member refid="classrasyidf_1_1_analogi_1_1_shingle_based_1a894c3b01ceda710aff7f05d15bfea700" prot="protected" virt="non-virtual"><scope>rasyidf::Analogi::Cosine</scope><name>ShingleBased</name></member>
+      <member refid="classrasyidf_1_1_analogi_1_1_shingle_based_1a3da3829c42ffad6ae365aaa19d58cacf" prot="protected" virt="non-virtual"><scope>rasyidf::Analogi::Cosine</scope><name>ShingleBased</name></member>
+      <member refid="classrasyidf_1_1_analogi_1_1_cosine_1a50e10a8888c1d6b2914c688e7a329103" prot="public" virt="non-virtual"><scope>rasyidf::Analogi::Cosine</scope><name>Similarity</name></member>
+      <member refid="classrasyidf_1_1_analogi_1_1_cosine_1a549a2aaa3abdc43dc896f8831d6e7cd5" prot="public" virt="non-virtual"><scope>rasyidf::Analogi::Cosine</scope><name>Similarity</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_analogi_1_1_distance_result" kind="class" prot="package">
+    <compoundname>Analogi::DistanceResult</compoundname>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_analogi_1_1_distance_result_1ad3285af60e5e0bbe6ad7657068a26bb5" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string Analogi.DistanceResult.Algorithm</definition>
+        <argsstring></argsstring>
+        <name>Algorithm</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi/DistanceResult.cs" line="51" column="1" bodyfile="D:/repo/algi/Analogi/Analogi/DistanceResult.cs" bodystart="51" bodyend="-1"/>
+        <referencedby refid="class_analogi_1_1_distance_result_1a0fed7b5a5a831ae97182ed37ea9deafa" compoundref="_distance_result_8cs" startline="15" endline="49">Analogi.DistanceResult.Calculate</referencedby>
+      </memberdef>
+      <memberdef kind="property" id="class_analogi_1_1_distance_result_1a874b22e042607cd4b65d85169c3916b7" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type><ref refid="class_analogi_1_1_script_item" kindref="compound">ScriptItem</ref></type>
+        <definition>ScriptItem Analogi.DistanceResult.Source</definition>
+        <argsstring></argsstring>
+        <name>Source</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi/DistanceResult.cs" line="52" column="1" bodyfile="D:/repo/algi/Analogi/Analogi/DistanceResult.cs" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_analogi_1_1_distance_result_1a3ea4e5ed273811c8bda8498d9d01424f" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type><ref refid="class_analogi_1_1_script_item" kindref="compound">ScriptItem</ref></type>
+        <definition>ScriptItem Analogi.DistanceResult.Clone</definition>
+        <argsstring></argsstring>
+        <name>Clone</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi/DistanceResult.cs" line="53" column="1" bodyfile="D:/repo/algi/Analogi/Analogi/DistanceResult.cs" bodystart="53" bodyend="-1"/>
+        <referencedby refid="class_analogi_1_1_distance_result_1a0fed7b5a5a831ae97182ed37ea9deafa" compoundref="_distance_result_8cs" startline="15" endline="49">Analogi.DistanceResult.Calculate</referencedby>
+      </memberdef>
+      <memberdef kind="property" id="class_analogi_1_1_distance_result_1aaee1ea9665bf48ccc8ed91319d12e4dd" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>double</type>
+        <definition>double Analogi.DistanceResult.Similarity</definition>
+        <argsstring></argsstring>
+        <name>Similarity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi/DistanceResult.cs" line="54" column="1" bodyfile="D:/repo/algi/Analogi/Analogi/DistanceResult.cs" bodystart="54" bodyend="-1"/>
+        <referencedby refid="class_analogi_1_1_distance_result_1a0fed7b5a5a831ae97182ed37ea9deafa" compoundref="_distance_result_8cs" startline="15" endline="49">Analogi.DistanceResult.Calculate</referencedby>
+      </memberdef>
+      <memberdef kind="property" id="class_analogi_1_1_distance_result_1ae80c1fb59a74b57660daa93b7bbb68b0" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>double</type>
+        <definition>double Analogi.DistanceResult.Distance</definition>
+        <argsstring></argsstring>
+        <name>Distance</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi/DistanceResult.cs" line="55" column="1" bodyfile="D:/repo/algi/Analogi/Analogi/DistanceResult.cs" bodystart="55" bodyend="-1"/>
+        <referencedby refid="class_analogi_1_1_distance_result_1a0fed7b5a5a831ae97182ed37ea9deafa" compoundref="_distance_result_8cs" startline="15" endline="49">Analogi.DistanceResult.Calculate</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_analogi_1_1_distance_result_1ac8f294fbf15429658261f7b17256ea52" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Analogi.DistanceResult.DistanceResult</definition>
+        <argsstring>(string selectedAlgorithm, ScriptItem script, ScriptItem item)</argsstring>
+        <name>DistanceResult</name>
+        <param>
+          <type>string</type>
+          <declname>selectedAlgorithm</declname>
+        </param>
+        <param>
+          <type><ref refid="class_analogi_1_1_script_item" kindref="compound">ScriptItem</ref></type>
+          <declname>script</declname>
+        </param>
+        <param>
+          <type><ref refid="class_analogi_1_1_script_item" kindref="compound">ScriptItem</ref></type>
+          <declname>item</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi/DistanceResult.cs" line="7" column="1" bodyfile="D:/repo/algi/Analogi/Analogi/DistanceResult.cs" bodystart="7" bodyend="13"/>
+        <references refid="class_analogi_1_1_distance_result_1a0fed7b5a5a831ae97182ed37ea9deafa" compoundref="_distance_result_8cs" startline="15" endline="49">Analogi.DistanceResult.Calculate</references>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_analogi_1_1_distance_result_1a0fed7b5a5a831ae97182ed37ea9deafa" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Analogi.DistanceResult.Calculate</definition>
+        <argsstring>()</argsstring>
+        <name>Calculate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi/DistanceResult.cs" line="15" column="1" bodyfile="D:/repo/algi/Analogi/Analogi/DistanceResult.cs" bodystart="15" bodyend="49"/>
+        <references refid="class_analogi_1_1_distance_result_1ad3285af60e5e0bbe6ad7657068a26bb5" compoundref="_distance_result_8cs" startline="51">Analogi.DistanceResult.Algorithm</references>
+        <references refid="class_analogi_1_1_distance_result_1a3ea4e5ed273811c8bda8498d9d01424f" compoundref="_distance_result_8cs" startline="53">Analogi.DistanceResult.Clone</references>
+        <references refid="class_analogi_1_1_distance_result_1ae80c1fb59a74b57660daa93b7bbb68b0" compoundref="_distance_result_8cs" startline="55">Analogi.DistanceResult.Distance</references>
+        <references refid="class_analogi_1_1_script_item_1ac12964faea26ed3323ee3e5a6ae0e0bc" compoundref="_script_item_8cs" startline="23" endline="26">Analogi.ScriptItem.ReadAll</references>
+        <references refid="class_analogi_1_1_distance_result_1aaee1ea9665bf48ccc8ed91319d12e4dd" compoundref="_distance_result_8cs" startline="54">Analogi.DistanceResult.Similarity</references>
+        <referencedby refid="class_analogi_1_1_distance_result_1ac8f294fbf15429658261f7b17256ea52" compoundref="_distance_result_8cs" startline="7" endline="13">Analogi.DistanceResult.DistanceResult</referencedby>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="D:/repo/algi/Analogi/Analogi/DistanceResult.cs" line="6" column="1" bodyfile="D:/repo/algi/Analogi/Analogi/DistanceResult.cs" bodystart="5" bodyend="56"/>
+    <listofallmembers>
+      <member refid="class_analogi_1_1_distance_result_1ad3285af60e5e0bbe6ad7657068a26bb5" prot="public" virt="non-virtual"><scope>Analogi::DistanceResult</scope><name>Algorithm</name></member>
+      <member refid="class_analogi_1_1_distance_result_1a0fed7b5a5a831ae97182ed37ea9deafa" prot="private" virt="non-virtual"><scope>Analogi::DistanceResult</scope><name>Calculate</name></member>
+      <member refid="class_analogi_1_1_distance_result_1a3ea4e5ed273811c8bda8498d9d01424f" prot="public" virt="non-virtual"><scope>Analogi::DistanceResult</scope><name>Clone</name></member>
+      <member refid="class_analogi_1_1_distance_result_1ae80c1fb59a74b57660daa93b7bbb68b0" prot="public" virt="non-virtual"><scope>Analogi::DistanceResult</scope><name>Distance</name></member>
+      <member refid="class_analogi_1_1_distance_result_1ac8f294fbf15429658261f7b17256ea52" prot="public" virt="non-virtual"><scope>Analogi::DistanceResult</scope><name>DistanceResult</name></member>
+      <member refid="class_analogi_1_1_distance_result_1aaee1ea9665bf48ccc8ed91319d12e4dd" prot="public" virt="non-virtual"><scope>Analogi::DistanceResult</scope><name>Similarity</name></member>
+      <member refid="class_analogi_1_1_distance_result_1a874b22e042607cd4b65d85169c3916b7" prot="public" virt="non-virtual"><scope>Analogi::DistanceResult</scope><name>Source</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

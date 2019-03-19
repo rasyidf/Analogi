@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="dir_2244fe0e488ba6a1eb80403a211ebf87" kind="dir">
+    <compoundname>D:/repo/algi/Analogi/Analogi</compoundname>
+    <innerdir refid="dir_cc37f34924c82aa163b2e8b27a3985f4">D:/repo/algi/Analogi/Analogi/Properties</innerdir>
+    <innerfile refid="_app_8xaml_8cs">App.xaml.cs</innerfile>
+    <innerfile refid="_distance_result_8cs">DistanceResult.cs</innerfile>
+    <innerfile refid="_main_window_8xaml_8cs">MainWindow.xaml.cs</innerfile>
+    <innerfile refid="_script_item_8cs">ScriptItem.cs</innerfile>
+    <innerfile refid="_shell_view_model_8cs">ShellViewModel.cs</innerfile>
+    <innerfile refid="_view_model_base_8cs">ViewModelBase.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="D:/repo/algi/Analogi/Analogi/"/>
+  </compounddef>
+</doxygen>

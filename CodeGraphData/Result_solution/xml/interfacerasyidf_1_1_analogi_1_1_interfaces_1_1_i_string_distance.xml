@@ -1,0 +1,181 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_string_distance" kind="interface" prot="public">
+    <compoundname>rasyidf::Analogi::Interfaces::IStringDistance</compoundname>
+    <derivedcompoundref refid="classrasyidf_1_1_analogi_1_1_experimental_1_1_sift4" prot="public" virt="non-virtual">rasyidf.Analogi.Experimental.Sift4</derivedcompoundref>
+    <derivedcompoundref refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_metric_string_distance" prot="public" virt="non-virtual">rasyidf.Analogi.Interfaces.IMetricStringDistance</derivedcompoundref>
+    <derivedcompoundref refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_normalized_string_distance" prot="public" virt="non-virtual">rasyidf.Analogi.Interfaces.INormalizedStringDistance</derivedcompoundref>
+    <derivedcompoundref refid="classrasyidf_1_1_analogi_1_1_longest_common_subsequence" prot="public" virt="non-virtual">rasyidf.Analogi.LongestCommonSubsequence</derivedcompoundref>
+    <derivedcompoundref refid="classrasyidf_1_1_analogi_1_1_optimal_string_alignment" prot="public" virt="non-virtual">rasyidf.Analogi.OptimalStringAlignment</derivedcompoundref>
+    <derivedcompoundref refid="classrasyidf_1_1_analogi_1_1_q_gram" prot="public" virt="non-virtual">rasyidf.Analogi.QGram</derivedcompoundref>
+    <derivedcompoundref refid="classrasyidf_1_1_analogi_1_1_weighted_levenshtein" prot="public" virt="non-virtual">rasyidf.Analogi.WeightedLevenshtein</derivedcompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_string_distance_1a3c65e3f4f4758f3b0772de2eb9f3e41f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double rasyidf.Analogi.Interfaces.IStringDistance.Distance</definition>
+        <argsstring>(string s1, string s2)</argsstring>
+        <name>Distance</name>
+        <reimplementedby refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_metric_string_distance_1a681ede8e4a5e25c85fa3bf55cd92674d">Distance</reimplementedby>
+        <reimplementedby refid="classrasyidf_1_1_analogi_1_1_levenshtein_1a963fa198f943a8caaea0a4d630d0d14e">Distance</reimplementedby>
+        <reimplementedby refid="classrasyidf_1_1_analogi_1_1_optimal_string_alignment_1a6772ddab3c01b9c071fe45e63b76a6b6">Distance</reimplementedby>
+        <reimplementedby refid="classrasyidf_1_1_analogi_1_1_normalized_levenshtein_1accae684d23be3017489fede886387963">Distance</reimplementedby>
+        <reimplementedby refid="classrasyidf_1_1_analogi_1_1_metric_l_c_s_1ab27d7e7d324110d3ca7f21c7d5036eb5">Distance</reimplementedby>
+        <reimplementedby refid="classrasyidf_1_1_analogi_1_1_damerau_1a2f2af29496ed6b1a495d42df00c88cee">Distance</reimplementedby>
+        <reimplementedby refid="classrasyidf_1_1_analogi_1_1_longest_common_subsequence_1ac998cf36cca08e3a440bb06331f47fff">Distance</reimplementedby>
+        <reimplementedby refid="classrasyidf_1_1_analogi_1_1_n_gram_1a03798c83d327c84fa0d666937b8ee421">Distance</reimplementedby>
+        <reimplementedby refid="classrasyidf_1_1_analogi_1_1_cosine_1ac4141d219f5eb99e2ef0ee1029ebe91c">Distance</reimplementedby>
+        <reimplementedby refid="classrasyidf_1_1_analogi_1_1_weighted_levenshtein_1afbe38473cee15e43815e64f950fe4f04">Distance</reimplementedby>
+        <reimplementedby refid="classrasyidf_1_1_analogi_1_1_q_gram_1a64cab21164e00b9dd3098f70210b6ef4">Distance</reimplementedby>
+        <reimplementedby refid="classrasyidf_1_1_analogi_1_1_experimental_1_1_sift4_1a796d99687c3c224ba5c44d2add0a71ff">Distance</reimplementedby>
+        <reimplementedby refid="classrasyidf_1_1_analogi_1_1_jaccard_1a487ac737c4d6c916d521268af35e65a8">Distance</reimplementedby>
+        <reimplementedby refid="classrasyidf_1_1_analogi_1_1_sorensen_dice_1a363c48f3c4eea2f850e49185a807e1e2">Distance</reimplementedby>
+        <reimplementedby refid="classrasyidf_1_1_analogi_1_1_jaro_winkler_1ad1e34b81d89fa16cd3d978de91edec1f">Distance</reimplementedby>
+        <param>
+          <type>string</type>
+          <declname>s1</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>s2</declname>
+        </param>
+        <briefdescription>
+<para>Compute and return a measure of distance. Must be &gt;= 0. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>s1</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>s2</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi.Core/Interfaces/IStringDistance.cs" line="16" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="66">
+        <label>rasyidf.Analogi.Jaccard</label>
+        <link refid="classrasyidf_1_1_analogi_1_1_jaccard"/>
+        <childnode refid="64" relation="public-inheritance">
+        </childnode>
+        <childnode refid="69" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="78">
+        <label>rasyidf.Analogi.WeightedLevenshtein</label>
+        <link refid="classrasyidf_1_1_analogi_1_1_weighted_levenshtein"/>
+        <childnode refid="62" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="72">
+        <label>rasyidf.Analogi.NGram</label>
+        <link refid="classrasyidf_1_1_analogi_1_1_n_gram"/>
+        <childnode refid="69" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="63">
+        <label>rasyidf.Analogi.Experimental.Sift4</label>
+        <link refid="classrasyidf_1_1_analogi_1_1_experimental_1_1_sift4"/>
+        <childnode refid="62" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="67">
+        <label>rasyidf.Analogi.Levenshtein</label>
+        <link refid="classrasyidf_1_1_analogi_1_1_levenshtein"/>
+        <childnode refid="64" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="64">
+        <label>rasyidf.Analogi.Interfaces.IMetricStringDistance</label>
+        <link refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_metric_string_distance"/>
+        <childnode refid="62" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="69">
+        <label>rasyidf.Analogi.Interfaces.INormalizedStringDistance</label>
+        <link refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_normalized_string_distance"/>
+        <childnode refid="62" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="77">
+        <label>rasyidf.Analogi.QGram</label>
+        <link refid="classrasyidf_1_1_analogi_1_1_q_gram"/>
+        <childnode refid="62" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="76">
+        <label>rasyidf.Analogi.OptimalStringAlignment</label>
+        <link refid="classrasyidf_1_1_analogi_1_1_optimal_string_alignment"/>
+        <childnode refid="62" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="73">
+        <label>rasyidf.Analogi.NormalizedLevenshtein</label>
+        <link refid="classrasyidf_1_1_analogi_1_1_normalized_levenshtein"/>
+        <childnode refid="69" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="71">
+        <label>rasyidf.Analogi.JaroWinkler</label>
+        <link refid="classrasyidf_1_1_analogi_1_1_jaro_winkler"/>
+        <childnode refid="69" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="62">
+        <label>rasyidf.Analogi.Interfaces.IStringDistance</label>
+        <link refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_string_distance"/>
+      </node>
+      <node id="68">
+        <label>rasyidf.Analogi.MetricLCS</label>
+        <link refid="classrasyidf_1_1_analogi_1_1_metric_l_c_s"/>
+        <childnode refid="64" relation="public-inheritance">
+        </childnode>
+        <childnode refid="69" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="65">
+        <label>rasyidf.Analogi.Damerau</label>
+        <link refid="classrasyidf_1_1_analogi_1_1_damerau"/>
+        <childnode refid="64" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="70">
+        <label>rasyidf.Analogi.Cosine</label>
+        <link refid="classrasyidf_1_1_analogi_1_1_cosine"/>
+        <childnode refid="69" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="74">
+        <label>rasyidf.Analogi.SorensenDice</label>
+        <link refid="classrasyidf_1_1_analogi_1_1_sorensen_dice"/>
+        <childnode refid="69" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="75">
+        <label>rasyidf.Analogi.LongestCommonSubsequence</label>
+        <link refid="classrasyidf_1_1_analogi_1_1_longest_common_subsequence"/>
+        <childnode refid="62" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="D:/repo/algi/Analogi/Analogi.Core/Interfaces/IStringDistance.cs" line="8" column="1" bodyfile="D:/repo/algi/Analogi/Analogi.Core/Interfaces/IStringDistance.cs" bodystart="7" bodyend="17"/>
+    <listofallmembers>
+      <member refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_string_distance_1a3c65e3f4f4758f3b0772de2eb9f3e41f" prot="public" virt="non-virtual"><scope>rasyidf::Analogi::Interfaces::IStringDistance</scope><name>Distance</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

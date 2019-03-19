@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="namespacerasyidf_1_1_analogi" kind="namespace">
+    <compoundname>rasyidf::Analogi</compoundname>
+    <innerclass refid="classrasyidf_1_1_analogi_1_1_cosine" prot="public">rasyidf::Analogi::Cosine</innerclass>
+    <innerclass refid="classrasyidf_1_1_analogi_1_1_damerau" prot="public">rasyidf::Analogi::Damerau</innerclass>
+    <innerclass refid="classrasyidf_1_1_analogi_1_1_jaccard" prot="public">rasyidf::Analogi::Jaccard</innerclass>
+    <innerclass refid="classrasyidf_1_1_analogi_1_1_jaro_winkler" prot="public">rasyidf::Analogi::JaroWinkler</innerclass>
+    <innerclass refid="classrasyidf_1_1_analogi_1_1_levenshtein" prot="public">rasyidf::Analogi::Levenshtein</innerclass>
+    <innerclass refid="classrasyidf_1_1_analogi_1_1_longest_common_subsequence" prot="public">rasyidf::Analogi::LongestCommonSubsequence</innerclass>
+    <innerclass refid="classrasyidf_1_1_analogi_1_1_metric_l_c_s" prot="public">rasyidf::Analogi::MetricLCS</innerclass>
+    <innerclass refid="classrasyidf_1_1_analogi_1_1_n_gram" prot="public">rasyidf::Analogi::NGram</innerclass>
+    <innerclass refid="classrasyidf_1_1_analogi_1_1_normalized_levenshtein" prot="public">rasyidf::Analogi::NormalizedLevenshtein</innerclass>
+    <innerclass refid="classrasyidf_1_1_analogi_1_1_optimal_string_alignment" prot="public">rasyidf::Analogi::OptimalStringAlignment</innerclass>
+    <innerclass refid="classrasyidf_1_1_analogi_1_1_q_gram" prot="public">rasyidf::Analogi::QGram</innerclass>
+    <innerclass refid="classrasyidf_1_1_analogi_1_1_shingle_based" prot="public">rasyidf::Analogi::ShingleBased</innerclass>
+    <innerclass refid="classrasyidf_1_1_analogi_1_1_sorensen_dice" prot="public">rasyidf::Analogi::SorensenDice</innerclass>
+    <innerclass refid="classrasyidf_1_1_analogi_1_1_weighted_levenshtein" prot="public">rasyidf::Analogi::WeightedLevenshtein</innerclass>
+    <innerclass refid="interfacerasyidf_1_1_analogi_1_1_i_character_ins_del" prot="public">rasyidf::Analogi::ICharacterInsDel</innerclass>
+    <innerclass refid="interfacerasyidf_1_1_analogi_1_1_i_character_substitution" prot="public">rasyidf::Analogi::ICharacterSubstitution</innerclass>
+    <innernamespace refid="namespacerasyidf_1_1_analogi_1_1_experimental">rasyidf::Analogi::Experimental</innernamespace>
+    <innernamespace refid="namespacerasyidf_1_1_analogi_1_1_interfaces">rasyidf::Analogi::Interfaces</innernamespace>
+    <innernamespace refid="namespacerasyidf_1_1_analogi_1_1_support">rasyidf::Analogi::Support</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="D:/repo/algi/Analogi/Analogi.Core/Cosine.cs" line="12" column="1"/>
+  </compounddef>
+</doxygen>

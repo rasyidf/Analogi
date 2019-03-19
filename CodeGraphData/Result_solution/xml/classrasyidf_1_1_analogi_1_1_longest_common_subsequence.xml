@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="classrasyidf_1_1_analogi_1_1_longest_common_subsequence" kind="class" prot="public">
+    <compoundname>rasyidf::Analogi::LongestCommonSubsequence</compoundname>
+    <basecompoundref refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_string_distance" prot="public" virt="non-virtual">rasyidf.Analogi.Interfaces.IStringDistance</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrasyidf_1_1_analogi_1_1_longest_common_subsequence_1ac998cf36cca08e3a440bb06331f47fff" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double rasyidf.Analogi.LongestCommonSubsequence.Distance</definition>
+        <argsstring>(string s1, string s2)</argsstring>
+        <name>Distance</name>
+        <reimplements refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_string_distance_1a3c65e3f4f4758f3b0772de2eb9f3e41f">Distance</reimplements>
+        <param>
+          <type>string</type>
+          <declname>s1</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>s2</declname>
+        </param>
+        <briefdescription>
+<para>Return the LCS distance between strings s1 and s2, computed as |s1| + |s2| - 2 * |LCS(s1, s2)|. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>s1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The first string to compare.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>s2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second string to compare.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The LCS distance between strings s1 and s2, computed as |s1| + |s2| - 2 * |LCS(s1, s2)| </para></simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>ArgumentNullException</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If s1 or s2 is null.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi.Core/LongestCommonSubsequence.cs" line="41" column="1" bodyfile="D:/repo/algi/Analogi/Analogi.Core/LongestCommonSubsequence.cs" bodystart="41" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="classrasyidf_1_1_analogi_1_1_longest_common_subsequence_1a39297a67fe1c42fedfeb3037ba65a63d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int rasyidf.Analogi.LongestCommonSubsequence.Length</definition>
+        <argsstring>(string s1, string s2)</argsstring>
+        <name>Length</name>
+        <param>
+          <type>string</type>
+          <declname>s1</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>s2</declname>
+        </param>
+        <briefdescription>
+<para>Return the length of Longest Common Subsequence (LCS) between strings s1 and s2. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>s1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The first string to compare.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>s2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second string to compare.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The length of LCS(s2, s2)</para></simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>ArgumentNullException</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If s1 or s2 is null.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi.Core/LongestCommonSubsequence.cs" line="69" column="1" bodyfile="D:/repo/algi/Analogi/Analogi.Core/LongestCommonSubsequence.cs" bodystart="69" bodyend="128"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>The longest common subsequence (LCS) problem consists in finding the longest subsequence common to two (or more) sequences. It differs from problems of finding common substrings: unlike substrings, subsequences are not required to occupy consecutive positions within the original sequences.</para><para>It is used by the diff utility, by Git for reconciling multiple changes, etc.</para><para>The LCS distance between Strings X (length n) and Y (length m) is n + m - 2 |LCS(X, Y)| min = 0 max = n + m</para><para>LCS distance is equivalent to <ref refid="classrasyidf_1_1_analogi_1_1_levenshtein" kindref="compound">Levenshtein</ref> distance, when only insertion and deletion is allowed (no substitution), or when the cost of the substitution is the double of the cost of an insertion or deletion.</para><para>! This class currently implements the dynamic programming approach, which has a space requirement O(m * n)! </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="119">
+        <label>IStringDistance</label>
+        <link refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_string_distance"/>
+      </node>
+      <node id="118">
+        <label>rasyidf.Analogi.LongestCommonSubsequence</label>
+        <link refid="classrasyidf_1_1_analogi_1_1_longest_common_subsequence"/>
+        <childnode refid="119" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="121">
+        <label>IStringDistance</label>
+        <link refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_string_distance"/>
+      </node>
+      <node id="120">
+        <label>rasyidf.Analogi.LongestCommonSubsequence</label>
+        <link refid="classrasyidf_1_1_analogi_1_1_longest_common_subsequence"/>
+        <childnode refid="121" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="D:/repo/algi/Analogi/Analogi.Core/LongestCommonSubsequence.cs" line="29" column="1" bodyfile="D:/repo/algi/Analogi/Analogi.Core/LongestCommonSubsequence.cs" bodystart="28" bodyend="129"/>
+    <listofallmembers>
+      <member refid="classrasyidf_1_1_analogi_1_1_longest_common_subsequence_1ac998cf36cca08e3a440bb06331f47fff" prot="public" virt="non-virtual"><scope>rasyidf::Analogi::LongestCommonSubsequence</scope><name>Distance</name></member>
+      <member refid="classrasyidf_1_1_analogi_1_1_longest_common_subsequence_1a39297a67fe1c42fedfeb3037ba65a63d" prot="public" virt="non-virtual"><scope>rasyidf::Analogi::LongestCommonSubsequence</scope><name>Length</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

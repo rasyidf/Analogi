@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="classrasyidf_1_1_analogi_1_1_n_gram" kind="class" prot="public">
+    <compoundname>rasyidf::Analogi::NGram</compoundname>
+    <basecompoundref refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_normalized_string_distance" prot="public" virt="non-virtual">rasyidf.Analogi.Interfaces.INormalizedStringDistance</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classrasyidf_1_1_analogi_1_1_n_gram_1a5b3ecc8583749ac09bc1272636d5b45f" prot="private" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int rasyidf.Analogi.NGram.DEFAULT_N</definition>
+        <argsstring></argsstring>
+        <name>DEFAULT_N</name>
+        <initializer>= 2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi.Core/NGram.cs" line="28" column="1" bodyfile="D:/repo/algi/Analogi/Analogi.Core/NGram.cs" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classrasyidf_1_1_analogi_1_1_n_gram_1a84ecc821714dfd3e27fd4002181a020f" prot="private" static="no" mutable="no">
+        <type>readonly int</type>
+        <definition>readonly int rasyidf.Analogi.NGram.n</definition>
+        <argsstring></argsstring>
+        <name>n</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi.Core/NGram.cs" line="29" column="1" bodyfile="D:/repo/algi/Analogi/Analogi.Core/NGram.cs" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classrasyidf_1_1_analogi_1_1_n_gram_1a228e723b6c2b4f7d2d1d61b1411aea9e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>rasyidf.Analogi.NGram.NGram</definition>
+        <argsstring>()</argsstring>
+        <name>NGram</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi.Core/NGram.cs" line="31" column="1" bodyfile="D:/repo/algi/Analogi/Analogi.Core/NGram.cs" bodystart="31" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="classrasyidf_1_1_analogi_1_1_n_gram_1af4475940ac2fc219bad2ba4646ff84a0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>rasyidf.Analogi.NGram.NGram</definition>
+        <argsstring>(int n)</argsstring>
+        <name>NGram</name>
+        <param>
+          <type>int</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi.Core/NGram.cs" line="35" column="1" bodyfile="D:/repo/algi/Analogi/Analogi.Core/NGram.cs" bodystart="35" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classrasyidf_1_1_analogi_1_1_n_gram_1a03798c83d327c84fa0d666937b8ee421" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double rasyidf.Analogi.NGram.Distance</definition>
+        <argsstring>(string s0, string s1)</argsstring>
+        <name>Distance</name>
+        <reimplements refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_string_distance_1a3c65e3f4f4758f3b0772de2eb9f3e41f">Distance</reimplements>
+        <param>
+          <type>string</type>
+          <declname>s0</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>s1</declname>
+        </param>
+        <briefdescription>
+<para>Compute n-gram distance. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>s0</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The first string to compare.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>s1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second string to compare.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The computed n-gram distance in the range [0, 1]</para></simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>ArgumentNullException</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If s0 or s1 is null.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi.Core/NGram.cs" line="47" column="1" bodyfile="D:/repo/algi/Analogi/Analogi.Core/NGram.cs" bodystart="47" bodyend="166"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>N-Gram Similarity as defined by Kondrak, &quot;N-Gram Similarity and Distance&quot;, String Processing and Information Retrieval, Lecture Notes in Computer Science Volume 3772, 2005, pp 115-126. </para>    </briefdescription>
+    <detaileddescription>
+<para>The algorithm uses affixing with special character &apos;<linebreak/>
+&apos; to increase the weight of first characters. The normalization is achieved by dividing the total similarity score the original length of the longest word.</para><para>total similarity score the original length of the longest word. </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="135">
+        <label>rasyidf.Analogi.NGram</label>
+        <link refid="classrasyidf_1_1_analogi_1_1_n_gram"/>
+        <childnode refid="136" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="137">
+        <label>IStringDistance</label>
+        <link refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_string_distance"/>
+      </node>
+      <node id="136">
+        <label>INormalizedStringDistance</label>
+        <link refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_normalized_string_distance"/>
+        <childnode refid="137" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="138">
+        <label>rasyidf.Analogi.NGram</label>
+        <link refid="classrasyidf_1_1_analogi_1_1_n_gram"/>
+        <childnode refid="139" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="140">
+        <label>IStringDistance</label>
+        <link refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_string_distance"/>
+      </node>
+      <node id="139">
+        <label>INormalizedStringDistance</label>
+        <link refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_normalized_string_distance"/>
+        <childnode refid="140" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="D:/repo/algi/Analogi/Analogi.Core/NGram.cs" line="27" column="1" bodyfile="D:/repo/algi/Analogi/Analogi.Core/NGram.cs" bodystart="26" bodyend="167"/>
+    <listofallmembers>
+      <member refid="classrasyidf_1_1_analogi_1_1_n_gram_1a5b3ecc8583749ac09bc1272636d5b45f" prot="private" virt="non-virtual"><scope>rasyidf::Analogi::NGram</scope><name>DEFAULT_N</name></member>
+      <member refid="classrasyidf_1_1_analogi_1_1_n_gram_1a03798c83d327c84fa0d666937b8ee421" prot="public" virt="non-virtual"><scope>rasyidf::Analogi::NGram</scope><name>Distance</name></member>
+      <member refid="classrasyidf_1_1_analogi_1_1_n_gram_1a84ecc821714dfd3e27fd4002181a020f" prot="private" virt="non-virtual"><scope>rasyidf::Analogi::NGram</scope><name>n</name></member>
+      <member refid="classrasyidf_1_1_analogi_1_1_n_gram_1a228e723b6c2b4f7d2d1d61b1411aea9e" prot="public" virt="non-virtual"><scope>rasyidf::Analogi::NGram</scope><name>NGram</name></member>
+      <member refid="classrasyidf_1_1_analogi_1_1_n_gram_1af4475940ac2fc219bad2ba4646ff84a0" prot="public" virt="non-virtual"><scope>rasyidf::Analogi::NGram</scope><name>NGram</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

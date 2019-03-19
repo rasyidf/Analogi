@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.271
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Analogi", "Analogi\Analogi.csproj", "{96370D9F-7ED8-455D-8C8C-6AADDE1043B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Analogi.Core", "Analogi.Core\Analogi.Core.csproj", "{84FB9DE9-222C-4E54-80FD-B9689558FD88}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{96370D9F-7ED8-455D-8C8C-6AADDE1043B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96370D9F-7ED8-455D-8C8C-6AADDE1043B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96370D9F-7ED8-455D-8C8C-6AADDE1043B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96370D9F-7ED8-455D-8C8C-6AADDE1043B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84FB9DE9-222C-4E54-80FD-B9689558FD88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84FB9DE9-222C-4E54-80FD-B9689558FD88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84FB9DE9-222C-4E54-80FD-B9689558FD88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84FB9DE9-222C-4E54-80FD-B9689558FD88}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1E5C364C-D13C-46D1-960E-47EF344B5167}
+	EndGlobalSection
+EndGlobal

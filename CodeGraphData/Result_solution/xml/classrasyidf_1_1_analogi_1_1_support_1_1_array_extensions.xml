@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="classrasyidf_1_1_analogi_1_1_support_1_1_array_extensions" kind="class" prot="package">
+    <compoundname>rasyidf::Analogi::Support::ArrayExtensions</compoundname>
+      <sectiondef kind="package-static-func">
+      <memberdef kind="function" id="classrasyidf_1_1_analogi_1_1_support_1_1_array_extensions_1a682ad4c008ffd60276730451402ac371" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T[]</type>
+        <definition>static T [] rasyidf.Analogi.Support.ArrayExtensions.WithPadding&lt; T &gt;</definition>
+        <argsstring>(this T[] source, int finalLength, T paddingValue=default)</argsstring>
+        <name>WithPadding&lt; T &gt;</name>
+        <param>
+          <type>this T[]</type>
+          <declname>source</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>finalLength</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>paddingValue</declname>
+          <defval>default</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/repo/algi/Analogi/Analogi.Core/Support/ArrayExtensions.cs" line="12" column="1" bodyfile="D:/repo/algi/Analogi/Analogi.Core/Support/ArrayExtensions.cs" bodystart="12" bodyend="31"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="D:/repo/algi/Analogi/Analogi.Core/Support/ArrayExtensions.cs" line="11" column="1" bodyfile="D:/repo/algi/Analogi/Analogi.Core/Support/ArrayExtensions.cs" bodystart="10" bodyend="32"/>
+    <listofallmembers>
+      <member refid="classrasyidf_1_1_analogi_1_1_support_1_1_array_extensions_1a682ad4c008ffd60276730451402ac371" prot="package" virt="non-virtual"><scope>rasyidf::Analogi::Support::ArrayExtensions</scope><name>WithPadding&lt; T &gt;</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

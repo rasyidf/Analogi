@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="namespacerasyidf_1_1_analogi_1_1_interfaces" kind="namespace">
+    <compoundname>rasyidf::Analogi::Interfaces</compoundname>
+    <innerclass refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_metric_string_distance" prot="public">rasyidf::Analogi::Interfaces::IMetricStringDistance</innerclass>
+    <innerclass refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_normalized_string_distance" prot="public">rasyidf::Analogi::Interfaces::INormalizedStringDistance</innerclass>
+    <innerclass refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_normalized_string_similarity" prot="public">rasyidf::Analogi::Interfaces::INormalizedStringSimilarity</innerclass>
+    <innerclass refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_string_distance" prot="public">rasyidf::Analogi::Interfaces::IStringDistance</innerclass>
+    <innerclass refid="interfacerasyidf_1_1_analogi_1_1_interfaces_1_1_i_string_similarity" prot="public">rasyidf::Analogi::Interfaces::IStringSimilarity</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="D:/repo/algi/Analogi/Analogi.Core/Interfaces/IMetricStringDistance.cs" line="6" column="1"/>
+  </compounddef>
+</doxygen>
