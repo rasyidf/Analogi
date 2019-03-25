@@ -10,27 +10,12 @@ using System.Collections.Generic;
 
 namespace rasyidf.Analogi
 {
-    public class Cosine : TFIDFBased, INormalizedStringSimilarity, INormalizedStringDistance
+    public class Cosine : TFIDFBased, IStringSimilarity, IStringDistance
     {
         #region Constructors
 
-        /// <summary>
-        /// Implements Cosine Similarity between strings.The strings are first
-        /// transformed in vectors of occurrences of k-shingles(sequences of k
-        /// characters). In this n-dimensional space, the similarity between the two
-        /// strings is the cosine of their respective vectors.
-        /// </summary>
-        /// <param name="k"></param>
-        public Cosine(int k) : base(k) { }
-
-        /// <summary>
-        /// Implements Cosine Similarity between strings.The strings are first
-        /// transformed in vectors of occurrences of k-shingles(sequences of k
-        /// characters). In this n-dimensional space, the similarity between the two
-        /// strings is the cosine of their respective vectors.
-        ///
-        /// Default k is 3.
-        /// </summary>
+    
+        
         public Cosine() { }
 
         #endregion Constructors
@@ -72,12 +57,7 @@ namespace rasyidf.Analogi
             {
                 return 1;
             }
-
-            if (s1.Length < k || s2.Length < k)
-            {
-                return 0;
-            }
-
+              
             IDictionary<string, int> profile1 = GetProfile(s1);
             IDictionary<string, int> profile2 = GetProfile(s2);
 

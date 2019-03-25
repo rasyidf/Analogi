@@ -21,7 +21,7 @@ namespace Analogi
         public event EventHandler CanExecuteChanged;
 
         public bool CanExecute(object parameter) {
-            CanExecuteChanged?.Invoke(null, new EventArgs());
+           
             return true;
         }
 

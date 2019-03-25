@@ -21,7 +21,7 @@ namespace rasyidf.Analogi.Support
                 return source;
             }
 
-            T[] result = new T[finalLength];
+            var result = new T[finalLength];
             T[] padding = Enumerable.Repeat(paddingValue, finalLength - source.Length).ToArray();
 
             Array.Copy(source, sourceIndex: 0, destinationArray: result, destinationIndex: 0, length: source.Length);

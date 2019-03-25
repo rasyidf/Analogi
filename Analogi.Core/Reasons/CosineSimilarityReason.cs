@@ -1,17 +1,20 @@
-﻿using F23.StringSimilarity;
+﻿
+using System.IO;
 
-namespace Yaudah.Core
+namespace rasyidf.Analogi.Core
 {
     public class CosineSimilarityReason : IReason
     {
-        public string ReasonString => $"The Code have high similarity index with :{TargetFile}";
+        public string ReasonString => $"High similarity index with: {TargetFile}";
 
         public string TargetFile { get; private set; }
 
         public double Index { get; set; }
+        public double Bias { get; set; } = 1;
+
         public void SetTargetFile(string value)
         {
-            TargetFile = value;
+            TargetFile = new FileInfo(value).Name;
         }
 
         public double Check(string source, string target)

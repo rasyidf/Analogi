@@ -1,4 +1,4 @@
-﻿namespace Yaudah.Core
+﻿namespace rasyidf.Analogi.Core
 {
     public class IdenticalStructureReason : IReason
     {
@@ -6,6 +6,7 @@
 
         public string TargetFile { get; private set; }
         public double Index { get; set; }
+        public double Bias { get; set; }
 
         public void SetTargetFile(string value)
         {

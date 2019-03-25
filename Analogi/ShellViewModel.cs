@@ -1,72 +1,52 @@
-﻿using System;
+﻿using Ookii.Dialogs.Wpf;
+using rasyidf.Analogi.Core;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Input;
-using Yaudah.Core;
+using System.Windows.Data;
+using System.Windows.Input; 
 
 namespace Analogi
 {
     class ShellViewModel : ViewModelBase
     {
         #region Properties
+         
+        public ICommand BrowseCommand => new DelegateCommand(BrowseFolder);
 
-        public ObservableCollection<string> Algorithms { get => algorithms; set { algorithms = value; NotifyProps(nameof(Algorithms)); } }
-        public ICommand CalculateCommand => new DelegateCommand(CalculateDistance);
+    
+
         public ObservableCollection<DetectionResult> Distances { get => distances; set { distances = value; NotifyProps(nameof(Distances)); } }
-        public string Path { get => path; set { path = value; NotifyProps(nameof(Path)); } }
-        public ICommand ScanCommand => new DelegateCommand(ScanFolder);
-        public ObservableCollection<CodeFile> Scripts { get => scripts; set { scripts = value; NotifyProps(nameof(Scripts)); } }
-        public string SelectedAlgorithm { get => selectedAlgorithm; set { selectedAlgorithm = value; NotifyProps(nameof(SelectedAlgorithm)); } }
-
-        public CodeFile Script { get => script; set { script = value;  NotifyProps(nameof(Script)); } }
-
+        public string Path { get => path; set { path = value; NotifyProps(nameof(Path)); if (!String.IsNullOrEmpty(Path)) { StartVisible = Visibility.Visible; } else { StartVisible = Visibility.Collapsed; } } }
+        public Visibility StartVisible { get => startVisible; set { startVisible = value; NotifyProps(nameof(StartVisible)); } }
+        public ICommand ScanCommand => new DelegateCommand(ScanFolder); 
         #endregion Properties
 
-        #region Fields
-
-        ObservableCollection<String> algorithms = new ObservableCollection<string>()
-        { "Cosine", "Levenshtein", "Jaccard", "Damerau", "Jaro Winkler", "LCS" };
+        #region Fields 
         private ObservableCollection<DetectionResult> distances;
-        string path = @"D:\DEV\Code\py_3";
-        ObservableCollection<CodeFile> scripts = new ObservableCollection<CodeFile>();
-        CodeFile script = null;
-        string selectedAlgorithm = "Cosine";
+        string path = @"No Folder Selected";
+        private Visibility startVisible = Visibility.Collapsed;
 
         #endregion Fields
 
         #region Methods
-
-        private void CalculateDistance()
+        private void BrowseFolder()
         {
-            if (script == null)
+            var a = new VistaFolderBrowserDialog();
+            if (a.ShowDialog() == true)
             {
-                MessageBox.Show("Please select one name");
-                return;
-            }
-
-            CalculateDistanceWith(script, Scripts);
+                Path = a.SelectedPath;
+            } 
         }
 
-        private void CalculateDistanceWith(CodeFile script, ObservableCollection<CodeFile> scripts)
+        public void ScanFolder()
         {
-            Distances = new ObservableCollection<DetectionResult>();
-            foreach (var item in Scripts)
-            {
-                if (item == script) continue; 
-
-                var Dist = new DetectionResult(script);
-                Distances.Add(Dist);
-            }
-
-        }
-
-        private void ScanFolder()
-        {
-            if (path == "" )
+            if (path == "" || path == "No Folder Selected" )
             {
                 MessageBox.Show("What should i do, there's no directory to scan");
                 return;
@@ -77,10 +57,16 @@ namespace Analogi
                 MessageBox.Show("What should i do, you've entered wrong directory, it doesn't exist");
                 return;
             }
-             
-            var p = new PlagiarismDetect(path);
-        }
 
+            StartTask();
+
+        }
+        public void StartTask()
+        {
+            var a = new PlagiarismDetect(Path);
+            a.Start();
+            Distances = new ObservableCollection<DetectionResult>(a.DetectionResult); 
+        }
         #endregion Methods
     }
 }

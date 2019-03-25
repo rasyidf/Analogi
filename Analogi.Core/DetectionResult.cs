@@ -2,44 +2,13 @@
  * MIT
  */
 
-using System;
 using System.Collections.Generic;
-using System.IO;
 
-namespace Yaudah.Core
+namespace rasyidf.Analogi.Core
 {
-    public class CodeFile
-    {
-        public CodeFile(string url)
-        {
-            this.Path = url;
-            var a = new FileInfo(url);
-            this.Name = a.Name;
-            this.CreationTime = a.CreationTime;
-            this.Length = a.Length;
-        }
-
-        public string Name { get; private set; }
-        public DateTime CreationTime { get; set; }
-        public long Length { get; private set; }
-        public string Path { get; set; }
-        public int Index { get; set; }
-
-        internal string ReadAll()
-        {
-            return File.ReadAllText(Path);
-        }
-
-        public override string ToString()
-        {
-            return Name;
-        }
-    }
-
     public class DetectionResult
     {
         private readonly CodeFile CodeFile; 
-        private readonly double index;
 
         public string Name { get => this.CodeFile.Name; }
 
@@ -57,7 +26,11 @@ namespace Yaudah.Core
                 double r = 1;
                 foreach (var item in Reasons)
                 {
-                    r *= item.Index;
+                    if (item.Index < 0.3f)
+                    {
+                        continue;
+                    }
+                    r *= item.Index * item.Bias;
                 }
                 return r;
             }
@@ -75,7 +48,8 @@ namespace Yaudah.Core
                 if (Reasons.Count > 1)
                 {
                     return "There are some reasons, double click to see details";
-                } else if (Reasons.Count == 1)
+                }
+                else if (Reasons.Count == 1)
                 {
                     return Reasons[0].ReasonString;
                 }

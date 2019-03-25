@@ -6,7 +6,7 @@ using System.Threading.Tasks;
  
 using System.IO;
 
-namespace Yaudah.Core
+namespace rasyidf.Analogi.Core
 {
     public class PlagiarismDetect
     {
@@ -22,9 +22,11 @@ namespace Yaudah.Core
             DetectionResult = new List<DetectionResult>();
             // List All Souce Code
 
-            var files = System.IO.Directory.EnumerateFiles(Path, "*.cpp|*.c|*.cs|*.py").ToArray();
+            var files = Directory
+                       .EnumerateFiles(Path, "*.*").Where( f=>  "cpp|c|cs|py".Split('|').Contains(f.ToLower().Split('.').Last())).ToArray();
 
-             
+
+
             DetectionResult dr;
             for (int i = 0; i < files.Count(); i++)
             {
@@ -44,8 +46,8 @@ namespace Yaudah.Core
          
         private List<IReason> CheckSimilarity(string path1, string path2)
         {
-            List<IReason> tmpReasons = new List<IReason>();
-            List<IReason> CheckReasons = new List<IReason>() { new CosineSimilarityReason() };
+            var tmpReasons = new List<IReason>();
+            var CheckReasons = new List<IReason>() { new CosineSimilarityReason() };
 
             var n = new IdenticalSizeReason();
             n.SetTargetFile(path2);
@@ -62,7 +64,7 @@ namespace Yaudah.Core
 
             foreach (var item in CheckReasons)
             {
-                if (item.Check(a,b) > 0.6f)
+                if (item.Check(a,b) > 0.5f)
                 {
                     item.SetTargetFile(path2);
                     tmpReasons.Add(item);

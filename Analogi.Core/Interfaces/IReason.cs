@@ -4,16 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Yaudah.Core
+namespace rasyidf.Analogi.Core
 {
     public interface IReason
     {
         string ReasonString { get; }
 
         double Index { get; set; }
+        
+        double Bias { get; set; }
+
         string TargetFile { get; }
 
         void SetTargetFile(string value);
+
         double Check(string source, string target);
     }
 }
