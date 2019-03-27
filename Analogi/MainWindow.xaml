@@ -87,7 +87,7 @@
                         Width="170"
                         DisplayMemberBinding="{Binding Name}"
                         Header="Name" />
-                    <GridViewColumn Width="120" Header="Index">
+                    <GridViewColumn Width="120" Header="Bar">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <ProgressBar
@@ -99,6 +99,10 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
+                    <GridViewColumn
+                        Width="60"
+                        DisplayMemberBinding="{Binding Index}"
+                        Header="index" />
                     <GridViewColumn
                         Width="280"
                         DisplayMemberBinding="{Binding Reason}"
