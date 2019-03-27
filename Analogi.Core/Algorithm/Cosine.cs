@@ -13,9 +13,7 @@ namespace rasyidf.Analogi
     public class Cosine : TFIDFBased, IStringSimilarity, IStringDistance
     {
         #region Constructors
-
-    
-        
+         
         public Cosine() { }
 
         #endregion Constructors
@@ -43,12 +41,7 @@ namespace rasyidf.Analogi
         /// <exception cref="T:System.ArgumentNullException">If s1 or s2 is null.</exception>
         public double Similarity(string s1, string s2)
         {
-            if (s1 == null)
-            {
-                throw new ArgumentNullException(nameof(s1));
-            }
-
-            if (s2 == null)
+            if (s1 == null || s2 == null)
             {
                 throw new ArgumentNullException(nameof(s2));
             }
@@ -61,7 +54,7 @@ namespace rasyidf.Analogi
             IDictionary<string, int> profile1 = GetProfile(s1);
             IDictionary<string, int> profile2 = GetProfile(s2);
 
-            return DotProduct(profile1, profile2) / (Norm(profile1) * Norm(profile2));
+            return Similarity(profile1, profile2); 
         }
 
         /// <summary>
@@ -72,14 +65,12 @@ namespace rasyidf.Analogi
         /// <returns></returns>
         public double Similarity(IDictionary<string, int> profile1, IDictionary<string, int> profile2)
         {
-            return DotProduct(profile1, profile2)
-                       / (Norm(profile1) * Norm(profile2));
+            return DotProduct(profile1, profile2) / (Norm(profile1) * Norm(profile2));
         }
 
         private static double DotProduct(IDictionary<string, int> profile1,
-                    IDictionary<string, int> profile2)
-        {
-            // Loop over the smallest map
+                                         IDictionary<string, int> profile2)
+        { 
             IDictionary<string, int> small_profile = profile2;
             IDictionary<string, int> large_profile = profile1;
 

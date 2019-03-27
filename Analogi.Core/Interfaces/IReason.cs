@@ -14,10 +14,12 @@ namespace rasyidf.Analogi.Core
         
         double Bias { get; set; }
 
+        double Treshold { get;   }
+
         string TargetFile { get; }
 
         void SetTargetFile(string value);
 
-        double Check(string source, string target);
+        double Check(ref string source,ref string target);
     }
 }

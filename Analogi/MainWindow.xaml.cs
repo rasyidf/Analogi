@@ -30,14 +30,7 @@ namespace Analogi
             InitializeComponent();
             ViewModel = new ShellViewModel();
             this.DataContext = ViewModel;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-           
-        }
-         
-      
+        } 
 
         private void SelectedFolderTb_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
@@ -96,11 +89,6 @@ namespace Analogi
                 this.ViewModel.StartTask();
             }
         }
-
-        private void LResult_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
+         
     }
 }

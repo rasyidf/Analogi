@@ -11,13 +11,14 @@ namespace rasyidf.Analogi.Core
 
         public double Index { get; set; }
         public double Bias { get; set; } = 1;
+        public double Treshold { get => 0.8f; }
 
         public void SetTargetFile(string value)
         {
             TargetFile = new FileInfo(value).Name;
         }
 
-        public double Check(string source, string target)
+        public double Check(ref string source, ref string target)
         {
             Index = new Cosine().Similarity(source, target);
             return Index;

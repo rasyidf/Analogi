@@ -8,13 +8,15 @@
         public double Index { get; set; }
         public double Bias { get; set; }
 
+        public double Treshold { get => 0.5; }
         public void SetTargetFile(string value)
         {
             TargetFile = value;
         }
          
-        public double Check(string source, string target)
+        public double Check(ref string source,ref string target)
         {
+            // Not Implemented
             Index = 0;
             return 0;
         }

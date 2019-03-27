@@ -38,8 +38,6 @@ namespace rasyidf.Analogi.Core
 
         public int IndexPercentage => (int) Index * 100;
 
-
-
         public string Reason
         {
 
@@ -47,7 +45,7 @@ namespace rasyidf.Analogi.Core
             {
                 if (Reasons.Count > 1)
                 {
-                    return "There are some reasons, double click to see details";
+                    return "There are more than one reason, double click to see details";
                 }
                 else if (Reasons.Count == 1)
                 {

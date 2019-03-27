@@ -65,7 +65,7 @@ namespace Analogi
         {
             var a = new PlagiarismDetect(Path);
             a.Start();
-            Distances = new ObservableCollection<DetectionResult>(a.DetectionResult); 
+            Distances = new ObservableCollection<DetectionResult>(a.DetectionResults); 
         }
         #endregion Methods
     }

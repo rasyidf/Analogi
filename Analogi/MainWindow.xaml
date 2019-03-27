@@ -15,8 +15,7 @@
     </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="119*" />
-            <ColumnDefinition Width="314*" />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="55*" />
@@ -24,10 +23,7 @@
             <RowDefinition Height="37" />
             <RowDefinition Height="92*" />
         </Grid.RowDefinitions>
-        <md:ColorZone
-            Grid.ColumnSpan="2"
-            VerticalAlignment="Stretch"
-            Mode="PrimaryDark">
+        <md:ColorZone VerticalAlignment="Stretch" Mode="PrimaryDark">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition />
@@ -60,15 +56,13 @@
         </md:ColorZone>
         <Button
             Grid.Row="2"
-            Grid.ColumnSpan="2"
-            Width="127"
+            Width="152"
             Margin="10,5,0,0"
             HorizontalAlignment="Left"
             Content="Plagiarism Suspect"
             Style="{StaticResource MaterialDesignFlatButton}" />
         <Button
             Grid.Row="2"
-            Grid.Column="1"
             Width="118"
             Margin="0,5,6,0"
             HorizontalAlignment="Right"
@@ -76,7 +70,6 @@
             Style="{StaticResource MaterialDesignFlatButton}" />
         <DataGrid
             Grid.Row="3"
-            Grid.ColumnSpan="2"
             Margin="10"
             CanUserAddRows="False"
             CanUserSortColumns="True"
@@ -84,12 +77,10 @@
         <ListView
             x:Name="lResult"
             Grid.Row="3"
-            Grid.ColumnSpan="2"
             Margin="10"
             ItemsSource="{Binding Distances}"
             PreviewKeyDown="LResult_PreviewKeyDown"
-            PreviewMouseDoubleClick="LResult_PreviewMouseDoubleClick"
-            SelectionChanged="LResult_SelectionChanged">
+            PreviewMouseDoubleClick="LResult_PreviewMouseDoubleClick">
             <ListView.View>
                 <GridView>
                     <GridViewColumn
@@ -117,7 +108,6 @@
         </ListView>
         <md:ColorZone
             Grid.Row="1"
-            Grid.ColumnSpan="2"
             Height="80"
             Mode="Accent"
             Visibility="{Binding StartVisible}">

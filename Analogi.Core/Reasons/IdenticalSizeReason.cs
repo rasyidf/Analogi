@@ -10,13 +10,14 @@ namespace rasyidf.Analogi.Core
 
         public double Index { get; set; }
         public double Bias { get; set; } = 1;
+        public double Treshold { get => 0.5;  }
 
         public void SetTargetFile(string value)
         {
             TargetFile = value;
         }
 
-        public double Check(string source, string target)
+        public double Check(ref string source,ref string target)
         {
 
             long len1 = new FileInfo(source).Length;

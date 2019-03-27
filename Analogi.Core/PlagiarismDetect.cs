@@ -10,7 +10,14 @@ namespace rasyidf.Analogi.Core
 {
     public class PlagiarismDetect
     {
-        public List<DetectionResult> DetectionResult { get; private set; }
+        public List<DetectionResult> DetectionResults { get; private set; }
+
+        private const string SupportedExtension = "cpp|c|cs|py|rb|pas|vb|r|js";
+        public List<IReason> ReasonsPipeline = new List<IReason>() {
+            new CosineSimilarityReason(),
+            new IdenticalStructureReason()
+        };
+
         public string Path { get; }
 
         public PlagiarismDetect(string path)
@@ -19,39 +26,39 @@ namespace rasyidf.Analogi.Core
         }
         public void Start()
         {
-            DetectionResult = new List<DetectionResult>();
+            DetectionResults = new List<DetectionResult>();
             // List All Souce Code
 
             var files = Directory
-                       .EnumerateFiles(Path, "*.*").Where( f=>  "cpp|c|cs|py".Split('|').Contains(f.ToLower().Split('.').Last())).ToArray();
+                       .EnumerateFiles(Path, "*.*")
+                       .Where( f => SupportedExtension.Split('|').Contains(f.ToLower().Split('.').Last())).ToArray();
 
 
 
-            DetectionResult dr;
+            DetectionResult tmpDR;
             for (int i = 0; i < files.Count(); i++)
             {
-                dr = new DetectionResult(files[i]);
+                tmpDR = new DetectionResult(files[i]);
                 for (int j = 0; j < files.Count(); j++)
                 {
                     if (i != j)
                     {
-                        var sd = CheckSimilarity(files[i], files[j]);
-                        dr.Reasons.AddRange(sd);
+                        tmpDR.Reasons.AddRange(CheckPlagiarism(files[i], files[j]));
                     }
                 }
-                DetectionResult.Add(dr);
+                DetectionResults.Add(tmpDR);
             }
              
         }
          
-        private List<IReason> CheckSimilarity(string path1, string path2)
+        private List<IReason> CheckPlagiarism(string path1, string path2)
         {
             var tmpReasons = new List<IReason>();
-            var CheckReasons = new List<IReason>() { new CosineSimilarityReason() };
-
-            var n = new IdenticalSizeReason();
+           
+            var n = new IdenticalSizeReason(); 
             n.SetTargetFile(path2);
-            if (n.Check(path1, path2) == 1)
+
+            if (n.Check(ref path1,ref path2) == 1)
             {
 
                 tmpReasons.Add(n);
@@ -62,12 +69,12 @@ namespace rasyidf.Analogi.Core
             var a =  File.ReadAllText(path1);
             var b =  File.ReadAllText(path2);
 
-            foreach (var item in CheckReasons)
+            foreach (var reason in ReasonsPipeline)
             {
-                if (item.Check(a,b) > 0.5f)
+                if (reason.Check(ref a,ref b) > reason.Treshold)
                 {
-                    item.SetTargetFile(path2);
-                    tmpReasons.Add(item);
+                    reason.SetTargetFile(path2);
+                    tmpReasons.Add(reason);
                 }
             }
 
