@@ -59,15 +59,17 @@
             Width="152"
             Margin="10,5,0,0"
             HorizontalAlignment="Left"
+            Command="{Binding FilterPlagiatorCommand}"
             Content="Plagiarism Suspect"
-            Style="{StaticResource MaterialDesignFlatButton}" Command="{Binding FilterPlagiatorCommand}" />
+            Style="{StaticResource MaterialDesignFlatButton}" />
         <Button
             Grid.Row="2"
             Width="118"
             Margin="0,5,6,0"
             HorizontalAlignment="Right"
+            Command="{Binding FilterOriginalCommand}"
             Content="Unique"
-            Style="{StaticResource MaterialDesignFlatButton}" Command="{Binding FilterOriginalCommand}" />
+            Style="{StaticResource MaterialDesignFlatButton}" />
         <DataGrid
             Grid.Row="3"
             Margin="10"
@@ -101,7 +103,7 @@
                     </GridViewColumn>
                     <GridViewColumn
                         Width="60"
-                        DisplayMemberBinding="{Binding Index}"
+                        DisplayMemberBinding="{Binding IndexPercentage}"
                         Header="index" />
                     <GridViewColumn
                         Width="280"
