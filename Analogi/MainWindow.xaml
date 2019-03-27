@@ -60,14 +60,14 @@
             Margin="10,5,0,0"
             HorizontalAlignment="Left"
             Content="Plagiarism Suspect"
-            Style="{StaticResource MaterialDesignFlatButton}" />
+            Style="{StaticResource MaterialDesignFlatButton}" Command="{Binding FilterPlagiatorCommand}" />
         <Button
             Grid.Row="2"
             Width="118"
             Margin="0,5,6,0"
             HorizontalAlignment="Right"
             Content="Unique"
-            Style="{StaticResource MaterialDesignFlatButton}" />
+            Style="{StaticResource MaterialDesignFlatButton}" Command="{Binding FilterOriginalCommand}" />
         <DataGrid
             Grid.Row="3"
             Margin="10"
@@ -78,7 +78,7 @@
             x:Name="lResult"
             Grid.Row="3"
             Margin="10"
-            ItemsSource="{Binding Distances}"
+            ItemsSource="{Binding DistanceFiltered}"
             PreviewKeyDown="LResult_PreviewKeyDown"
             PreviewMouseDoubleClick="LResult_PreviewMouseDoubleClick">
             <ListView.View>

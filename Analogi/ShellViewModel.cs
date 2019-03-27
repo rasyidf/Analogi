@@ -13,24 +13,67 @@ using System.Windows.Input;
 
 namespace Analogi
 {
+    public enum FilterModes
+    {
+        Original, 
+        Plagiarism,
+        Any
+    }
     class ShellViewModel : ViewModelBase
     {
         #region Properties
          
         public ICommand BrowseCommand => new DelegateCommand(BrowseFolder);
 
-    
+        public ICollectionView CollectionView { get; private set; }
 
         public ObservableCollection<DetectionResult> Distances { get => distances; set { distances = value; NotifyProps(nameof(Distances)); } }
+
+        public ObservableCollection<DetectionResult> DistanceFiltered
+        {
+            get
+            {
+                switch (FilterMode)
+                {
+                    case FilterModes.Original:
+                        return new ObservableCollection<DetectionResult>(distances.Where(c => c.Index == 0));
+                    case FilterModes.Plagiarism:
+                        return new ObservableCollection<DetectionResult>(distances.Where(c => c.Index == 1));
+                    default:
+                        return Distances;
+                }
+
+            }
+
+            set
+            {
+                distances = value; NotifyProps(nameof(DistanceFiltered));
+            }
+        }
+
         public string Path { get => path; set { path = value; NotifyProps(nameof(Path)); if (!String.IsNullOrEmpty(Path)) { StartVisible = Visibility.Visible; } else { StartVisible = Visibility.Collapsed; } } }
         public Visibility StartVisible { get => startVisible; set { startVisible = value; NotifyProps(nameof(StartVisible)); } }
-        public ICommand ScanCommand => new DelegateCommand(ScanFolder); 
+        public ICommand ScanCommand => new DelegateCommand(ScanFolder);
+        public ICommand FilterPlagiatorCommand => new DelegateCommand(FilterPlagiator);
+
+        private void FilterPlagiator()
+        {
+            FilterMode = FilterModes.Plagiarism; NotifyProps(nameof(DistanceFiltered));
+        }
+
+        public ICommand FilterOriginalCommand => new DelegateCommand(FilterOriginal);
+
+        private void FilterOriginal()
+        {
+            FilterMode = FilterModes.Original; NotifyProps(nameof(DistanceFiltered));
+        }
         #endregion Properties
 
         #region Fields 
         private ObservableCollection<DetectionResult> distances;
         string path = @"No Folder Selected";
         private Visibility startVisible = Visibility.Collapsed;
+        private FilterModes FilterMode = FilterModes.Any;
 
         #endregion Fields
 
@@ -59,7 +102,7 @@ namespace Analogi
             }
 
             StartTask();
-
+            FilterMode = FilterModes.Any; NotifyProps(nameof(DistanceFiltered));
         }
         public void StartTask()
         {
