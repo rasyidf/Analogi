@@ -19,13 +19,13 @@ using System.Windows.Shapes;
 namespace Analogi
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ShellView.xaml
     /// </summary>
-    public partial class MainWindow 
+    public partial class ShellView 
     { 
         private ShellViewModel ViewModel;
  
-        public MainWindow()
+        public ShellView()
         {
             InitializeComponent();
             ViewModel = new ShellViewModel();
