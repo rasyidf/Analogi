@@ -2,30 +2,61 @@
 using System.ComponentModel;
 using System.Windows.Input;
 
-namespace Analogi
+namespace rasyidf.Analogi.Core
 {
-    internal class ViewModelBase  : INotifyPropertyChanged
-    {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void NotifyProps(string args) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(args));
-    }
-
     public class DelegateCommand : ICommand
     {
+        #region Fields
 
         private readonly Action action;
 
-        public DelegateCommand(Action act) => action = act;
+        #endregion Fields
+
+        #region Constructors
+
+        public DelegateCommand(Action act)
+        {
+            action = act;
+        }
+
+        #endregion Constructors
+
+        #region Events
 
         public event EventHandler CanExecuteChanged;
 
-        public bool CanExecute(object parameter) {
-           
+        #endregion Events
+
+        #region Methods
+
+        public bool CanExecute(object parameter)
+        {
             return true;
         }
 
-        public void Execute(object parameter) => action();
+        public void Execute(object parameter)
+        {
+            action();
+        }
+
+        #endregion Methods
     }
 
+    internal class ViewModelBase : INotifyPropertyChanged
+    {
+        #region Events
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion Events
+
+        #region Methods
+
+        public void NotifyProps(string args)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(args));
+        }
+
+        #endregion Methods
+    }
 }

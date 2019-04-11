@@ -2,27 +2,28 @@
  * MIT
  */
 
-using rasyidf.Analogi.Interfaces;
 using System;
 using System.Collections.Generic;
+
+using rasyidf.Analogi.Interfaces;
 
 // ReSharper disable LoopCanBeConvertedToQuery
 
 namespace rasyidf.Analogi
 {
-    public class Cosine : TFIDFBased, IStringSimilarity, IStringDistance
+    public class Cosine : TFBased, IStringSimilarity, IStringDistance
     {
         #region Constructors
-         
-        public Cosine() { }
+
+        public Cosine()
+        {
+        }
 
         #endregion Constructors
 
         #region Methods
 
-        /// <summary>
-        /// Returns 1.0 - similarity.
-        /// </summary>
+        /// <summary>Returns 1.0 - similarity.</summary>
         /// <param name="s1">The first string to compare.</param>
         /// <param name="s2">The second string to compare.</param>
         /// <returns>1.0 - the cosine similarity in the range [0, 1]</returns>
@@ -32,9 +33,7 @@ namespace rasyidf.Analogi
             return 1.0 - Similarity(s1, s2);
         }
 
-        /// <summary>
-        /// Compute the cosine similarity between strings.
-        /// </summary>
+        /// <summary>Compute the cosine similarity between strings.</summary>
         /// <param name="s1">The first string to compare.</param>
         /// <param name="s2">The second string to compare.</param>
         /// <returns>The cosine similarity in the range [0, 1]</returns>
@@ -50,17 +49,15 @@ namespace rasyidf.Analogi
             {
                 return 1;
             }
-              
+
             IDictionary<string, int> profile1 = GetProfile(s1);
             IDictionary<string, int> profile2 = GetProfile(s2);
 
-            return Similarity(profile1, profile2); 
+            return Similarity(profile1, profile2);
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="profile1"></param> 
+        /// <summary></summary>
+        /// <param name="profile1"></param>
         /// <param name="profile2"></param>
         /// <returns></returns>
         public double Similarity(IDictionary<string, int> profile1, IDictionary<string, int> profile2)
@@ -70,7 +67,7 @@ namespace rasyidf.Analogi
 
         private static double DotProduct(IDictionary<string, int> profile1,
                                          IDictionary<string, int> profile2)
-        { 
+        {
             IDictionary<string, int> small_profile = profile2;
             IDictionary<string, int> large_profile = profile1;
 
@@ -94,9 +91,7 @@ namespace rasyidf.Analogi
             return agg;
         }
 
-        /// <summary>
-        /// Compute the norm L2 : sqrt(Sum_i( v_i²)).
-        /// </summary>
+        /// <summary>Compute the norm L2 : sqrt(Sum_i( v_i²)).</summary>
         /// <param name="profile"></param>
         /// <returns></returns>
         private static double Norm(IDictionary<string, int> profile)

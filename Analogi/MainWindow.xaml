@@ -1,8 +1,8 @@
 ﻿<m:MetroWindow
-    x:Class="rasyidf.Analogi.Core.ShellView"
+    x:Class="Analogi.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="clr-namespace:rasyidf.Analogi.Core"
+    xmlns:local="clr-namespace:Analogi"
     xmlns:m="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
     Title="Analogi"
@@ -10,50 +10,9 @@
     Height="453.309"
     md:TransitionAssist.DisableTransitions="True"
     PreviewKeyDown="Window_PreviewKeyDown">
-    <m:MetroWindow.Resources>
-        <DataTemplate x:Key="ResultDataTemplate" DataType="DetectionResult">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="456*" />
-                    <ColumnDefinition Width="143*" />
-                </Grid.ColumnDefinitions>
-                <TextBlock
-                    Grid.ColumnSpan="2"
-                    Width="Auto"
-                    Height="Auto"
-                    Margin="10,1,0,18"
-                    VerticalAlignment="Stretch"
-                    FontSize="16"
-                    Text="{Binding Name}" />
-                <ListBox
-                    Grid.ColumnSpan="2"
-                    Width="Auto"
-                    Height="Auto"
-                    Margin="21,0,0,0"
-                    VerticalAlignment="Bottom"
-                    ItemsSource="{Binding Reasons}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding ReasonString}" />
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-                <TextBlock
-                    Grid.Column="1"
-                    Width="Auto"
-                    Height="Auto"
-                    Margin="10,6,0,10"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch"
-                    FontSize="22"
-                    Text="{Binding IndexPercentage}"
-                    TextAlignment="Right" />
-            </Grid>
-        </DataTemplate>
-    </m:MetroWindow.Resources>
-    <m:MetroWindow.DataContext>
+    <Window.DataContext>
         <local:ShellViewModel />
-    </m:MetroWindow.DataContext>
+    </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -79,6 +38,10 @@
                     PreviewDragEnter="Button_PreviewDragEnter"
                     PreviewDrop="Button_PreviewDrop"
                     Style="{StaticResource MaterialDesignRaisedDarkButton}" />
+                <ProgressBar
+                    x:Name="pStatus"
+                    Grid.Row="1"
+                    md:TransitionAssist.DisableTransitions="True" />
                 <TextBlock
                     x:Name="selectedFolderTb"
                     Height="16"
@@ -89,24 +52,7 @@
                     MouseLeftButtonUp="SelectedFolderTb_MouseLeftButtonUp"
                     Text="{Binding Path}"
                     TextWrapping="Wrap" />
-                <ProgressBar
-                    x:Name="pStatus"
-                    Grid.Row="1"
-                    md:TransitionAssist.DisableTransitions="True" />
             </Grid>
-        </md:ColorZone>
-        <md:ColorZone
-            Grid.Row="1"
-            Height="80"
-            Mode="Accent"
-            Visibility="{Binding StartVisible}">
-            <Button
-                x:Name="StartButton"
-                Height="Auto"
-                Command="{Binding ScanCommand}"
-                Content="{DynamicResource Start}"
-                Style="{StaticResource MaterialDesignRaisedAccentButton}"
-                Visibility="{Binding StartVisible}" />
         </md:ColorZone>
         <Button
             Grid.Row="2"
@@ -166,5 +112,19 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <md:ColorZone
+            Grid.Row="1"
+            Height="80"
+            Mode="Accent"
+            Visibility="{Binding StartVisible}">
+            <Button
+                x:Name="StartButton"
+                Height="Auto"
+                Command="{Binding ScanCommand}"
+                Content="{DynamicResource Start}"
+                Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                Visibility="{Binding StartVisible}" />
+        </md:ColorZone>
     </Grid>
 </m:MetroWindow>
+

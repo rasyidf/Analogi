@@ -20,6 +20,6 @@ namespace rasyidf.Analogi.Core
 
         void SetTargetFile(string value);
 
-        double Check(ref string source,ref string target);
+        double Check(string source, string target);
     }
 }

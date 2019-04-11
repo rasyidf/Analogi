@@ -9,6 +9,8 @@ namespace rasyidf.Analogi.Support
 {
     internal static class ArrayExtensions
     {
+        #region Methods
+
         internal static T[] WithPadding<T>(this T[] source, int finalLength, T paddingValue = default)
         {
             if (finalLength < source.Length)
@@ -29,5 +31,7 @@ namespace rasyidf.Analogi.Support
 
             return result;
         }
+
+        #endregion Methods
     }
 }

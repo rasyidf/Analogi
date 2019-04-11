@@ -2,45 +2,63 @@
  * MIT
  */
 
+using System;
 using System.Collections.Generic;
 
 namespace rasyidf.Analogi.Core
 {
     public class DetectionResult
     {
-        private readonly CodeFile CodeFile; 
+        #region Fields
 
-        public string Name { get => this.CodeFile.Name; }
+        private readonly CodeFile CodeFile;
 
-        public List<IReason> Reasons { get; set; }
+        #endregion Fields
+
+        #region Constructors
+
+        public DetectionResult(string path)
+        {
+            CodeFile = new CodeFile(path); Reasons = new List<IReason>();
+        }
+
+        public DetectionResult(CodeFile code)
+        {
+            CodeFile = code; Reasons = new List<IReason>();
+        }
+
+        #endregion Constructors
+
+        #region Properties
 
         public double Index
         {
             get
-            { 
+            {
                 if (Reasons.Count == 0)
                 {
                     return 0;
                 }
 
                 double r = 1;
-                foreach (var item in Reasons)
+                foreach (IReason item in Reasons)
                 {
-                    if (item.Index < 0.3f)
+                    if (item.Index < item.Treshold)
                     {
                         continue;
                     }
+
                     r *= item.Index * item.Bias;
                 }
                 return r;
             }
         }
 
-        public int IndexPercentage => (int) Index * 100;
+        public int IndexPercentage => Convert.ToInt32(Index * 100);
+        public string Name => CodeFile.Name;
 
         public string Reason
         {
-
             get
             {
                 if (Reasons.Count > 1)
@@ -54,13 +72,9 @@ namespace rasyidf.Analogi.Core
                 return "File is Fine";
             }
         }
-        public DetectionResult(string path)
-        {
-            this.CodeFile = new CodeFile(path); Reasons = new List<IReason>();
-        }
-        public DetectionResult(CodeFile code)
-        {
-            this.CodeFile = code; Reasons = new List<IReason>();
-        }
+
+        public List<IReason> Reasons { get; set; }
+
+        #endregion Properties
     }
 }

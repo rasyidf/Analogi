@@ -1,39 +1,49 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text; 
-using System.Threading.Tasks;
- 
+﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace rasyidf.Analogi.Core
 {
-    public class PlagiarismDetect
+    public class DetectionEngine
     {
-        public List<DetectionResult> DetectionResults { get; private set; }
+        #region Fields
 
-        private const string SupportedExtension = "cpp|c|cs|py|rb|pas|vb|r|js";
         public List<IReason> ReasonsPipeline = new List<IReason>() {
             new CosineSimilarityReason(),
             new IdenticalStructureReason()
         };
 
-        public string Path { get; }
+        private const string SupportedExtension = "cpp|c|cs|py|rb|pas|vb|r|js";
 
-        public PlagiarismDetect(string path)
+        #endregion Fields
+
+        #region Constructors
+
+        public DetectionEngine(string path)
         {
             Path = path;
         }
+
+        #endregion Constructors
+
+        #region Properties
+
+        public List<DetectionResult> DetectionResults { get; private set; }
+        public string Path { get; }
+
+        #endregion Properties
+
+        #region Methods
+
         public void Start()
         {
+
             DetectionResults = new List<DetectionResult>();
             // List All Souce Code
 
-            var files = Directory
+            string[] files = Directory
                        .EnumerateFiles(Path, "*.*")
-                       .Where( f => SupportedExtension.Split('|').Contains(f.ToLower().Split('.').Last())).ToArray();
-
-
+                       .Where(f => SupportedExtension.Split('|').Contains(f.ToLower().Split('.').Last())).ToArray();
 
             DetectionResult tmpDR;
             for (int i = 0; i < files.Count(); i++)
@@ -48,30 +58,27 @@ namespace rasyidf.Analogi.Core
                 }
                 DetectionResults.Add(tmpDR);
             }
-             
         }
-         
+
         private List<IReason> CheckPlagiarism(string path1, string path2)
         {
             var tmpReasons = new List<IReason>();
-           
-            var n = new IdenticalSizeReason(); 
+
+            var n = new IdenticalSizeReason();
             n.SetTargetFile(path2);
 
-            if (n.Check(ref path1,ref path2) == 1)
+            if (n.Check(path1, path2) == 1)
             {
-
                 tmpReasons.Add(n);
                 return tmpReasons;
             }
 
+            string a = File.ReadAllText(path1);
+            string b = File.ReadAllText(path2);
 
-            var a =  File.ReadAllText(path1);
-            var b =  File.ReadAllText(path2);
-
-            foreach (var reason in ReasonsPipeline)
+            foreach (IReason reason in ReasonsPipeline)
             {
-                if (reason.Check(ref a,ref b) > reason.Treshold)
+                if (reason.Check(a, b) > reason.Treshold)
                 {
                     reason.SetTargetFile(path2);
                     tmpReasons.Add(reason);
@@ -80,5 +87,7 @@ namespace rasyidf.Analogi.Core
 
             return tmpReasons;
         }
+
+        #endregion Methods
     }
 }

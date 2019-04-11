@@ -19,7 +19,6 @@
                 <!--  Material Design: MahApps Compatibility  -->
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.MahApps;component/Themes/MaterialDesignTheme.MahApps.Fonts.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.MahApps;component/Themes/MaterialDesignTheme.MahApps.Flyout.xaml" />
-
             </ResourceDictionary.MergedDictionaries>
 
             <!--  MahApps Brushes  -->
@@ -43,7 +42,6 @@
             <SolidColorBrush x:Key="MahApps.Metro.Brushes.ToggleSwitchButton.OnSwitchBrush.Win10" Color="{DynamicResource Primary500}" />
             <SolidColorBrush x:Key="MahApps.Metro.Brushes.ToggleSwitchButton.OnSwitchMouseOverBrush.Win10" Color="{DynamicResource Primary400}" />
             <SolidColorBrush x:Key="MahApps.Metro.Brushes.ToggleSwitchButton.ThumbIndicatorCheckedBrush.Win10" Color="{DynamicResource Primary500Foreground}" />
-
         </ResourceDictionary>
     </Application.Resources>
 </Application>
