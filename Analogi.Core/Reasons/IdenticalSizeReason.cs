@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace rasyidf.Analogi.Core
 {
@@ -13,11 +14,12 @@ namespace rasyidf.Analogi.Core
         public string TargetFile { get; private set; }
         public double Treshold => 0.5;
 
+        public int IndexPercentage => Convert.ToInt32(Index * 100);
         #endregion Properties
 
         #region Methods
 
-        
+
 
         public void SetTargetFile(string value)
         {
@@ -26,10 +28,17 @@ namespace rasyidf.Analogi.Core
                                                
         public double Check(string source, string target)
         {
+            try
+            {
+
             long len1 = new FileInfo(source).Length;
             long len2 = new FileInfo(target).Length;
             Index = (len1 == len2) ? 1 : 0;
 
+            } catch 
+            {
+                return 0;
+            }
             return Index;
         }
 

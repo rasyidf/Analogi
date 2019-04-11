@@ -1,4 +1,6 @@
-﻿namespace rasyidf.Analogi.Core
+﻿using System;
+
+namespace rasyidf.Analogi.Core
 {
     public class IdenticalStructureReason : IReason
     {
@@ -28,5 +30,7 @@
         }
 
         #endregion Methods
+
+        public int IndexPercentage => Convert.ToInt32(Index * 100);
     }
 }

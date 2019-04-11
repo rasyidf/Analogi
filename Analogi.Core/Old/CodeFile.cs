@@ -3,6 +3,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace rasyidf.Analogi.Core
@@ -13,11 +14,37 @@ namespace rasyidf.Analogi.Core
 
         public CodeFile(string url)
         {
+            Files = new List<string>();
             Path = url;
-            var a = new FileInfo(url);
-            Name = a.Name;
-            CreationTime = a.CreationTime;
-            Length = a.Length;
+            if (Directory.Exists(url))
+            {
+                foreach (var item in Directory.EnumerateFiles(url))
+                {
+                    Files.Add(item);
+                }
+
+                var a = new DirectoryInfo(url);
+                Name = a.Name;
+                CreationTime = a.CreationTime;
+                Length = 0;
+
+            } else
+            {
+                Files.Add(url);
+
+                var a = new FileInfo(url);
+                Name = a.Name;
+                CreationTime = a.CreationTime;
+                Length = a.Length;
+            }
+
+        }
+
+        internal string GetFile()
+        {
+            if (Files.Count == 0) return "";
+
+            return Files[0];
         }
 
         #endregion Constructors
@@ -29,7 +56,8 @@ namespace rasyidf.Analogi.Core
         public long Length { get; private set; }
         public string Name { get; private set; }
         public string Path { get; set; }
-
+        public List<string> Files { get; private set; }
+        public bool IsDirectory { get; private set; }
         #endregion Properties
 
         #region Methods
@@ -41,7 +69,8 @@ namespace rasyidf.Analogi.Core
 
         internal string ReadAll()
         {
-            return File.ReadAllText(Path);
+            if (Files.Count == 0) return "" ;
+            return File.ReadAllText(Files[0]);
         }
 
         #endregion Methods

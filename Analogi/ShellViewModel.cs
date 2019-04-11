@@ -98,8 +98,17 @@ namespace rasyidf.Analogi.Core
 
         public void StartTask()
         {
-            
-            var engine = new MOSSEngine(new Scanner.FolderScanner(Path))
+            IScanner scanner;
+
+            if (System.IO.Directory.EnumerateFiles(Path).Count() == 0 && System.IO.Directory.EnumerateDirectories(Path).Count() > 1)
+            {
+                scanner = new Scanner.SubfolderScanner(Path);
+            } else
+            {
+                scanner = new Scanner.FolderScanner(Path);
+            }
+
+            var engine = new MOSSEngine(scanner)
             {
                 Extractors = new List<IExtractor>() {    
                             new CodeExtractor(),

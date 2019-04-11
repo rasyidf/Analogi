@@ -5,7 +5,7 @@ namespace rasyidf.Analogi.Core
                     
         public interface IScanner
         {
-            IEnumerable<string> Scan();
+            IEnumerable<CodeFile> Scan();
             string Path { get; set; }
         }       
 }

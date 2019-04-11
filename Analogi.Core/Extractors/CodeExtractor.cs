@@ -13,9 +13,9 @@ namespace rasyidf.Analogi.Core.Extractors
 
         readonly Regex CommentBlockRegex = new Regex(@"/\*[^*]*\*+(?:[^/*][^*]*\*+)*/");
 
-        public List<string> Run(string data)
+        public List<string> Run(CodeFile data)
         {
-            var file = System.IO.File.ReadAllText(data);
+            var file = data.ReadAll();
             string v = CommentBlockRegex.Replace(file, "");
             return Run(v.Split(new[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries));
         }

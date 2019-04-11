@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace rasyidf.Analogi.Core
 {
@@ -11,12 +12,13 @@ namespace rasyidf.Analogi.Core
         public string ReasonString => $"High similarity index with: {TargetFile}";
 
         public string TargetFile { get; private set; }
-        public double Treshold => 0.6f;
+        public double Treshold => 0.8f;
 
         #endregion Properties
 
+        public int IndexPercentage => Convert.ToInt32(Index * 100);
         #region Methods
-               
+
 
         public void SetTargetFile(string value)
         {

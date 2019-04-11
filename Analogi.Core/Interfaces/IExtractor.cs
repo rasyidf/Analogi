@@ -6,6 +6,6 @@ namespace rasyidf.Analogi.Core
     {
         string Name { get; }  
 
-        List<string> Run(string data);
+        List<string> Run(CodeFile data);
     }
 }

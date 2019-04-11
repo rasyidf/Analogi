@@ -5,9 +5,9 @@
         public PipelineData Run(PipelineData data)
         {
             var r = new IdenticalSizeReason();
-            var a =  data.Metadatas["file.path"][0];
-            var b =  data.Metadatas["file.path"][1];
-            r.Check(a, b);
+            var a =  new CodeFile(data.Metadatas["file.path"][0]);
+            var b = new CodeFile(data.Metadatas["file.path"][1]);
+            r.Check(a.GetFile(), b.GetFile());
 
             if (r.Index > r.Treshold)
             {

@@ -11,7 +11,9 @@ namespace rasyidf.Analogi.Core
         string ReasonString { get; }
 
         double Index { get; set; }
-        
+
+        int IndexPercentage { get; }
+
         double Bias { get; set; }
 
         double Treshold { get;   }

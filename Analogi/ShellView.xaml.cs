@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using System.Windows;
 using System.Windows.Input;
-
+using Analogi;
 using rasyidf.Analogi.Core;
 
 namespace rasyidf.Analogi.Core
@@ -70,7 +70,10 @@ namespace rasyidf.Analogi.Core
                     {
                         sb.AppendLine(d.Reasons[i].ReasonString);
                     }
-                    MessageBox.Show(sb.ToString(), "Analogi");
+                    // MessageBox.Show(sb.ToString(), "Analogi");
+                    var dro = new DetectionResultOverview();
+                    dro.DataContext = d;
+                    dro.ShowDialog();
                 }
             }
         }

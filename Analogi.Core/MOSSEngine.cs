@@ -22,7 +22,7 @@ namespace rasyidf.Analogi.Core
 
         public void Start()
         {
-            List<string> files = new List<string>(Scanner.Scan());
+            List<CodeFile> files = new List<CodeFile>(Scanner.Scan());
 
             DetectionResult tmpDR;
             for (int i = 0; i < files.Count; i++)
@@ -32,28 +32,30 @@ namespace rasyidf.Analogi.Core
                 {
                     if (i != j)
                     {
-                        tmpDR.Reasons.AddRange(StartPipeline(files[i], files[j])?? new List<IReason>());
+                        tmpDR.Reasons.AddRange(StartPipeline(files[i], files[j]) ?? new List<IReason>());
                     }
                 }
                 DetectionResults.Add(tmpDR);
             }
-                   
+
         }
 
-        private IEnumerable<IReason> StartPipeline(string v1, string v2)
+        private IEnumerable<IReason> StartPipeline(CodeFile v1, CodeFile v2)
         {
+
             var pd = new PipelineData();
-            pd.AddMetadata("path", "file", new List<string>() { v1, v2 });
+            pd.AddMetadata("path", "file", new List<string>() { v1.Path, v2.Path });
+
+
 
             for (int i = 0; i < Extractors.Count; i++)
             {
-                var ext = Extractors[i];
-                pd.AddMetadata(ext.Name, "file.1", ext.Run(v1));
-                pd.AddMetadata(ext.Name, "file.2", ext.Run(v2));
-                if (ext.Name=="comment" && pd.Metadatas["file.1.comment"].Count> 0)
-                {
-                    Debug.Print(pd.Metadatas["file.2.comment"].ToString());
-                }
+                
+
+                    var ext = Extractors[i];
+                    pd.AddMetadata(ext.Name, "file.1", ext.Run(v1));
+                    pd.AddMetadata(ext.Name, "file.2", ext.Run(v2)); 
+
             }
 
             for (int i = 0; i < Pipelines.Count; i++)
@@ -61,7 +63,6 @@ namespace rasyidf.Analogi.Core
                 IPipeline pipeline = Pipelines[i];
                 pd = pipeline.Run(pd);
             }
-
             return pd.Reasons;
         }
     }

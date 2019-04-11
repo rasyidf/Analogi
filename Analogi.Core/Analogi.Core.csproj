@@ -37,6 +37,8 @@
     <Reference Include="PowerArgs, Version=3.6.0.0, Culture=neutral, PublicKeyToken=26a276264bbd55b8, processorArchitecture=MSIL">
       <HintPath>..\packages\PowerArgs.3.6.0\lib\netstandard2.0\PowerArgs.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -47,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Reasons\IdenticalLoCReason.cs" />
     <Compile Include="Extractors\CodeExtractor.cs" />
     <Compile Include="Extractors\CommentExtractor.cs" />
     <Compile Include="Interfaces\IExtractor.cs" />
@@ -73,11 +76,12 @@
     <Compile Include="PreProcessors\CodeFilter.cs" />
     <Compile Include="PreProcessors\Lowercaser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Old\Reasons\CosineSimilarityReason.cs" />
-    <Compile Include="Old\Reasons\IdenticalSizeReason.cs" />
-    <Compile Include="Old\Reasons\IdenticalStructureReason.cs" />
+    <Compile Include="Reasons\CosineSimilarityReason.cs" />
+    <Compile Include="Reasons\IdenticalSizeReason.cs" />
+    <Compile Include="Reasons\IdenticalStructureReason.cs" />
     <Compile Include="Old\Interfaces\IReason.cs" />
     <Compile Include="Old\Support\ArrayExtensions.cs" />
+    <Compile Include="Scanners\SubfolderScanner.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
