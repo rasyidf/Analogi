@@ -12,7 +12,7 @@ namespace rasyidf.Analogi.Core
         public string ReasonString => $"High similarity index with: {TargetFile}";
 
         public string TargetFile { get; private set; }
-        public double Treshold => 0.8f;
+        public double Treshold => 0.7f;
 
         #endregion Properties
 

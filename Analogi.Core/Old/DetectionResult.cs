@@ -2,6 +2,7 @@
  * MIT
  */
 
+using rasyidf.Analogi.Support;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -63,22 +64,8 @@ namespace rasyidf.Analogi.Core
         {
             get
             {
-                if (Index > 0.1 && Index < 0.3)
-                {
-                    return Brushes.Green;
-                }
-                else if (Index >= 0.3 && Index < 0.7)
-                {
-                    return Brushes.Yellow;
-                }
-                else if (Index >= 0.7 && Index <= 0.99)
-                {
-                    return Brushes.Red;
-
-                }else
-                {
-                    return Brushes.Black;
-                }
+                ColorHelper.HsvToRgb(100 - IndexPercentage, 1, 1, out int r, out int g, out int b);
+                return new SolidColorBrush(Color.FromRgb((byte)r, (byte)g, (byte)b));
             }   
 
         }
