@@ -71,8 +71,8 @@ namespace rasyidf.Analogi.Core
                         sb.AppendLine(d.Reasons[i].ReasonString);
                     }
                     // MessageBox.Show(sb.ToString(), "Analogi");
-                    var dro = new DetectionResultOverview();
-                    dro.DataContext = d;
+                    var dro = new DetectionResultOverview(d);
+                    dro.Owner = this;
                     dro.ShowDialog();
                 }
             }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MahApps.Metro.Controls;
+using rasyidf.Analogi.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +19,7 @@ namespace Analogi
     /// <summary>
     /// Interaction logic for DetectionResultOverview.xaml
     /// </summary>
-    public partial class DetectionResultOverview : Window
+    public partial class DetectionResultOverview : MetroWindow
     {
         public DetectionResultOverview()
         {
@@ -25,10 +27,29 @@ namespace Analogi
 
             if (lvReasons.ItemsSource != null)
             {
-            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(lvReasons.ItemsSource);
-            PropertyGroupDescription groupDescription = new PropertyGroupDescription("TargetFile");
+            var view = (CollectionView)CollectionViewSource.GetDefaultView(lvReasons.ItemsSource);
+            var groupDescription = new PropertyGroupDescription("TargetFile");
             view.GroupDescriptions.Add(groupDescription);
             
+
+            }
+        }
+        public DetectionResultOverview(DetectionResult viewModel )
+        {
+            InitializeComponent();
+
+            this.DataContext = viewModel;
+          
+        }
+
+        private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (lvReasons.ItemsSource != null)
+            {
+                var view = (CollectionView)CollectionViewSource.GetDefaultView(lvReasons.ItemsSource);
+                var groupDescription = new PropertyGroupDescription("TargetFile");
+                view.GroupDescriptions.Add(groupDescription);
+
 
             }
         }

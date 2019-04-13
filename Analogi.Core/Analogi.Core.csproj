@@ -54,20 +54,20 @@
     <Compile Include="Extractors\CommentExtractor.cs" />
     <Compile Include="Interfaces\IExtractor.cs" />
     <Compile Include="Interfaces\IPipeline.cs" />
-    <Compile Include="Old\Algorithm\Cosine.cs" />
-    <Compile Include="Old\Algorithm\ShingleBased.cs" />
-    <Compile Include="Old\Algorithm\TFIDFBased.cs" />
+    <Compile Include="Algorithm\Cosine.cs" />
+    <Compile Include="Algorithm\ShingleBased.cs" />
+    <Compile Include="Algorithm\TFIDFBased.cs" />
     <Compile Include="Analyzers\CodeLineAnalyzer.cs" />
     <Compile Include="Analyzers\CommentLineAnalyzer.cs" />
     <Compile Include="Analyzers\CosineSimilarityAnalyzer.cs" />
     <Compile Include="Analyzers\FileLengthAnalyzer.cs" />
     <Compile Include="Analyzers\StructureAnalyzer.cs" />
-    <Compile Include="Old\CodeFile.cs" />
-    <Compile Include="Old\DetectionResult.cs" />
+    <Compile Include="CodeFile.cs" />
+    <Compile Include="DetectionResult.cs" />
     <Compile Include="PreProcessors\Uppercaser.cs" />
     <Compile Include="Scanners\FolderScanner.cs" />
-    <Compile Include="Old\Interfaces\IStringDistance.cs" />
-    <Compile Include="Old\Interfaces\IStringSimilarity.cs" />
+    <Compile Include="Interfaces\IStringDistance.cs" />
+    <Compile Include="Interfaces\IStringSimilarity.cs" />
     <Compile Include="Interfaces\IScanner.cs" />
     <Compile Include="MOSSEngine.cs" />
     <Compile Include="Old\PlagiarismDetect.cs" />
@@ -79,7 +79,7 @@
     <Compile Include="Reasons\CosineSimilarityReason.cs" />
     <Compile Include="Reasons\IdenticalSizeReason.cs" />
     <Compile Include="Reasons\IdenticalStructureReason.cs" />
-    <Compile Include="Old\Interfaces\IReason.cs" />
+    <Compile Include="Interfaces\IReason.cs" />
     <Compile Include="Old\Support\ArrayExtensions.cs" />
     <Compile Include="Scanners\SubfolderScanner.cs" />
   </ItemGroup>

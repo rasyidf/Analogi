@@ -1,4 +1,5 @@
-﻿<Window x:Class="Analogi.DetectionResultOverview"
+﻿<m:MetroWindow
+    xmlns:m="http://metro.mahapps.com/winfx/xaml/controls" x:Class="Analogi.DetectionResultOverview"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,7 +7,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Analogi"
         mc:Ignorable="d"
-        Title="Detection Result Overview" Height="450" Width="534.816">
+        Title="Detection Result Overview" Height="450" Width="534.816" WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" Loaded="MetroWindow_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="24*"/>
@@ -31,7 +32,13 @@
                 </DataTemplate>
             </ListView.Resources>
 
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Status"  Width="300" DisplayMemberBinding="{Binding ReasonString}"/>
+                    <GridViewColumn Header="Index"  Width="90"  DisplayMemberBinding="{Binding IndexPercentage}"/>
 
+                </GridView>
+            </ListView.View>
             <ListView.GroupStyle>
                 <GroupStyle>
                     <GroupStyle.HeaderTemplate>
@@ -42,10 +49,9 @@
                 </GroupStyle>
             </ListView.GroupStyle>
         </ListView>
-        <Button Content="Close" HorizontalAlignment="Stretch"  Margin="5" Width="Auto" Height="Auto" Grid.Row="2" Grid.ColumnSpan="2"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="19" Width="139"><Run Text="Detection Result Overview"/><LineBreak/><Run/></TextBlock>
-        <TextBlock Margin="25,29,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="24" Text="{Binding Name}"/>
+        <Button Content="Close" HorizontalAlignment="Stretch"  Margin="5" Width="Auto" Height="Auto" Grid.Row="2" Grid.ColumnSpan="2" IsDefault="True"/>
+        <TextBlock Margin="10,29,25,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="24" Text="{Binding Name}"/>
         <TextBlock Margin="6,29,10,0" TextWrapping="Wrap" FontSize="48" Text="{Binding IndexPercentage}" Background="{Binding IndexColor}" Foreground="White" TextAlignment="Center" Grid.Column="1"/>
 
     </Grid>
-</Window>
+</m:MetroWindow>

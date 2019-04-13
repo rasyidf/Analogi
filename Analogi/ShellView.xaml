@@ -143,22 +143,16 @@
                         Width="170"
                         DisplayMemberBinding="{Binding Name}"
                         Header="Name" />
-                    <GridViewColumn Width="120" Header="Bar">
+                     
+                    <GridViewColumn
+                        Width="60" 
+                        Header="index" >
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <ProgressBar
-                                    Width="100"
-                                    Height="10"
-                                    md:TransitionAssist.DisableTransitions="True"
-                                    Maximum="1"
-                                    Value="{Binding Index, Mode=OneWay}" />
+                                <TextBlock Background="{Binding IndexColor}" Text="{Binding IndexPercentage}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn
-                        Width="60"
-                        DisplayMemberBinding="{Binding IndexPercentage}"
-                        Header="index" />
                     <GridViewColumn
                         Width="280"
                         DisplayMemberBinding="{Binding Reason}"

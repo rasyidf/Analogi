@@ -7,13 +7,28 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Windows.Data;
 using System.Windows.Media;
 
 namespace rasyidf.Analogi.Core
 {
-    public class DetectionResult
+    public class DetectionResult : INotifyPropertyChanged
     {
+        #region Events
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion Events
+
+        #region Methods
+
+        public void NotifyProps(string args)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(args));
+        }
+
+        #endregion Methods
         #region Fields
 
         private readonly CodeFile CodeFile;
@@ -64,7 +79,12 @@ namespace rasyidf.Analogi.Core
         {
             get
             {
-                ColorHelper.HsvToRgb(100 - IndexPercentage, 1, 1, out int r, out int g, out int b);
+                ColorHelper.HsvToRgb(100 - IndexPercentage,
+                                     1,
+                                     1,
+                                     out int r,
+                                     out int g,
+                                     out int b);
                 return new SolidColorBrush(Color.FromRgb((byte)r, (byte)g, (byte)b));
             }   
 
