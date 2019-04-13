@@ -7,8 +7,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
 
-namespace rasyidf.Analogi
+namespace Analogi
 {
+    /// <summary>
+    /// K-means (shingle) based tokenizer
+    /// </summary>
     public abstract class ShingleBased
     {
         #region Fields

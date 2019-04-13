@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 
-namespace rasyidf.Analogi.Core
+namespace Analogi.Core
 {
     public class MOSSEngine
     {
-        private IScanner Scanner;
+        private readonly IScanner Scanner;
 
         public MOSSEngine(IScanner scanner)
         {

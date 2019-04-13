@@ -3,37 +3,9 @@
  */
 
 using System;
-using System.Linq;
 
-namespace rasyidf.Analogi.Support
+namespace Analogi.Support
 {
-    internal static class ArrayExtensions
-    {
-        #region Methods
-
-        internal static T[] WithPadding<T>(this T[] source, int finalLength, T paddingValue = default)
-        {
-            if (finalLength < source.Length)
-            {
-                throw new InvalidOperationException("Final length must be greater than or equal to current length.");
-            }
-
-            if (finalLength == source.Length)
-            {
-                return source;
-            }
-
-            var result = new T[finalLength];
-            T[] padding = Enumerable.Repeat(paddingValue, finalLength - source.Length).ToArray();
-
-            Array.Copy(source, sourceIndex: 0, destinationArray: result, destinationIndex: 0, length: source.Length);
-            Array.Copy(padding, sourceIndex: 0, destinationArray: result, destinationIndex: source.Length, length: padding.Length);
-
-            return result;
-        }
-
-        #endregion Methods
-    }
     internal static class ColorHelper
     {
         /// <summary>
@@ -45,11 +17,7 @@ namespace rasyidf.Analogi.Support
         /// </summary>
         public static void HsvToRgb(double h, double S, double V, out int r, out int g, out int b)
         {
-            // ######################################################################
-            // T. Nathan Mundhenk
-            // mundhenk@usc.edu
-            // C/C++ Macro HSV to RGB
-
+           
             double H = h;
             while (H < 0) { H += 360; };
             while (H >= 360) { H -= 360; };
@@ -69,18 +37,14 @@ namespace rasyidf.Analogi.Support
                 double qv = V * (1 - S * f);
                 double tv = V * (1 - S * (1 - f));
                 switch (i)
-                {
-
-                    // Red is the dominant color
-
+                {        
+                    // Red is the dominant color       
                     case 0:
                         R = V;
                         G = tv;
                         B = pv;
-                        break;
-
-                    // Green is the dominant color
-
+                        break;  
+                    // Green is the dominant color  
                     case 1:
                         R = qv;
                         G = V;
@@ -90,10 +54,8 @@ namespace rasyidf.Analogi.Support
                         R = pv;
                         G = V;
                         B = tv;
-                        break;
-
-                    // Blue is the dominant color
-
+                        break;     
+                    // Blue is the dominant color  
                     case 3:
                         R = pv;
                         G = qv;
@@ -103,18 +65,14 @@ namespace rasyidf.Analogi.Support
                         R = tv;
                         G = pv;
                         B = V;
-                        break;
-
-                    // Red is the dominant color
-
+                        break;       
+                    // Red is the dominant color      
                     case 5:
                         R = V;
                         G = pv;
                         B = qv;
-                        break;
-
-                    // Just in case we overshoot on our math by a little, we put these here. Since its a switch it won't slow us down at all to put these here.
-
+                        break;              
+                    // Just in case we overshoot on our math by a little, we put these here. Since its a switch it won't slow us down at all to put these here.                                                                                                                                                                                
                     case 6:
                         R = V;
                         G = tv;
@@ -124,10 +82,8 @@ namespace rasyidf.Analogi.Support
                         R = V;
                         G = pv;
                         B = qv;
-                        break;
-
-                    // The color is not defined, we should throw an error.
-
+                        break;    
+                    // The color is not defined, we should throw an error. 
                     default:
                         //LFATAL("i Value error in Pixel conversion, Value is %d", i);
                         R = G = B = V; // Just pretend its black/white
@@ -144,9 +100,7 @@ namespace rasyidf.Analogi.Support
         /// </summary>
         public static int Clamp(int i)
         {
-            if (i < 0) return 0;
-            if (i > 255) return 255;
-            return i;
+            return ( i >= 0 ) ? (i > 255 ? 255 : i ) : 0;
         }
     }
 }

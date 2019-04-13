@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using rasyidf.Analogi.Core.Analyzers;
+using Analogi.Core.Analyzers;
 
-namespace rasyidf.Analogi.Core
+namespace Analogi.Core
 {
     public class PipelineData
     {

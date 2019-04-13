@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace rasyidf.Analogi.Core
+namespace Analogi.Core
 {
     public class CodeFile
     {

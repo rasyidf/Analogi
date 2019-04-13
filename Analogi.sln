@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.156
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rasyidf.Analogi", "Analogi\rasyidf.Analogi.csproj", "{96370D9F-7ED8-455D-8C8C-6AADDE1043B2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Analogi", "Analogi\Analogi.csproj", "{96370D9F-7ED8-455D-8C8C-6AADDE1043B2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Analogi.Core", "Analogi.Core\Analogi.Core.csproj", "{84FB9DE9-222C-4E54-80FD-B9689558FD88}"
 EndProject

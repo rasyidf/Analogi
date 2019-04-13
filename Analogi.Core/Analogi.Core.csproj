@@ -22,7 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Support\ColorHelper.cs" />
     <Compile Include="Reasons\IdenticalLoCReason.cs" />
     <Compile Include="Extractors\CodeExtractor.cs" />
     <Compile Include="Extractors\CommentExtractor.cs" />
@@ -56,7 +57,7 @@
     <Compile Include="Interfaces\IPipeline.cs" />
     <Compile Include="Algorithm\Cosine.cs" />
     <Compile Include="Algorithm\ShingleBased.cs" />
-    <Compile Include="Algorithm\TFIDFBased.cs" />
+    <Compile Include="Algorithm\TFBased.cs" />
     <Compile Include="Analyzers\CodeLineAnalyzer.cs" />
     <Compile Include="Analyzers\CommentLineAnalyzer.cs" />
     <Compile Include="Analyzers\CosineSimilarityAnalyzer.cs" />
@@ -70,7 +71,6 @@
     <Compile Include="Interfaces\IStringSimilarity.cs" />
     <Compile Include="Interfaces\IScanner.cs" />
     <Compile Include="MOSSEngine.cs" />
-    <Compile Include="Old\PlagiarismDetect.cs" />
     <Compile Include="PipelineData.cs" />
     <Compile Include="PostProcess\Cleanup.cs" />
     <Compile Include="PreProcessors\CodeFilter.cs" />
@@ -80,7 +80,7 @@
     <Compile Include="Reasons\IdenticalSizeReason.cs" />
     <Compile Include="Reasons\IdenticalStructureReason.cs" />
     <Compile Include="Interfaces\IReason.cs" />
-    <Compile Include="Old\Support\ArrayExtensions.cs" />
+    <Compile Include="Support\ArrayExtensions.cs" />
     <Compile Include="Scanners\SubfolderScanner.cs" />
   </ItemGroup>
   <ItemGroup>

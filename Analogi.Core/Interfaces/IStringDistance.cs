@@ -2,7 +2,7 @@
  * MIT
  */
 
-namespace rasyidf.Analogi.Interfaces
+namespace Analogi.Interfaces
 {
     public interface IStringDistance
     {

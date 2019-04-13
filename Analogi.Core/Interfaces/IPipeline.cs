@@ -1,4 +1,4 @@
-﻿namespace rasyidf.Analogi.Core
+﻿namespace Analogi.Core
 {
     public interface IPipeline
     {

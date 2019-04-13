@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Windows.Input;
 
-namespace rasyidf.Analogi.Core
+namespace Analogi.Core
 {
     public class DelegateCommand : ICommand
     {
@@ -17,6 +17,7 @@ namespace rasyidf.Analogi.Core
         public DelegateCommand(Action act)
         {
             action = act;
+            CanExecuteChanged = null;
         }
 
         #endregion Constructors
@@ -28,6 +29,11 @@ namespace rasyidf.Analogi.Core
         #endregion Events
 
         #region Methods
+
+        public void RaiseCanExecuteChanged()
+        {
+            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+        }
 
         public bool CanExecute(object parameter)
         {
@@ -42,21 +48,5 @@ namespace rasyidf.Analogi.Core
         #endregion Methods
     }
 
-    internal class ViewModelBase : INotifyPropertyChanged
-    {
-        #region Events
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        #endregion Events
-
-        #region Methods
-
-        public void NotifyProps(string args)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(args));
-        }
-
-        #endregion Methods
-    }
 }

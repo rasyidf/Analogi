@@ -1,4 +1,4 @@
-﻿namespace rasyidf.Analogi.Core.Analyzers
+﻿namespace Analogi.Core.Analyzers
 {
     public class StructureAnalyzer : IPipeline
     {

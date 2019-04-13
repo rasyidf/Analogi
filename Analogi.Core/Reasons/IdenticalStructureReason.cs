@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace rasyidf.Analogi.Core
+namespace Analogi.Core
 {
     public class IdenticalStructureReason : IReason
     {

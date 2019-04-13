@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace rasyidf.Analogi.Core
+namespace Analogi.Core
 {
     public interface IExtractor
     {

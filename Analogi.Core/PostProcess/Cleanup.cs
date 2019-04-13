@@ -1,4 +1,4 @@
-﻿namespace rasyidf.Analogi.Core.PostProcess
+﻿namespace Analogi.Core.PostProcess
 {
     public class Cleanup : IPipeline
     {

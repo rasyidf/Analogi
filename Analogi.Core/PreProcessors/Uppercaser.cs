@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace rasyidf.Analogi.Core.PreProcessors
+namespace Analogi.Core.PreProcessors
 {
     public class Uppercaser : IPipeline
     {

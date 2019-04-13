@@ -2,9 +2,9 @@
 using System.Windows;
 using System.Windows.Input;
 using Analogi;
-using rasyidf.Analogi.Core;
+using Analogi.Core;
 
-namespace rasyidf.Analogi.Core
+namespace Analogi.Core
 {
     /// <summary>Interaction logic for ShellView.xaml</summary>
     public partial class ShellView
@@ -20,9 +20,11 @@ namespace rasyidf.Analogi.Core
         public ShellView()
         {
             InitializeComponent();
-            ViewModel = new ShellViewModel();
-            DataContext = ViewModel;
+            ViewModel1 = new ShellViewModel();
+            DataContext = ViewModel1;
         }
+
+        internal ShellViewModel ViewModel1 { get => ViewModel; set => ViewModel = value; }
 
         #endregion Constructors
 
@@ -38,7 +40,7 @@ namespace rasyidf.Analogi.Core
         {
             object text = e.Data.GetData(DataFormats.FileDrop);
 
-            ViewModel.Path = $"{((string[])text)[0]}";
+            ViewModel1.Path = $"{((string[])text)[0]}";
         }
 
         private void LResult_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -71,8 +73,10 @@ namespace rasyidf.Analogi.Core
                         sb.AppendLine(d.Reasons[i].ReasonString);
                     }
                     // MessageBox.Show(sb.ToString(), "Analogi");
-                    var dro = new DetectionResultOverview(d);
-                    dro.Owner = this;
+                    var dro = new DetectionResultOverview(d)
+                    {
+                        Owner = this
+                    };
                     dro.ShowDialog();
                 }
             }
@@ -82,7 +86,7 @@ namespace rasyidf.Analogi.Core
         {
             if (e.Key == Key.Enter)
             {
-                ViewModel.StartTask();
+                ViewModel1.StartTask();
             }
         }
 

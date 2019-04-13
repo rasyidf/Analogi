@@ -1,11 +1,13 @@
-﻿namespace rasyidf.Analogi.Core.Analyzers
+﻿namespace Analogi.Core.Analyzers
 {
     public class CodeLineAnalyzer : IPipeline
     {
         public PipelineData Run(PipelineData data)
         {
-            var r = new IdenticalLoCReason();
-            r.IsComment = false;
+            var r = new IdenticalLoCReason
+            {
+                IsComment = false
+            };
             var a = data.Metadatas["file.1.code"].Count.ToString();
             var b = data.Metadatas["file.2.code"].Count.ToString();
             r.Check(a, b);

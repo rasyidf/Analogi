@@ -6,18 +6,12 @@ using System.Windows;
 using System.Windows.Input;
 
 using Ookii.Dialogs.Wpf;
-using rasyidf.Analogi.Core.Extractors;
+using Analogi.Core.Extractors;
+using Analogi.Framework;
 
-namespace rasyidf.Analogi.Core
-{
-    public enum FilterModes
-    {
-        Original,
-        Plagiarism,
-        Any
-    }
-
-    internal class ShellViewModel : ViewModelBase
+namespace Analogi.Core
+{       
+    internal class ShellViewModel : ViewModel
     {
         #region Properties
 
@@ -29,40 +23,77 @@ namespace rasyidf.Analogi.Core
         {
             get
             {
-                switch (FilterMode)
-                {
-                    case FilterModes.Original:
-                        return new ObservableCollection<DetectionResult>(distances.Where(c => c.Index <= 0.5f));
+                if (distances == null) return distances;
 
-                    case FilterModes.Plagiarism:
-                        return new ObservableCollection<DetectionResult>(distances.Where(c => c.Index > 0.5f));
-
-                    default:
-                        return Distances;
-                }
+                IEnumerable<DetectionResult> collection = distances.Where(c =>
+                   {
+                       switch (FilterMode)
+                       {
+                           case PlagiarismLevel.Extreme:
+                           case PlagiarismLevel.VeryHigh:
+                               return (int)c.PlagiarismLevel == (int)PlagiarismLevel.VeryHigh || (int)c.PlagiarismLevel == (int)PlagiarismLevel.Extreme;
+                           case PlagiarismLevel.High:
+                           case PlagiarismLevel.Moderate:
+                               return (int)c.PlagiarismLevel == (int)PlagiarismLevel.Moderate || (int)c.PlagiarismLevel == (int)PlagiarismLevel.High;
+                           case PlagiarismLevel.Low:
+                           case PlagiarismLevel.Minor:
+                               return (int)c.PlagiarismLevel == (int)PlagiarismLevel.Minor || (int)c.PlagiarismLevel == (int)PlagiarismLevel.Low;
+                           case PlagiarismLevel.Original:
+                           case PlagiarismLevel.None:
+                               return (int)c.PlagiarismLevel == (int)PlagiarismLevel.Original;
+                           case PlagiarismLevel.All:
+                               return c != null;
+                           default:
+                               return c.Index > 0;
+                       }
+                   }
+                );
+                return new ObservableCollection<DetectionResult>(collection);
             }
 
             set
             {
-                distances = value; NotifyProps(nameof(DistanceFiltered));
+                RaisePropertyChanged(nameof(DistanceFiltered));
             }
         }
 
-        public ObservableCollection<DetectionResult> Distances { get => distances; set { distances = value; NotifyProps(nameof(Distances)); } }
+        public ObservableCollection<DetectionResult> Distances { get => distances; set { distances = value; RaisePropertyChanged(nameof(Distances)); } }
         public ICommand FilterOriginalCommand => new DelegateCommand(FilterOriginal);
-        public ICommand FilterPlagiatorCommand => new DelegateCommand(FilterPlagiator);
-        public string Path { get => path; set { path = value; NotifyProps(nameof(Path)); if (!string.IsNullOrEmpty(Path)) { StartVisible = Visibility.Visible; } else { StartVisible = Visibility.Collapsed; } } }
+        public ICommand FilterAnyCommand => new DelegateCommand(FilterAny);
+        public ICommand FilterAllCommand => new DelegateCommand(FilterAll);
+        public ICommand FilterHighCommand => new DelegateCommand(FilterHigh);
+        public ICommand FilterMediumCommand => new DelegateCommand(FilterMedium);
+        public ICommand FilterLowCommand => new DelegateCommand(FilterLow);
+        public string Path { get => path; set { path = value; RaisePropertyChanged(nameof(Path)); if (!string.IsNullOrEmpty(Path)) { StartVisible = Visibility.Visible; } else { StartVisible = Visibility.Collapsed; } } }
         public ICommand ScanCommand => new DelegateCommand(ScanFolder);
-        public Visibility StartVisible { get => startVisible; set { startVisible = value; NotifyProps(nameof(StartVisible)); } }
+        public Visibility StartVisible { get => startVisible; set { startVisible = value; RaisePropertyChanged(nameof(StartVisible)); } }
+        public Visibility FilterVisible { get => filterVisible; set { filterVisible = value; RaisePropertyChanged(nameof(FilterVisible)); } }
 
         private void FilterOriginal()
         {
-            FilterMode = FilterModes.Original; NotifyProps(nameof(DistanceFiltered));
+            FilterMode = PlagiarismLevel.Original; RaisePropertyChanged(nameof(DistanceFiltered));
+        }
+        private void FilterAny()
+        {
+            FilterMode = PlagiarismLevel.None; RaisePropertyChanged(nameof(DistanceFiltered));
         }
 
-        private void FilterPlagiator()
+        private void FilterAll()
         {
-            FilterMode = FilterModes.Plagiarism; NotifyProps(nameof(DistanceFiltered));
+            FilterMode = PlagiarismLevel.All; RaisePropertyChanged(nameof(DistanceFiltered));
+        }
+        private void FilterHigh()
+        {
+            FilterMode = PlagiarismLevel.VeryHigh;
+            RaisePropertyChanged(nameof(DistanceFiltered));
+        }
+        private void FilterMedium()
+        {
+            FilterMode = PlagiarismLevel.Moderate; RaisePropertyChanged(nameof(DistanceFiltered));
+        }
+        private void FilterLow()
+        {
+            FilterMode = PlagiarismLevel.Low; RaisePropertyChanged(nameof(DistanceFiltered));
         }
 
         #endregion Properties
@@ -70,9 +101,10 @@ namespace rasyidf.Analogi.Core
         #region Fields
 
         private ObservableCollection<DetectionResult> distances;
-        private FilterModes FilterMode = FilterModes.Any;
+        private PlagiarismLevel FilterMode = PlagiarismLevel.Original;
         private string path = @"No Folder Selected";
         private Visibility startVisible = Visibility.Collapsed;
+        private Visibility filterVisible = Visibility.Collapsed; 
 
         #endregion Fields
 
@@ -93,7 +125,8 @@ namespace rasyidf.Analogi.Core
             }
 
             StartTask();
-            FilterMode = FilterModes.Any; NotifyProps(nameof(DistanceFiltered));
+            FilterMode = PlagiarismLevel.All; RaisePropertyChanged(nameof(DistanceFiltered));
+            FilterVisible = Visibility.Visible;
         }
 
         public void StartTask()

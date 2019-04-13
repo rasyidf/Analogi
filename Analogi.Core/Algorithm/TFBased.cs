@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
 
-namespace rasyidf.Analogi
+namespace Analogi
 {
     /// <summary>
     /// Term frequency based tokenizer

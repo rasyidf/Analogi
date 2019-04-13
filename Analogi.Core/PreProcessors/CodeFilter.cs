@@ -4,7 +4,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace rasyidf.Analogi.Core.PreProcessors
+namespace Analogi.Core.PreProcessors
 {
     public class CodeFilter : IPipeline
     {

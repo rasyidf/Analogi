@@ -5,11 +5,11 @@
 using System;
 using System.Collections.Generic;
 
-using rasyidf.Analogi.Interfaces;
+using Analogi.Interfaces;
 
 // ReSharper disable LoopCanBeConvertedToQuery
 
-namespace rasyidf.Analogi
+namespace Analogi
 {
     public class Cosine : TFBased, IStringSimilarity, IStringDistance
     {

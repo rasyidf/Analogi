@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace rasyidf.Analogi.Core
+namespace Analogi.Core
 {
     public class IdenticalLoCReason : IReason {
         public double Bias { get; set; } = 1;

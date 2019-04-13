@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-namespace rasyidf.Analogi.Core.Extractors
+namespace Analogi.Core.Extractors
 {
     public class CommentExtractor : IExtractor
     {

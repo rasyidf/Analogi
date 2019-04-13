@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 
-namespace rasyidf.Analogi.Core
+namespace Analogi.Core
 {
 
     namespace Scanner

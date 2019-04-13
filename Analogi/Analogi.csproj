@@ -25,6 +25,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -81,6 +82,7 @@
     <Compile Include="DetectionResultOverview.xaml.cs">
       <DependentUpon>DetectionResultOverview.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Framework\ViewModel.cs" />
     <Compile Include="ShellViewModel.cs" />
     <Compile Include="Helpers\ViewModelBase.cs" />
     <Page Include="DetectionResultOverview.xaml">

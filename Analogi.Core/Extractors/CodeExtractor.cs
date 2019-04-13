@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace rasyidf.Analogi.Core.Extractors
+namespace Analogi.Core.Extractors
 {
     public class CodeExtractor : IExtractor
     {
