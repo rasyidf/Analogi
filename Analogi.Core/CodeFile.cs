@@ -28,7 +28,8 @@ namespace Analogi.Core
                 CreationTime = a.CreationTime;
                 Length = 0;
 
-            } else
+            }
+            else
             {
                 Files.Add(url);
 
@@ -69,7 +70,7 @@ namespace Analogi.Core
 
         internal string ReadAll()
         {
-            if (Files.Count == 0) return "" ;
+            if (Files.Count == 0) return "";
             return File.ReadAllText(Files[0]);
         }
 

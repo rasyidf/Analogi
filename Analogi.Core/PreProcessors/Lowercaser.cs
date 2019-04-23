@@ -3,6 +3,9 @@ using System.Linq;
 
 namespace Analogi.Core.PreProcessors
 {
+    /// <summary>
+    /// Mengubah semua kode menjadi lowercase.
+    /// </summary>
     public class Lowercaser : IPipeline
     {
         public PipelineData Run(PipelineData data)

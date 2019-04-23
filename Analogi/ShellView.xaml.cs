@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Input;
 using Analogi;
 using Analogi.Core;
+using MaterialDesignThemes.Wpf;
 
 namespace Analogi.Core
 {
@@ -73,11 +74,9 @@ namespace Analogi.Core
                         sb.AppendLine(d.Reasons[i].ReasonString);
                     }
                     // MessageBox.Show(sb.ToString(), "Analogi");
-                    var dro = new DetectionResultOverview(d)
-                    {
-                        Owner = this
-                    };
-                    dro.ShowDialog();
+                    var dro = new DResultView(d);
+                    dro.Height = this.Height - 40;
+                    DialogHost.Show(dro);
                 }
             }
         }

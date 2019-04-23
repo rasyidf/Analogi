@@ -8,6 +8,9 @@ using System.Windows.Input;
 using Ookii.Dialogs.Wpf;
 using Analogi.Core.Extractors;
 using Analogi.Framework;
+using MaterialDesignThemes.Wpf;
+using System.Windows.Controls;
+using System.Threading;
 
 namespace Analogi.Core
 {       
@@ -64,6 +67,7 @@ namespace Analogi.Core
         public ICommand FilterHighCommand => new DelegateCommand(FilterHigh);
         public ICommand FilterMediumCommand => new DelegateCommand(FilterMedium);
         public ICommand FilterLowCommand => new DelegateCommand(FilterLow);
+        public ICommand ResetViewCommand => new DelegateCommand(ResetView);
         public string Path { get => path; set { path = value; RaisePropertyChanged(nameof(Path)); if (!string.IsNullOrEmpty(Path)) { StartVisible = Visibility.Visible; } else { StartVisible = Visibility.Collapsed; } } }
         public ICommand ScanCommand => new DelegateCommand(ScanFolder);
         public Visibility StartVisible { get => startVisible; set { startVisible = value; RaisePropertyChanged(nameof(StartVisible)); } }
@@ -109,7 +113,7 @@ namespace Analogi.Core
         #endregion Fields
 
         #region Methods
-
+        //untuk upload sesuai dengan file dengan ekstensi yang disetujui
         public void ScanFolder()
         {
             if (path == "" || path == "No Folder Selected")
@@ -131,42 +135,73 @@ namespace Analogi.Core
 
         public void StartTask()
         {
-            IScanner scanner;
+            //Antarmuka, Abaikan
+            var a = DialogHost.Show(new TextBlock(){Text = "Please Wait"}, delegate (object sender, DialogOpenedEventArgs args)
+            {
+                Thread.Sleep(100);
+                args.Session.Close(false);
+            }
+            );
 
+            // Inisialisasi Scanner
+            IScanner scanner;
+            // pembacaan file yang di upload berupa folder atau sub folder
             if (System.IO.Directory.EnumerateFiles(Path).Count() == 0 && System.IO.Directory.EnumerateDirectories(Path).Count() > 1)
             {
+                // Jika path adalah folder dengan banyak Subfolder
                 scanner = new Scanner.SubfolderScanner(Path);
             } else
             {
+                // Jika path adalah folder dengan banyak file
                 scanner = new Scanner.FolderScanner(Path);
             }
 
-            var engine = new MOSSEngine(scanner)
+            var engine = new MOSSEngine()
             {
-                Extractors = new List<IExtractor>() {    
-                            new CodeExtractor(),
-                            new CommentExtractor(),
+                Scanner = scanner,
+
+                // definisikan proses pemisahan metadata
+                Extractors = new List<IExtractor>() { 
+                            
+                            new CodeExtractor(), // Pemisahan Kode
+                            new CommentExtractor(), // Pemisahan Komentar
                 },
 
-                Pipelines = new List<IPipeline>() {     
-                            new PreProcessors.CodeFilter(), 
-                            new PreProcessors.Lowercaser(),      
+                // definisi proses.
+                Pipelines = new List<IPipeline>() {   
+                            // PREPROSES
+                            new PreProcessors.CodeFilter(),             // menghapus spasi ganda
+                            new PreProcessors.Lowercaser(),             //  proses case folding
                             
-                            new Analyzers.FileLengthAnalyzer(),
-                            new Analyzers.CommentLineAnalyzer(),
-                            new Analyzers.CodeLineAnalyzer(),
-                            new Analyzers.CosineSimilarityAnalyzer(),
-                            new Analyzers.StructureAnalyzer(),     
+                            // CORE PROCESS
+                            // daftar item yang dibandingkan berdasar pada keterangann bab 2
+                            new Analyzers.FileLengthAnalyzer(),         // berdasarkan panjang programnya
+                            new Analyzers.CommentLineAnalyzer(),        // berdasarkan panjang komentarnya
+                            new Analyzers.CodeLineAnalyzer(),           // berdasar jumlah baris kode
+                            new Analyzers.CosineSimilarityAnalyzer(),   // beradasarkan cosine similaritynya
 
+                            // TODO : Yang mungkin bisa ditambahkan, belum diimplementasikan
+
+                            // new Analyzers.StructureAnalyzer(),       // berdasarkan struktur codingannya
+                            // new Analyzers.FunctionCountAnalyzer(),   // berdasarkan jumlah fungsi
+
+                            // POST PROCESS
+                            // pembersihan data dari memori ketika selesai melakukan deteksi
                             new PostProcess.Cleanup()
                 }
             };
 
             engine.Start();
             Distances = new ObservableCollection<DetectionResult>(engine.DetectionResults);
-                                                                    
+            
         }
 
+        private void ResetView()
+        {
+            StartVisible = Visibility.Collapsed;
+            FilterVisible = Visibility.Collapsed;
+            Path = "";
+        }
 
 
         private void BrowseFolder()

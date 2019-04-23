@@ -6,7 +6,7 @@ namespace Analogi.Core
     {
         #region Properties
 
-        public double Bias { get; set; }
+        public double Weight { get; set; }
         public double Index { get; set; }
         public string ReasonString => $"The Code has same program structure with :{TargetFile}";
 

@@ -7,12 +7,12 @@ namespace Analogi.Core
     {
         #region Properties
 
-        public double Bias { get; set; } = 1;
+        public double Weight { get; set; } = 1;
         public double Index { get; set; }
         public string ReasonString => $"High similarity index with: {TargetFile}";
 
         public string TargetFile { get; private set; }
-        public double Treshold => 0.7f;
+        public double Treshold => 0.67f;
 
         #endregion Properties
 
@@ -25,9 +25,15 @@ namespace Analogi.Core
             TargetFile = new FileInfo(value).Name;
         }
                   
-
+        /// <summary>
+        /// Kalkulasi Cosine Similarity
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="target"></param>
+        /// <returns></returns>
         public double Check(string source, string target)
         {
+            
             Index = new Cosine().Similarity(source, target);
             return Index;
         }

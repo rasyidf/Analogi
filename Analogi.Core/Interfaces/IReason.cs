@@ -14,7 +14,7 @@ namespace Analogi.Core
 
         int IndexPercentage { get; }
 
-        double Bias { get; set; }
+        double Weight { get; set; }
 
         double Treshold { get;   }
 

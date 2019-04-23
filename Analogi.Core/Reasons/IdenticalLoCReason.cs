@@ -4,7 +4,7 @@ using System.IO;
 namespace Analogi.Core
 {
     public class IdenticalLoCReason : IReason {
-        public double Bias { get; set; } = 1;
+        public double Weight { get; set; } = 1;
         public double Index { get; set; }
         public string ReasonString => $"The File {CommentIs} Line is Identical with {TargetFile}";
         string CommentIs => IsComment ? "Comment" : "Code";

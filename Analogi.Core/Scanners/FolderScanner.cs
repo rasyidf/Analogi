@@ -19,7 +19,7 @@ namespace Analogi.Core
             public IEnumerable<CodeFile> Scan()
             {
                 var a = new List<CodeFile>();
-                foreach (var item in Directory.EnumerateFiles(Path, "*.*"))
+                foreach (var item in Directory.EnumerateFiles(Path, "*.cpp"))
                 {
                     a.Add(new CodeFile(item));
                 }

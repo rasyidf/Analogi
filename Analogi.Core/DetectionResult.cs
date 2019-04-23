@@ -15,15 +15,15 @@ namespace Analogi.Core
 {
     public enum PlagiarismLevel
     {
-        Extreme = 100,
-        VeryHigh = 90,
-        High = 80,
-        Moderate = 70,
-        Low = 60,
-        Minor = 30,
+        Extreme = 10,
+        VeryHigh = 9,
+        High = 8,
+        Moderate = 7,
+        Low = 6,
+        Minor = 3,
         Original = 0,
         None = -1,
-        All = 101
+        All = 11
     }
     public class DetectionResult : INotifyPropertyChanged
     {
@@ -70,7 +70,7 @@ namespace Analogi.Core
         }
 
         public PlagiarismLevel PlagiarismLevel { get {     
-                return (PlagiarismLevel)(Convert.ToInt16(IndexPercentage/10) * 10);
+                return (PlagiarismLevel)(Convert.ToInt16(IndexPercentage/10) );
             } }
 
         public double Index
@@ -92,8 +92,8 @@ namespace Analogi.Core
                     }
                     else p++;
 
-                    r += item.Index * item.Bias;
-                    max = Math.Max(Math.Max(r/p, max), item.Index * item.Bias);
+                    r += item.Index * item.Weight;
+                    max = Math.Max(Math.Max(r/p, max), item.Index * item.Weight);
                 }
                 // return r / p;
                 return max;
@@ -117,6 +117,9 @@ namespace Analogi.Core
         public int IndexPercentage => Convert.ToInt32(Index * 100);
         public string Name => CodeFile.Name;
 
+        /// <summary>
+        ///  Reason Summary
+        /// </summary>
         public string Reason
         {
             get

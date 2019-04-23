@@ -31,7 +31,7 @@ namespace Analogi
 
         #region Methods
 
-        protected IDictionary<string, int> GetProfile(string s)
+        protected IDictionary<string, int> Tokenize(string s)
         {
             var tokens = new Dictionary<string, int>();
 

@@ -4,14 +4,29 @@
     xmlns:local="clr-namespace:Analogi.Core"
     xmlns:m="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:analogi="clr-namespace:Analogi" mc:Ignorable="d" WindowStartupLocation="CenterScreen"
     x:Class="Analogi.Core.ShellView"
-    Title="Analogi"
-    Width="451.325"
-    Height="453.309"
+    Title="Plagiarism Detect"
+    Width="580"
+    Height="680"
     md:TransitionAssist.DisableTransitions="True"
     PreviewKeyDown="Window_PreviewKeyDown">
-    <m:MetroWindow.Resources>
+
+    <m:MetroWindow.InputBindings>
+        <KeyBinding Modifiers="Ctrl"
+                    Key="S"
+                    Command="{Binding ScanCommand}" />
+
+        <KeyBinding Modifiers="Control"
+                    Key="O"
+                    Command="{Binding BrowseCommand}" />
+
+        <KeyBinding Modifiers="Ctrl"
+                    Key="X"
+                    Command="{Binding ResetViewCommand}" />
+    </m:MetroWindow.InputBindings>
+        <m:MetroWindow.Resources>
         <DataTemplate x:Key="ResultDataTemplate" DataType="DetectionResult">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -55,54 +70,58 @@
     <m:MetroWindow.DataContext>
         <local:ShellViewModel />
     </m:MetroWindow.DataContext>
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="55*" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="48" />
-            <RowDefinition Height="92*" />
-        </Grid.RowDefinitions>
-        <TextBlock Margin="0" Grid.Row="3" TextWrapping="Wrap" Text="Click Start to Continue" Height="54" TextAlignment="Center" Visibility="{Binding StartVisible}"/>
-        <ListView
+    <md:DialogHost>
+        <md:DialogHost.DialogContent>
+            <analogi:DResultView/>
+        </md:DialogHost.DialogContent>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="55*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="48" />
+                <RowDefinition Height="92*" />
+            </Grid.RowDefinitions>
+            <TextBlock Margin="0" Grid.Row="3" TextWrapping="Wrap" Text="Click Start to Continue" Height="54" TextAlignment="Center" Visibility="{Binding StartVisible}"/>
+            <ListView
             x:Name="lResult"
             Grid.Row="3"
             Margin="10"
             ItemsSource="{Binding DistanceFiltered}"
             PreviewKeyDown="LResult_PreviewKeyDown"
             PreviewMouseDoubleClick="LResult_PreviewMouseDoubleClick" BorderBrush="{x:Null}" Visibility="{Binding FilterVisible}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn
                         Width="170"
                         DisplayMemberBinding="{Binding Name}"
                         Header="Name" />
 
-                    <GridViewColumn
+                        <GridViewColumn
                         Width="80" 
                         Header="index" >
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Background="{Binding IndexColor}" Text="{Binding PlagiarismLevel}" TextAlignment="Center" VerticalAlignment="Center"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Background="{Binding IndexColor}" Text="{Binding PlagiarismLevel}" TextAlignment="Center" VerticalAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn
                         Width="327"
                         DisplayMemberBinding="{Binding Reason}"
                         Header="Reason" />
-                </GridView>
-            </ListView.View>
-        </ListView>
-        <md:ColorZone VerticalAlignment="Stretch" Mode="PrimaryDark">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition Height="11" />
-                </Grid.RowDefinitions>
-                <Button
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <md:ColorZone VerticalAlignment="Stretch" Mode="PrimaryDark">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="11" />
+                    </Grid.RowDefinitions>
+                    <Button
                     Height="Auto"
                     Margin="10,5,10,21"
                     AllowDrop="True"
@@ -111,7 +130,7 @@
                     PreviewDragEnter="Button_PreviewDragEnter"
                     PreviewDrop="Button_PreviewDrop"
                     Style="{StaticResource MaterialDesignRaisedDarkButton}" />
-                <TextBlock
+                    <TextBlock
                     x:Name="selectedFolderTb"
                     Height="16"
                     Margin="0,0,0,0"
@@ -121,46 +140,48 @@
                     MouseLeftButtonUp="SelectedFolderTb_MouseLeftButtonUp"
                     Text="{Binding Path}"
                     TextWrapping="Wrap" />
-                <ProgressBar
+                    <ProgressBar
                     x:Name="pStatus"
                     Grid.Row="1"
                     md:TransitionAssist.DisableTransitions="True" />
-            </Grid>
-        </md:ColorZone>
-        <md:ColorZone
+                </Grid>
+            </md:ColorZone>
+            <md:ColorZone
             Grid.Row="1"
             Height="80"
             Mode="Accent"
             Visibility="{Binding StartVisible}">
-            <Button
+                <Button
                 x:Name="StartButton"
                 Height="Auto"
                 Command="{Binding ScanCommand}"
                 Content="{DynamicResource Start}"
                 Style="{StaticResource MaterialDesignRaisedAccentButton}"
                 Visibility="{Binding StartVisible}" />
-        </md:ColorZone>
-        <UniformGrid Margin="5" Grid.Row="2" Rows="1" Visibility="{Binding FilterVisible}">
-            <Button 
+            </md:ColorZone>
+            <UniformGrid Margin="5" Grid.Row="2" Rows="1" Visibility="{Binding FilterVisible}">
+                <Button 
                 Command="{Binding FilterAllCommand}"
                 Content="All"
                 Style="{StaticResource MaterialDesignFlatButton}" Background="#FF9DE2FB" Height="Auto"  />
-            <Button 
+                <Button 
                 Command="{Binding FilterHighCommand}"
                 Content="High"
                 Style="{StaticResource MaterialDesignFlatButton}" Background="#FFF0BCA8" Height="Auto"  />
-            <Button 
+                <Button 
                 Command="{Binding FilterMediumCommand}"
                 Content="Medium"
                 Style="{StaticResource MaterialDesignFlatButton}" Background="#FFFBE8B3" Height="Auto" />
-            <Button
+                <Button
                 Command="{Binding FilterLowCommand}"
                 Content="Low"
                 Style="{StaticResource MaterialDesignFlatButton}" Background="#FFE5FB98" Height="Auto"/>
-            <Button  
+                <Button  
                 Command="{Binding FilterOriginalCommand}"
                 Content="None"
                 Style="{StaticResource MaterialDesignFlatButton}" Background="#FFD3FFC2" Height="Auto"  />
-        </UniformGrid>
-    </Grid>
+            </UniformGrid>
+        </Grid>
+    </md:DialogHost>
+   
 </m:MetroWindow>

@@ -24,34 +24,6 @@ namespace Analogi
         public DetectionResultOverview()
         {
             InitializeComponent();
-
-            if (lvReasons.ItemsSource != null)
-            {
-            var view = (CollectionView)CollectionViewSource.GetDefaultView(lvReasons.ItemsSource);
-            var groupDescription = new PropertyGroupDescription("TargetFile");
-            view.GroupDescriptions.Add(groupDescription);
-            
-
-            }
-        }
-        public DetectionResultOverview(DetectionResult viewModel )
-        {
-            InitializeComponent();
-
-            this.DataContext = viewModel;
-          
-        }
-
-        private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
-        {
-            if (lvReasons.ItemsSource != null)
-            {
-                var view = (CollectionView)CollectionViewSource.GetDefaultView(lvReasons.ItemsSource);
-                var groupDescription = new PropertyGroupDescription("TargetFile");
-                view.GroupDescriptions.Add(groupDescription);
-
-
-            }
         }
     }
 }

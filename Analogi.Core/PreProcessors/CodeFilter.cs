@@ -19,9 +19,9 @@ namespace Analogi.Core.PreProcessors
 
         private static List<string> Filter(KeyValuePair<string, List<string>> kvp)
         {
-            if (kvp.Key == "file.path")
+            if (kvp.Key == "file.path")    
                 return kvp.Value;
-            return kvp.Value.ConvertAll(x => x.Trim().Replace('\t',' '));
+            return kvp.Value.ConvertAll(x => x.Replace('\t',' ').Trim());
         }
     }
 }
