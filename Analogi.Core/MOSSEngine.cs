@@ -28,7 +28,8 @@ namespace Analogi.Core
 
         public void Start()
         {
-            List<CodeFile> files = new List<CodeFile>(Scanner.Scan());
+            DetectionResults = new List<DetectionResult>();
+            var files = new List<CodeFile>(Scanner.Scan());
 
             DetectionResult tmpDR;
             for (int i = 0; i < files.Count; i++)

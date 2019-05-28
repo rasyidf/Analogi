@@ -1,21 +1,23 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Windows;
-using System.Windows.Input;
-
-using Ookii.Dialogs.Wpf;
-using Analogi.Core.Extractors;
+﻿using Analogi.Core.Extractors;
 using Analogi.Framework;
 using MaterialDesignThemes.Wpf;
+using Ookii.Dialogs.Wpf;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
-using System.Threading;
+using System.Windows.Input;
 
 namespace Analogi.Core
-{       
+{
     internal class ShellViewModel : ViewModel
-    {
+    {     
+        private readonly BackgroundWorker worker = new BackgroundWorker();
+
         #region Properties
 
         public ICommand BrowseCommand => new DelegateCommand(BrowseFolder);
@@ -59,7 +61,6 @@ namespace Analogi.Core
                 RaisePropertyChanged(nameof(DistanceFiltered));
             }
         }
-
         public ObservableCollection<DetectionResult> Distances { get => distances; set { distances = value; RaisePropertyChanged(nameof(Distances)); } }
         public ICommand FilterOriginalCommand => new DelegateCommand(FilterOriginal);
         public ICommand FilterAnyCommand => new DelegateCommand(FilterAny);
@@ -108,7 +109,8 @@ namespace Analogi.Core
         private PlagiarismLevel FilterMode = PlagiarismLevel.Original;
         private string path = @"No Folder Selected";
         private Visibility startVisible = Visibility.Collapsed;
-        private Visibility filterVisible = Visibility.Collapsed; 
+        private Visibility filterVisible = Visibility.Collapsed;
+        private MOSSEngine engine;
 
         #endregion Fields
 
@@ -128,20 +130,66 @@ namespace Analogi.Core
                 return;
             }
 
-            StartTask();
-            FilterMode = PlagiarismLevel.All; RaisePropertyChanged(nameof(DistanceFiltered));
-            FilterVisible = Visibility.Visible;
+            StartTask();                                                                   
+          
         }
 
         public void StartTask()
         {
-            //Antarmuka, Abaikan
-            var a = DialogHost.Show(new TextBlock(){Text = "Please Wait"}, delegate (object sender, DialogOpenedEventArgs args)
+            if (!worker.IsBusy)
             {
-                Thread.Sleep(100);
-                args.Session.Close(false);
+                var content = new StackPanel()
+                {
+                    MinHeight = 100,
+                    MinWidth = 100,
+                    Orientation = Orientation.Vertical,
+                    Children = {
+                                 new TextBlock() { HorizontalAlignment=HorizontalAlignment.Center, Text = "Calculating", Margin= new Thickness(10) },
+                                 new ProgressBar() { Width=50,Height=50, Style= Application.Current.FindResource("MaterialDesignCircularProgressBar") as Style,
+                                                 IsIndeterminate=true }
+                                 }
+                };
+                _ = DialogHost.Show(content, dialogIdentifier: "MainDH");
+
+
+                worker.DoWork += worker_DoWork;
+                worker.RunWorkerCompleted += worker_RunWorkerCompleted;
+                engine = InitEngine();
+                worker.RunWorkerAsync();
             }
-            );
+        }
+        private void worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            //Antarmuka, Abaikan    
+            engine.Start(); 
+            e.Result = engine;
+        }
+
+        private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            DialogHost.CloseDialogCommand.Execute(null, null);
+            if (e.Cancelled)
+            {
+                Debug.WriteLine("Operation Cancelled");
+            }
+            else if (e.Error != null)
+            {
+                Debug.WriteLine("Error in Process :" + e.Error);
+            }
+            else
+            {
+                Debug.WriteLine("Operation Completed :" + e.Result);
+
+                DialogHost.CloseDialogCommand.Execute(null, null);
+                Distances = new ObservableCollection<DetectionResult>(engine.DetectionResults);
+                FilterMode = PlagiarismLevel.All; RaisePropertyChanged(nameof(DistanceFiltered));
+                FilterVisible = Visibility.Visible;
+            }
+        }
+
+
+        private MOSSEngine InitEngine()
+        {
 
             // Inisialisasi Scanner
             IScanner scanner;
@@ -150,7 +198,8 @@ namespace Analogi.Core
             {
                 // Jika path adalah folder dengan banyak Subfolder
                 scanner = new Scanner.SubfolderScanner(Path);
-            } else
+            }
+            else
             {
                 // Jika path adalah folder dengan banyak file
                 scanner = new Scanner.FolderScanner(Path);
@@ -161,8 +210,8 @@ namespace Analogi.Core
                 Scanner = scanner,
 
                 // definisikan proses pemisahan metadata
-                Extractors = new List<IExtractor>() { 
-                            
+                Extractors = new List<IExtractor>() {
+
                             new CodeExtractor(), // Pemisahan Kode
                             new CommentExtractor(), // Pemisahan Komentar  
                             new StructureExtractor(), // Pemisahan Stuktur
@@ -191,13 +240,8 @@ namespace Analogi.Core
                             new PostProcess.Cleanup()
                 }
             };
-
-            engine.Start();
-            Distances = new ObservableCollection<DetectionResult>(engine.DetectionResults);
-            
+            return engine;
         }
-
-        
 
         private void ResetView()
         {
@@ -218,5 +262,5 @@ namespace Analogi.Core
 
         #endregion Methods
     }
-         
+
 }

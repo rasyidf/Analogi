@@ -76,7 +76,10 @@
     <m:MetroWindow.DataContext>
         <local:ShellViewModel />
     </m:MetroWindow.DataContext>
-    <md:DialogHost x:Name="DH" CloseOnClickAway="False">
+    <md:DialogHost
+        x:Name="DH"
+        CloseOnClickAway="False"
+        Identifier="MainDH">
         <md:DialogHost.DialogContent>
             <analogi:DResultView />
         </md:DialogHost.DialogContent>

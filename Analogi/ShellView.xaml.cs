@@ -78,7 +78,7 @@ namespace Analogi.Core
                     {
                         Height = this.Height - 40
                     };
-                    DialogHost.Show(dro);
+                    DialogHost.Show(dro, dialogIdentifier: "MainDH");
                 }
             }
         }
