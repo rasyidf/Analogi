@@ -6,6 +6,6 @@ namespace Analogi.Core
     {
         string Name { get; }  
 
-        List<string> Run(CodeFile data);
+        void Run(ref PipelineData pd, string id, CodeFile data);
     }
 }

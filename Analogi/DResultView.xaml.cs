@@ -75,10 +75,9 @@ namespace Analogi
         }
         private void LvReasons_Click(object sender, RoutedEventArgs e)
         {
-            GridViewColumnHeader headerClicked = e.OriginalSource as GridViewColumnHeader;
             ListSortDirection direction;
 
-            if (headerClicked != null)
+            if (e.OriginalSource is GridViewColumnHeader headerClicked)
             {
                 if (headerClicked.Role != GridViewColumnHeaderRole.Padding)
                 {

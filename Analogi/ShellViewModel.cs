@@ -164,7 +164,8 @@ namespace Analogi.Core
                 Extractors = new List<IExtractor>() { 
                             
                             new CodeExtractor(), // Pemisahan Kode
-                            new CommentExtractor(), // Pemisahan Komentar
+                            new CommentExtractor(), // Pemisahan Komentar  
+                            new StructureExtractor(), // Pemisahan Stuktur
                 },
 
                 // definisi proses.
@@ -182,7 +183,7 @@ namespace Analogi.Core
 
                             // TODO : Yang mungkin bisa ditambahkan, belum diimplementasikan
 
-                            // new Analyzers.StructureAnalyzer(),       // berdasarkan struktur codingannya
+                            new Analyzers.StructureAnalyzer(),       // berdasarkan struktur codingannya
                             // new Analyzers.FunctionCountAnalyzer(),   // berdasarkan jumlah fungsi
 
                             // POST PROCESS
@@ -195,6 +196,8 @@ namespace Analogi.Core
             Distances = new ObservableCollection<DetectionResult>(engine.DetectionResults);
             
         }
+
+        
 
         private void ResetView()
         {

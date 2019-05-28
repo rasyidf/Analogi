@@ -66,8 +66,8 @@ namespace Analogi.Core
             for (int i = 0; i < Extractors.Count; i++)
             {
                     var ext = Extractors[i];
-                    pd.AddMetadata(ext.Name, "file.1", ext.Run(v1));
-                    pd.AddMetadata(ext.Name, "file.2", ext.Run(v2)); 
+                    ext.Run( ref pd, "file.1", v1);
+                    ext.Run( ref pd,  "file.2", v2); 
             }
 
             // Jalankan Semua Pipeline dengan Pipeline data yang sudah ada

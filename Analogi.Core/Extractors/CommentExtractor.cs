@@ -9,12 +9,14 @@ namespace Analogi.Core.Extractors
 
         readonly Regex CommentBlockRegex = new Regex(@"/\*[^*]*\*+(?:[^/*][^*]*\*+)*/");
 
-        public List<string> Run(CodeFile data)
-        {
+         public void Run(ref PipelineData pd, string id, CodeFile data)
+         {
             var file = data.ReadAll();
             var v = CommentBlockRegex.Matches(file);
             var w = CommentRegex.Matches(file);
-            return Run(v,w);
+            
+            pd.AddMetadata(Name, id,  Run(v,w) ); 
+             
         }
 
         private List<string> Run(MatchCollection v, MatchCollection w)
