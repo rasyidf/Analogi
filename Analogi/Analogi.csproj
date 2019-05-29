@@ -54,7 +54,7 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Folder.ico</ApplicationIcon>
+    <ApplicationIcon>Assets\mainicon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>5436E8D5A8CAC6E1F39E968DFC803AC4CC85CF57</ManifestCertificateThumbprint>
@@ -117,28 +117,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DetectionResultOverview.xaml.cs">
-      <DependentUpon>DetectionResultOverview.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="DResultView.xaml.cs">
+    <Compile Include="Views\DResultView.xaml.cs">
       <DependentUpon>DResultView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Framework\ViewModel.cs" />
-    <Compile Include="ShellViewModel.cs" />
-    <Compile Include="Helpers\ViewModelBase.cs" />
-    <Page Include="DetectionResultOverview.xaml">
+    <Compile Include="Views\ShellViewModel.cs" />
+    <Compile Include="Framework\ViewModelBase.cs" />
+    <Page Include="Views\DResultView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DResultView.xaml">
+    <Page Include="Assets\Icons.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Icons.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ShellView.xaml">
+    <Page Include="Views\ShellView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -146,7 +139,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ShellView.xaml.cs">
+    <Compile Include="Views\ShellView.xaml.cs">
       <DependentUpon>ShellView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -185,10 +178,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="mainicon.ico" />
+    <Resource Include="Assets\mainicon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Folder.ico" />
+    <Resource Include="Assets\Folder.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7">

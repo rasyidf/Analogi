@@ -26,20 +26,20 @@ namespace Analogi.Core
         {
             TargetFile = value;
         }
-                                               
+
         public double Check(string source, string target)
         {
             try //try catch itu bentuk excpetion handling, dimana apabila terjadi error pada salah satu baris code, maka akan langsung lompat ke baris code berikutnya
             {
-            //Long adalah tipe data untuk menyatakan bilangan dengan kapasitas 8 bytes dan bisa berisi bilangan negatif.
-            long len1 = new FileInfo(source).Length;//source pembanding
-            //disini,size dari kedua source code di bandingkan
-            long len2 = new FileInfo(target).Length;//source yang dibandingkan
-            Index = (len1 == len2) ? 1 : 0;
-
-            } catch 
+                //Long adalah tipe data untuk menyatakan bilangan dengan kapasitas 8 bytes dan bisa berisi bilangan negatif.
+                long len1 = new FileInfo(source).Length;//source pembanding
+                                                        //disini,size dari kedua source code di bandingkan
+                long len2 = new FileInfo(target).Length;//source yang dibandingkan
+                Index = (len1 == len2) ? 1 : 0;         
+            }
+            catch
             {
-                return 0;
+                Index = 0;
             }
             return Index;
         }

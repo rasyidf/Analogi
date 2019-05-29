@@ -17,14 +17,9 @@ namespace Analogi.Core
             }
 
             public IEnumerable<CodeFile> Scan()
-            { 
-                var a = new List<CodeFile>();
-                foreach (var item in Directory.EnumerateDirectories(Path))
-                {
-                    a.Add(new CodeFile(item));
-                }
-                return a;
-
+            {
+                return (from item in Directory.EnumerateDirectories(Path)
+                        select new CodeFile(item)).ToList();     
             }
         }
     }

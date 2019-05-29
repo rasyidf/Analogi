@@ -14,16 +14,11 @@ namespace Analogi.Core
             public FolderScanner(string path)
             {
                 Path = path;
-            }
-
+            }                                 
             public IEnumerable<CodeFile> Scan()
             {
-                var a = new List<CodeFile>();
-                foreach (var item in Directory.EnumerateFiles(Path, "*.cpp"))
-                {
-                    a.Add(new CodeFile(item));
-                }
-                return a;       
+                return (from item in Directory.EnumerateFiles(Path, "*.cpp")
+                        select new CodeFile(item)).ToList();       
             }
         }
     }

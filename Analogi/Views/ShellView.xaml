@@ -12,6 +12,7 @@
     Width="580"
     Height="680"
     md:TransitionAssist.DisableTransitions="True"
+    Icon="/Analogi;component/Assets/mainicon.ico"
     PreviewKeyDown="Window_PreviewKeyDown"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">

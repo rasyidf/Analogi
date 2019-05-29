@@ -103,12 +103,7 @@ namespace Analogi.Core
         {
             get
             {
-                ColorHelper.HsvToRgb(80 - 80 * Index,
-                                     1,
-                                     1,
-                                     out int r,
-                                     out int g,
-                                     out int b);
+                ColorHelper.HsvToRgb(80 - 80 * Index,1, 1, out int r, out int g, out int b);
                 return new SolidColorBrush(Color.FromRgb((byte)r, (byte)g, (byte)b));
             }   
 
@@ -132,7 +127,7 @@ namespace Analogi.Core
                 {
                     return Reasons[0].ReasonString;
                 }
-                return "File is Fine";
+                return "File Original";
             }
         }
 

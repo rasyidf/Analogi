@@ -17,15 +17,15 @@
 
         private static void CheckSimilarity(ref PipelineData data, string region)
         {
-            var r = new IdenticalStructureReason();
+            var reason = new IdenticalStructureReason();
             var a = string.Join(" ", data.Metadatas["file.1." + region + ".structure"]);
             var b = string.Join(" ", data.Metadatas["file.2." + region + ".structure"]);
 
-            r.Check(a, b);
-            if (r.Index > r.Treshold)
+            reason.Check(a, b);
+            if (reason.Index > reason.Treshold)
             {
-                r.Region = region;
-                data.AddReason(r, data.Metadatas["file.path"][1]);
+                reason.Region = region;
+                data.AddReason(reason, data.Metadatas["file.path"][1]);
             }
         }
     }

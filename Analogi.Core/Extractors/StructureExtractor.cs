@@ -32,9 +32,13 @@ namespace Analogi.Core.Extractors
                         HeaderLen = i.Index;
                     }
                     else
-                    {       
+                    {
                         if (HeaderLen > i.Index)
+                        {
+
+                            subroutineLen = HeaderLen;
                             HeaderLen = i.Index;
+                        }
                         else
                             subroutineLen = i.Index;    
                     }

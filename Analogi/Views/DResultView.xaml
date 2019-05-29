@@ -62,7 +62,7 @@
                     </GroupStyle>
                 </ListView.GroupStyle>
             </ListView>
-            <Button Content="Close" Command="{x:Static mds:DialogHost.CloseDialogCommand}" HorizontalAlignment="Stretch"  Margin="5,5,10,5" Width="Auto" Height="Auto" Grid.Row="2" IsDefault="True"/>
+            <Button Content="Close" Command="{x:Static mds:DialogHost.CloseDialogCommand}" HorizontalAlignment="Stretch"  Margin="0,5,0,0" Width="Auto" Height="Auto" Grid.Row="2" IsDefault="True"/>
 
 
             <mds:ColorZone Mode="Dark" VerticalAlignment="Stretch" >
@@ -74,7 +74,7 @@
                     <TextBlock Margin="10,10,10,0" TextWrapping="Wrap" Text="{Binding Name}" Height="24" VerticalAlignment="Top" FontSize="18"/>
                     <Border Background="{Binding IndexColor}" Grid.Column="1"/>
                     <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="48" Text="{Binding IndexPercentage}" Background="{Binding IndexColor}" Foreground="White" VerticalAlignment="Center" Grid.Column="1"/>
-                    <TextBlock Margin="15,70,5,10" TextWrapping="Wrap"><Run Text="File Size : "/><Run Text="{Binding Length, Mode=OneWay}"/></TextBlock>
+                    <TextBlock Margin="15,70,5,10" TextWrapping="Wrap" FontSize="14"><Run Text="File Size : " /><Run Text="{Binding Length, Mode=OneWay, FallbackValue='0 KB'}"/></TextBlock>
 
                 </Grid>
             </mds:ColorZone>

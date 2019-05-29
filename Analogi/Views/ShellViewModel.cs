@@ -2,7 +2,6 @@
 using Analogi.Framework;
 using MaterialDesignThemes.Wpf;
 using Ookii.Dialogs.Wpf;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -15,7 +14,7 @@ using System.Windows.Input;
 namespace Analogi.Core
 {
     internal class ShellViewModel : ViewModel
-    {     
+    {
         private readonly BackgroundWorker worker = new BackgroundWorker();
 
         #region Properties
@@ -130,8 +129,8 @@ namespace Analogi.Core
                 return;
             }
 
-            StartTask();                                                                   
-          
+            StartTask();
+
         }
 
         public void StartTask()
@@ -161,7 +160,7 @@ namespace Analogi.Core
         private void worker_DoWork(object sender, DoWorkEventArgs e)
         {
             //Antarmuka, Abaikan    
-            engine.Start(); 
+            engine.Start();
             e.Result = engine;
         }
 

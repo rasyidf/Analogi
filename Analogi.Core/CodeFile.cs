@@ -18,15 +18,25 @@ namespace Analogi.Core
             Path = url;
             if (Directory.Exists(url))
             {
+                Length = 0;
                 foreach (var item in Directory.EnumerateFiles(url))
                 {
                     Files.Add(item);
+                    try
+                    {
+                        var ua = new FileInfo(item);
+                        Length += ua.Length;
+                    }
+                    catch
+                    {
+                        Length += 0;
+                    }
+
                 }
 
                 var a = new DirectoryInfo(url);
                 Name = a.Name;
                 CreationTime = a.CreationTime;
-                Length = 0;
 
             }
             else
@@ -59,6 +69,7 @@ namespace Analogi.Core
         public string Path { get; set; }
         public List<string> Files { get; private set; }
         public bool IsDirectory { get; private set; }
+
         #endregion Properties
 
         #region Methods

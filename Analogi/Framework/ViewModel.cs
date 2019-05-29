@@ -16,13 +16,13 @@ namespace Analogi.Framework
         {
             get
             {
-                if (String.IsNullOrEmpty(propertyName))
+                if (string.IsNullOrEmpty(propertyName))
                     return Error;
 
                 if (_validationErrors.ContainsKey(propertyName))
-                    return String.Join(Environment.NewLine, _validationErrors[propertyName]);
+                    return string.Join(Environment.NewLine, _validationErrors[propertyName]);
 
-                return String.Empty;
+                return string.Empty;
             }
         }
 

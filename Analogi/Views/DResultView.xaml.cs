@@ -1,19 +1,8 @@
 ﻿using Analogi.Core;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Analogi
 {
@@ -67,7 +56,7 @@ namespace Analogi
         // Sort code
         private void Sort(string sortBy, ListSortDirection direction)
         {
-            if (blcv == null) blcv =  (CollectionView)CollectionViewSource .GetDefaultView(lvReasons.ItemsSource);
+            if (blcv == null) blcv = (CollectionView)CollectionViewSource.GetDefaultView(lvReasons.ItemsSource);
             blcv.SortDescriptions.Clear();
             SortDescription sd = new SortDescription(sortBy, direction);
             blcv.SortDescriptions.Add(sd);
@@ -87,28 +76,28 @@ namespace Analogi
                     }
                     else
                     {
-                        if (_lastDirection == ListSortDirection.Ascending)
+                        switch (_lastDirection)
                         {
-                            direction = ListSortDirection.Descending;
-                        }
-                        else
-                        {
-                            direction = ListSortDirection.Ascending;
+                            case ListSortDirection.Ascending:
+                                direction = ListSortDirection.Descending;
+                                break;
+                            default:
+                                direction = ListSortDirection.Ascending;
+                                break;
                         }
                     }
 
                     string header = headerClicked.Column.Header as string;
                     Sort(header, direction);
 
-                    if (direction == ListSortDirection.Ascending)
+                    switch (direction)
                     {
-                        headerClicked.Column.HeaderTemplate =
-                          Resources["HeaderTemplateArrowUp"] as DataTemplate;
-                    }
-                    else
-                    {
-                        headerClicked.Column.HeaderTemplate =
-                          Resources["HeaderTemplateArrowDown"] as DataTemplate;
+                        case ListSortDirection.Ascending:
+                            headerClicked.Column.HeaderTemplate = Resources["HeaderTemplateArrowUp"] as DataTemplate;
+                            break;
+                        default:
+                            headerClicked.Column.HeaderTemplate = Resources["HeaderTemplateArrowDown"] as DataTemplate;
+                            break;
                     }
 
                     // Remove arrow from previously sorted header

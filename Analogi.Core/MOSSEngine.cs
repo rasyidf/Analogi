@@ -1,8 +1,4 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
+﻿using System.Collections.Generic;
 
 namespace Analogi.Core
 {
@@ -64,17 +60,16 @@ namespace Analogi.Core
             pd.AddMetadata("path", "file", new List<string>() { v1.Path, v2.Path });
 
             // Jalankan Semua Ekstraktor
-            for (int i = 0; i < Extractors.Count; i++)
+            foreach (var ext in Extractors)
             {
-                    var ext = Extractors[i];
-                    ext.Run( ref pd, "file.1", v1);
-                    ext.Run( ref pd,  "file.2", v2); 
+                ext.Run(ref pd, "file.1", v1);
+                ext.Run(ref pd, "file.2", v2);
             }
 
             // Jalankan Semua Pipeline dengan Pipeline data yang sudah ada
             for (int i = 0; i < Pipelines.Count; i++)
             {
-                IPipeline pipeline = Pipelines[i];
+                var pipeline = Pipelines[i];
                 pd = pipeline.Run(pd);
             }
             // Keluarkan Kumpulan Reason untuk ditambahkan ke DetectionResult

@@ -21,11 +21,12 @@ namespace Analogi.Core
 
         public double Check(string source, string target)
         {
-            if (source == "0" || target == "0" )
-            {
-                return 0;
-            }
-            return (source == target) ? 1 : 0;
+            return string.IsNullOrEmpty(source) 
+                || string.IsNullOrEmpty(target)
+                    ? 0
+                    : source != target
+                        ? 0
+                        : 1;
         }
     }
 }

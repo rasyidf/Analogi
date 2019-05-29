@@ -12,7 +12,6 @@ namespace Analogi.Core
     {
         #region Fields
 
-        private ShellViewModel ViewModel;
 
         #endregion Fields
 
@@ -21,11 +20,11 @@ namespace Analogi.Core
         public ShellView()
         {
             InitializeComponent();
-            ViewModel1 = new ShellViewModel();
-            DataContext = ViewModel1;
+            ViewModel = new ShellViewModel();
+            DataContext = ViewModel;
         }
 
-        internal ShellViewModel ViewModel1 { get => ViewModel; set => ViewModel = value; }
+        internal ShellViewModel ViewModel { get; set; }
 
         #endregion Constructors
 
@@ -41,7 +40,7 @@ namespace Analogi.Core
         {
             object text = e.Data.GetData(DataFormats.FileDrop);
 
-            ViewModel1.Path = $"{((string[])text)[0]}";
+            ViewModel.Path = $"{((string[])text)[0]}";
         }
 
         private void LResult_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -67,13 +66,7 @@ namespace Analogi.Core
             if (lResult.SelectedItem != null)
             {
                 if (lResult.SelectedItem is DetectionResult d)
-                {
-                    var sb = new StringBuilder();
-                    for (int i = 0; i < d.Reasons.Count; i++)
-                    {
-                        sb.AppendLine(d.Reasons[i].ReasonString);
-                    }
-                    // MessageBox.Show(sb.ToString(), "Analogi");
+                {                                                   
                     var dro = new DResultView(d)
                     {
                         Height = this.Height - 40
@@ -87,7 +80,7 @@ namespace Analogi.Core
         {
             if (e.Key == Key.Enter)
             {
-                ViewModel1.StartTask();
+                ViewModel.StartTask();
             }
         }
 

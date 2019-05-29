@@ -33,8 +33,13 @@ namespace Analogi.Core
         /// <returns></returns>
         public double Check(string source, string target)
         {
-            
-            Index = new Cosine().Similarity(source, target);
+
+            if (string.IsNullOrEmpty(source) || string.IsNullOrEmpty(target))
+                Index = 0;
+            else
+            {
+                Index = new Cosine().Similarity(source, target);    
+            }
             return Index;
         }
 

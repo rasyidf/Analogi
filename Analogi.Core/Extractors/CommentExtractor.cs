@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Linq;
 
 namespace Analogi.Core.Extractors
 {
@@ -21,15 +22,10 @@ namespace Analogi.Core.Extractors
 
         private List<string> Run(MatchCollection v, MatchCollection w)
         {
-            var str = new List<string>();
-            foreach (Match item in v)
-            {
-                str.Add(item.Value);
-            }
-            foreach (Match item in w)
-            {
-                str.Add(item.Value);
-            }
+            var str = (from Match item in v
+                       select item.Value).ToList();
+            str.AddRange(from Match item in w
+                         select item.Value);
             return str;
         }
 
