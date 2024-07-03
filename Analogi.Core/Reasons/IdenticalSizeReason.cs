@@ -1,7 +1,8 @@
-﻿using System;
+﻿using Analogi.Core.Interfaces;
+using System;
 using System.IO;
 
-namespace Analogi.Core
+namespace Analogi.Core.Reasons
 {
     public class IdenticalSizeReason : IReason
     {
@@ -35,7 +36,7 @@ namespace Analogi.Core
                 long len1 = new FileInfo(source).Length;//source pembanding
                                                         //disini,size dari kedua source code di bandingkan
                 long len2 = new FileInfo(target).Length;//source yang dibandingkan
-                Index = (len1 == len2) ? 1 : 0;         
+                Index = len1 == len2 ? 1 : 0;
             }
             catch
             {

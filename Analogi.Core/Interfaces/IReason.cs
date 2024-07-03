@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Analogi.Core
+﻿namespace Analogi.Core.Interfaces
 {
     public interface IReason
     {
@@ -16,7 +10,7 @@ namespace Analogi.Core
 
         double Weight { get; set; }
 
-        double Treshold { get;   }
+        double Treshold { get; }
 
         string TargetFile { get; }
 

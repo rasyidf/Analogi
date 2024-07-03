@@ -1,79 +1,70 @@
-﻿using System.Collections.Generic;
+﻿
+using Analogi.Core.Interfaces;
+using Analogi.Core.Models;
+using System.Collections.Generic;
 
-namespace Analogi.Core
+namespace Analogi.Core;
+
+public class MOSSEngine
 {
-    public class MOSSEngine
+    public IScanner Scanner { get; set; }
+
+    public MOSSEngine(IScanner scanner)
     {
-        public IScanner Scanner { get; set; }
+        Scanner = scanner; DetectionResults = [];
+    }
 
-        public MOSSEngine(IScanner scanner)
+    public MOSSEngine()
+    {
+        DetectionResults = [];
+
+    }
+
+    public List<IPipeline> Pipelines { get; set; }
+    public List<IExtractor> Extractors { get; set; }
+    public List<DetectionResultViewModel> DetectionResults { get; private set; }
+
+    public void Start()
+    {
+        DetectionResults = [];
+        List<CodeFile> files = new(Scanner.Scan());
+
+        DetectionResultViewModel tmpDR;
+        for (int i = 0; i < files.Count; i++)
         {
-            this.Scanner = scanner; DetectionResults = new List<DetectionResult>();
-
-        }
-
-        public MOSSEngine()
-        {
-            DetectionResults = new List<DetectionResult>();
-
-        }
-
-        public List<IPipeline> Pipelines { get; set; }
-        public List<IExtractor> Extractors { get; set; }
-        public List<DetectionResult> DetectionResults { get; private set; }
-
-        public void Start()
-        {
-            DetectionResults = new List<DetectionResult>();
-            var files = new List<CodeFile>(Scanner.Scan());
-
-            DetectionResult tmpDR;
-            for (int i = 0; i < files.Count; i++)
+            tmpDR = new DetectionResultViewModel(files[i]);
+            for (int j = 0; j < files.Count; j++)
             {
-                // Buat DetectionResult untuk File [i]
-                tmpDR = new DetectionResult(files[i]);
-                for (int j = 0; j < files.Count; j++)
+
+                if (i != j)
                 {
-
-                    if (i != j)
-                    {
-                        // Bandingkan File[i] dengan File[j]
-                        // Jalankan Pipeline
-                        var reasons = StartPipeline(files[i], files[j]);
-                        // tambahkan reasons ke DetectionResult
-                        tmpDR.Reasons.AddRange(reasons ?? new List<IReason>());
-                    }
+                    IEnumerable<IReason> reasons = StartPipeline(files[i], files[j]);
+                    tmpDR.Model.Reasons.AddRange(reasons ?? []);
                 }
-                // Jika Semua file selesai dibandingkan 
-                // tambahkan DetectionResult ke DetectionResults (Kumpulan DR)
-                DetectionResults.Add(tmpDR);
             }
-
+            DetectionResults.Add(tmpDR);
         }
 
-        private IEnumerable<IReason> StartPipeline(CodeFile v1, CodeFile v2)
+    }
+
+    private List<IReason> StartPipeline(CodeFile v1, CodeFile v2)
+    {
+
+        PipelineData pd = new();
+        pd.AddMetadata("path", "file", [v1.Path, v2.Path]);
+
+        foreach (IExtractor ext in Extractors)
         {
-
-            // Persiapkan Pipeline Data
-            var pd = new PipelineData();
-            // Tambahkan Lokasi File
-            pd.AddMetadata("path", "file", new List<string>() { v1.Path, v2.Path });
-
-            // Jalankan Semua Ekstraktor
-            foreach (var ext in Extractors)
-            {
-                ext.Run(ref pd, "file.1", v1);
-                ext.Run(ref pd, "file.2", v2);
-            }
-
-            // Jalankan Semua Pipeline dengan Pipeline data yang sudah ada
-            for (int i = 0; i < Pipelines.Count; i++)
-            {
-                var pipeline = Pipelines[i];
-                pd = pipeline.Run(pd);
-            }
-            // Keluarkan Kumpulan Reason untuk ditambahkan ke DetectionResult
-            return pd.Reasons;
+            ext.Run(ref pd, "file.1", v1);
+            ext.Run(ref pd, "file.2", v2);
         }
+
+        for (int i = 0; i < Pipelines.Count; i++)
+        {
+            IPipeline pipeline = Pipelines[i];
+            pd = pipeline.Run(pd);
+        }
+
+        return pd.Reasons;
     }
 }

@@ -1,17 +1,21 @@
-﻿namespace Analogi.Core.Analyzers
+﻿using Analogi.Core.Interfaces;
+using Analogi.Core.Models;
+using Analogi.Core.Reasons;
+
+namespace Analogi.Core.Analyzers
 {
     public class FileLengthAnalyzer : IPipeline
     {
         public PipelineData Run(PipelineData data)
         {
-            var r = new IdenticalSizeReason();
-            var a =  new CodeFile(data.Metadatas["file.path"][0]);
-            var b = new CodeFile(data.Metadatas["file.path"][1]);
-            r.Check(a.GetFile(), b.GetFile());
+            IdenticalSizeReason r = new();
+            CodeFile a = new(data.FileMetadataMappings["file.path"][0]);
+            CodeFile b = new(data.FileMetadataMappings["file.path"][1]);
+            _ = r.Check(a.GetFile(), b.GetFile());
 
             if (r.Index > r.Treshold)
             {
-                data.AddReason(r, data.Metadatas["file.path"][1]);
+                data.AddReason(r, data.FileMetadataMappings["file.path"][1]);
             }
             return data;
         }

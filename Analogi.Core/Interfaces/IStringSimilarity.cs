@@ -2,7 +2,7 @@
  * MIT
  */
 
-namespace Analogi.Interfaces
+namespace Analogi.Core.Interfaces
 {
     public interface IStringSimilarity
     {

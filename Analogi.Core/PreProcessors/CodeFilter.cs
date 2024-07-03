@@ -1,8 +1,7 @@
-﻿
-
-using System;
-using System.Linq;
+﻿using Analogi.Core.Interfaces;
+using Analogi.Core.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Analogi.Core.PreProcessors
 {
@@ -10,18 +9,16 @@ namespace Analogi.Core.PreProcessors
     {
         public PipelineData Run(PipelineData data)
         {
-            var p = data;
-            var m = data.Metadatas.ToDictionary(kvp => kvp.Key, kvp => Filter(kvp));
+            PipelineData p = data;
+            Dictionary<string, List<string>> m = data.FileMetadataMappings.ToDictionary(kvp => kvp.Key, Filter);
 
-            p.Metadatas = m;
+            p.FileMetadataMappings = m;
             return p;
         }
 
         private static List<string> Filter(KeyValuePair<string, List<string>> kvp)
         {
-            if (kvp.Key == "file.path")    
-                return kvp.Value;
-            return kvp.Value.ConvertAll(x => x.Replace('\t',' ').Trim());
+            return kvp.Key == "file.path" ? kvp.Value : kvp.Value.ConvertAll(x => x.Replace('\t', ' ').Trim());
         }
     }
 }

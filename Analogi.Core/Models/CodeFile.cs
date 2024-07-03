@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace Analogi.Core
+namespace Analogi.Core.Models
 {
     public class CodeFile
     {
@@ -14,17 +14,17 @@ namespace Analogi.Core
 
         public CodeFile(string url)
         {
-            Files = new List<string>();
+            Files = [];
             Path = url;
             if (Directory.Exists(url))
             {
                 Length = 0;
-                foreach (var item in Directory.EnumerateFiles(url))
+                foreach (string item in Directory.EnumerateFiles(url))
                 {
                     Files.Add(item);
                     try
                     {
-                        var ua = new FileInfo(item);
+                        FileInfo ua = new(item);
                         Length += ua.Length;
                     }
                     catch
@@ -34,7 +34,7 @@ namespace Analogi.Core
 
                 }
 
-                var a = new DirectoryInfo(url);
+                DirectoryInfo a = new(url);
                 Name = a.Name;
                 CreationTime = a.CreationTime;
 
@@ -43,7 +43,7 @@ namespace Analogi.Core
             {
                 Files.Add(url);
 
-                var a = new FileInfo(url);
+                FileInfo a = new(url);
                 Name = a.Name;
                 CreationTime = a.CreationTime;
                 Length = a.Length;
@@ -53,9 +53,7 @@ namespace Analogi.Core
 
         internal string GetFile()
         {
-            if (Files.Count == 0) return "";
-
-            return Files[0];
+            return Files.Count == 0 ? "" : Files[0];
         }
 
         #endregion Constructors
@@ -81,8 +79,7 @@ namespace Analogi.Core
 
         internal string ReadAll()
         {
-            if (Files.Count == 0) return "";
-            return File.ReadAllText(Files[0]);
+            return Files.Count == 0 ? "" : File.ReadAllText(Files[0]);
         }
 
         #endregion Methods

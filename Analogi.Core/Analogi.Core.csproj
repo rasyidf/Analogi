@@ -1,91 +1,16 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{84FB9DE9-222C-4E54-80FD-B9689558FD88}</ProjectGuid>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Analogi.Core</RootNamespace>
-    <AssemblyName>Analogi.Core</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <LangVersion>7.3</LangVersion>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <UseWPF>true</UseWPF>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PowerArgs, Version=3.6.0.0, Culture=neutral, PublicKeyToken=26a276264bbd55b8, processorArchitecture=MSIL">
-      <HintPath>..\packages\PowerArgs.3.6.0\lib\netstandard2.0\PowerArgs.dll</HintPath>
-    </Reference>
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
+    <PackageReference Include="PowerArgs" Version="3.6.0" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Extractors\StructureExtractor.cs" />
-    <Compile Include="Support\ColorHelper.cs" />
-    <Compile Include="Reasons\IdenticalLoCReason.cs" />
-    <Compile Include="Extractors\CodeExtractor.cs" />
-    <Compile Include="Extractors\CommentExtractor.cs" />
-    <Compile Include="Interfaces\IExtractor.cs" />
-    <Compile Include="Interfaces\IPipeline.cs" />
-    <Compile Include="Algorithm\Cosine.cs" />
-    <Compile Include="Algorithm\ShingleBased.cs" />
-    <Compile Include="Algorithm\TFBased.cs" />
-    <Compile Include="Analyzers\CodeLineAnalyzer.cs" />
-    <Compile Include="Analyzers\CommentLineAnalyzer.cs" />
-    <Compile Include="Analyzers\CosineSimilarityAnalyzer.cs" />
-    <Compile Include="Analyzers\FileLengthAnalyzer.cs" />
-    <Compile Include="Analyzers\StructureAnalyzer.cs" />
-    <Compile Include="CodeFile.cs" />
-    <Compile Include="DetectionResult.cs" />
-    <Compile Include="PreProcessors\Uppercaser.cs" />
-    <Compile Include="Scanners\FolderScanner.cs" />
-    <Compile Include="Interfaces\IStringDistance.cs" />
-    <Compile Include="Interfaces\IStringSimilarity.cs" />
-    <Compile Include="Interfaces\IScanner.cs" />
-    <Compile Include="MOSSEngine.cs" />
-    <Compile Include="PipelineData.cs" />
-    <Compile Include="PostProcess\Cleanup.cs" />
-    <Compile Include="PreProcessors\CodeFilter.cs" />
-    <Compile Include="PreProcessors\Lowercaser.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reasons\CosineSimilarityReason.cs" />
-    <Compile Include="Reasons\IdenticalSizeReason.cs" />
-    <Compile Include="Reasons\IdenticalStructureReason.cs" />
-    <Compile Include="Interfaces\IReason.cs" />
-    <Compile Include="Support\ArrayExtensions.cs" />
-    <Compile Include="Scanners\SubfolderScanner.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -7,19 +7,19 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
 
-namespace Analogi
+namespace Analogi.Core.Algorithm
 {
     /// <summary>
     /// K-means (shingle) based tokenizer
     /// </summary>
-    public abstract class ShingleBased
+    public abstract partial class ShingleBased
     {
         #region Fields
 
         private const int DEFAULT_K = 3;
 
         /// <summary>Pattern for finding multiple following spaces</summary>
-        private static readonly Regex SPACE_REG = new Regex("\\s+");
+        private static readonly Regex SPACE_REG = MultipleSpacesRegex();
 
         #endregion Fields
 
@@ -35,7 +35,7 @@ namespace Analogi
                 throw new ArgumentOutOfRangeException(nameof(k), "k should be positive!");
             }
 
-            this.K = k;
+            K = k;
         }
 
         protected ShingleBased() : this(DEFAULT_K)
@@ -55,11 +55,11 @@ namespace Analogi
 
         protected IDictionary<string, int> GetProfile(string s)
         {
-            var shingles = new Dictionary<string, int>();
+            Dictionary<string, int> shingles = [];
 
             string string_no_space = SPACE_REG.Replace(s, " ");
 
-            for (int i = 0; i < (string_no_space.Length - K + 1); i++)
+            for (int i = 0; i < string_no_space.Length - K + 1; i++)
             {
                 string shingle = string_no_space.Substring(i, K);
                 shingles[shingle] = shingles.TryGetValue(shingle, out int old) ? old + 1 : 1;
@@ -67,6 +67,9 @@ namespace Analogi
 
             return new ReadOnlyDictionary<string, int>(shingles);
         }
+
+        [GeneratedRegex("\\s+")]
+        private static partial Regex MultipleSpacesRegex();
 
         #endregion Methods
     }

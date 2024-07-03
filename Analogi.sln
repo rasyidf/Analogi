@@ -1,26 +1,45 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28803.156
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Analogi", "Analogi\Analogi.csproj", "{96370D9F-7ED8-455D-8C8C-6AADDE1043B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnalogiUI", "AnalogiUI\AnalogiUI.csproj", "{8B5B7955-C516-4311-9822-B29B7808B397}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Analogi.Core", "Analogi.Core\Analogi.Core.csproj", "{84FB9DE9-222C-4E54-80FD-B9689558FD88}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Analogi", "Analogi\Analogi.csproj", "{96370D9F-7ED8-455D-8C8C-6AADDE1043B2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Analogi.Core", "Analogi.Core\Analogi.Core.csproj", "{84FB9DE9-222C-4E54-80FD-B9689558FD88}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
 		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8B5B7955-C516-4311-9822-B29B7808B397}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B5B7955-C516-4311-9822-B29B7808B397}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B5B7955-C516-4311-9822-B29B7808B397}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8B5B7955-C516-4311-9822-B29B7808B397}.Debug|x64.Build.0 = Debug|Any CPU
+		{8B5B7955-C516-4311-9822-B29B7808B397}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B5B7955-C516-4311-9822-B29B7808B397}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B5B7955-C516-4311-9822-B29B7808B397}.Release|x64.ActiveCfg = Release|Any CPU
+		{8B5B7955-C516-4311-9822-B29B7808B397}.Release|x64.Build.0 = Release|Any CPU
 		{96370D9F-7ED8-455D-8C8C-6AADDE1043B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{96370D9F-7ED8-455D-8C8C-6AADDE1043B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96370D9F-7ED8-455D-8C8C-6AADDE1043B2}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{96370D9F-7ED8-455D-8C8C-6AADDE1043B2}.Debug|x64.Build.0 = Debug|Any CPU
 		{96370D9F-7ED8-455D-8C8C-6AADDE1043B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96370D9F-7ED8-455D-8C8C-6AADDE1043B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96370D9F-7ED8-455D-8C8C-6AADDE1043B2}.Release|x64.ActiveCfg = Release|Any CPU
+		{96370D9F-7ED8-455D-8C8C-6AADDE1043B2}.Release|x64.Build.0 = Release|Any CPU
 		{84FB9DE9-222C-4E54-80FD-B9689558FD88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{84FB9DE9-222C-4E54-80FD-B9689558FD88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84FB9DE9-222C-4E54-80FD-B9689558FD88}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{84FB9DE9-222C-4E54-80FD-B9689558FD88}.Debug|x64.Build.0 = Debug|Any CPU
 		{84FB9DE9-222C-4E54-80FD-B9689558FD88}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84FB9DE9-222C-4E54-80FD-B9689558FD88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84FB9DE9-222C-4E54-80FD-B9689558FD88}.Release|x64.ActiveCfg = Release|Any CPU
+		{84FB9DE9-222C-4E54-80FD-B9689558FD88}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

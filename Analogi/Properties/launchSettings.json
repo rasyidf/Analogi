@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "Analogi": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\Users\\rasyid\\source\\repos\\Analogi",
+      "remoteDebugEnabled": false
+    }
+  }
+}

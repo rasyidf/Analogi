@@ -1,0 +1,35 @@
+﻿<Page
+    x:Class="AnalogiUI.Views.Pages.DashboardPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:AnalogiUI.Views.Pages"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    Title="DashboardPage"
+    d:DataContext="{d:DesignInstance local:DashboardPage,
+                                     IsDesignTimeCreatable=False}"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    ui:Design.Background="{DynamicResource ApplicationBackgroundBrush}"
+    ui:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+    Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+    mc:Ignorable="d">
+
+    <Grid VerticalAlignment="Top">
+        <ui:Card   HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top">
+            <StackPanel Height="132" Width="296" >
+                <TextBlock FontWeight="Bold" Margin="0,0,8,8">Start Project</TextBlock>
+
+                <TextBlock Width="299" Height="65">
+                    Let's start a new project by loading <LineBreak/>
+                    a folder containing the documents <LineBreak/> you want to analyze.
+                </TextBlock>
+
+                <ui:Button Margin="0,8,0,0">Load Folder</ui:Button>
+            </StackPanel>
+        </ui:Card>
+
+
+    </Grid>
+</Page>

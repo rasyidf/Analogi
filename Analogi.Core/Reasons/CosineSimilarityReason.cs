@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Analogi.Core.Algorithm;
+using Analogi.Core.Interfaces;
+using System;
 using System.IO;
 
-namespace Analogi.Core
+namespace Analogi.Core.Reasons
 {
     public class CosineSimilarityReason : IReason
     {
@@ -24,7 +26,7 @@ namespace Analogi.Core
         {
             TargetFile = new FileInfo(value).Name;
         }
-                  
+
         /// <summary>
         /// Kalkulasi Cosine Similarity
         /// </summary>
@@ -34,12 +36,7 @@ namespace Analogi.Core
         public double Check(string source, string target)
         {
 
-            if (string.IsNullOrEmpty(source) || string.IsNullOrEmpty(target))
-                Index = 0;
-            else
-            {
-                Index = new Cosine().Similarity(source, target);    
-            }
+            Index = string.IsNullOrEmpty(source) || string.IsNullOrEmpty(target) ? 0 : new Cosine().Similarity(source, target);
             return Index;
         }
 

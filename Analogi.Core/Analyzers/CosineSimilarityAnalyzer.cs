@@ -1,18 +1,22 @@
-﻿namespace Analogi.Core.Analyzers
+﻿using Analogi.Core.Interfaces;
+using Analogi.Core.Models;
+using Analogi.Core.Reasons;
+
+namespace Analogi.Core.Analyzers
 {
     public class CosineSimilarityAnalyzer : IPipeline
     {
         public PipelineData Run(PipelineData data)
         {
-            var r = new CosineSimilarityReason();
-            var a = string.Join(" ", data.Metadatas["file.1.code"]);
-            var b = string.Join(" ", data.Metadatas["file.2.code"]);
-            r.Check(a,b);
+            CosineSimilarityReason r = new();
+            string a = string.Join(" ", data.FileMetadataMappings["file.1.code"]);
+            string b = string.Join(" ", data.FileMetadataMappings["file.2.code"]);
+            _ = r.Check(a, b);
             if (r.Index > r.Treshold)
             {
-                data.AddReason(r, data.Metadatas["file.path"][1]);     
+                data.AddReason(r, data.FileMetadataMappings["file.path"][1]);
             }
-            return data;                       
+            return data;
         }
     }
 }

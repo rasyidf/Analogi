@@ -17,18 +17,18 @@ namespace Analogi
 
             if (lvReasons.ItemsSource != null)
             {
-                var view = (CollectionView)CollectionViewSource.GetDefaultView(lvReasons.ItemsSource);
-                var groupDescription = new PropertyGroupDescription("TargetFile");
+                CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(lvReasons.ItemsSource);
+                PropertyGroupDescription groupDescription = new("TargetFile");
                 view.GroupDescriptions.Add(groupDescription);
 
 
             }
         }
-        public DResultView(DetectionResult viewModel)
+        public DResultView(DetectionResultViewModel viewModel)
         {
             InitializeComponent();
 
-            this.DataContext = viewModel;
+            DataContext = viewModel;
 
         }
 
@@ -36,8 +36,8 @@ namespace Analogi
         {
             if (lvReasons.ItemsSource != null)
             {
-                var view = (CollectionView)CollectionViewSource.GetDefaultView(lvReasons.ItemsSource);
-                var groupDescription = new PropertyGroupDescription("TargetFile");
+                CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(lvReasons.ItemsSource);
+                PropertyGroupDescription groupDescription = new("TargetFile");
                 view.GroupDescriptions.Add(groupDescription);
 
 
@@ -46,9 +46,9 @@ namespace Analogi
 
 
         // Global objects
-        CollectionView blcv;
-        GridViewColumnHeader _lastHeaderClicked = null;
-        ListSortDirection _lastDirection = ListSortDirection.Ascending;
+        private CollectionView sortedReasonsView;
+        private GridViewColumnHeader _lastHeaderClicked = null;
+        private ListSortDirection _lastDirection = ListSortDirection.Ascending;
 
         // Header click event
 
@@ -56,11 +56,11 @@ namespace Analogi
         // Sort code
         private void Sort(string sortBy, ListSortDirection direction)
         {
-            if (blcv == null) blcv = (CollectionView)CollectionViewSource.GetDefaultView(lvReasons.ItemsSource);
-            blcv.SortDescriptions.Clear();
-            SortDescription sd = new SortDescription(sortBy, direction);
-            blcv.SortDescriptions.Add(sd);
-            blcv.Refresh();
+            sortedReasonsView ??= (CollectionView)CollectionViewSource.GetDefaultView(lvReasons.ItemsSource);
+            sortedReasonsView.SortDescriptions.Clear();
+            SortDescription sd = new(sortBy, direction);
+            sortedReasonsView.SortDescriptions.Add(sd);
+            sortedReasonsView.Refresh();
         }
         private void LvReasons_Click(object sender, RoutedEventArgs e)
         {
@@ -70,35 +70,23 @@ namespace Analogi
             {
                 if (headerClicked.Role != GridViewColumnHeaderRole.Padding)
                 {
-                    if (headerClicked != _lastHeaderClicked)
-                    {
-                        direction = ListSortDirection.Ascending;
-                    }
-                    else
-                    {
-                        switch (_lastDirection)
+                    direction = headerClicked != _lastHeaderClicked
+                        ? ListSortDirection.Ascending
+                        : _lastDirection switch
                         {
-                            case ListSortDirection.Ascending:
-                                direction = ListSortDirection.Descending;
-                                break;
-                            default:
-                                direction = ListSortDirection.Ascending;
-                                break;
-                        }
-                    }
+                            ListSortDirection.Ascending => ListSortDirection.Descending,
+                            ListSortDirection.Descending => ListSortDirection.Ascending,
+                            _ => ListSortDirection.Ascending,
+                        };
 
                     string header = headerClicked.Column.Header as string;
                     Sort(header, direction);
 
-                    switch (direction)
+                    headerClicked.Column.HeaderTemplate = direction switch
                     {
-                        case ListSortDirection.Ascending:
-                            headerClicked.Column.HeaderTemplate = Resources["HeaderTemplateArrowUp"] as DataTemplate;
-                            break;
-                        default:
-                            headerClicked.Column.HeaderTemplate = Resources["HeaderTemplateArrowDown"] as DataTemplate;
-                            break;
-                    }
+                        ListSortDirection.Ascending => Resources["HeaderTemplateArrowUp"] as DataTemplate,
+                        _ => Resources["HeaderTemplateArrowDown"] as DataTemplate,
+                    };
 
                     // Remove arrow from previously sorted header
                     if (_lastHeaderClicked != null && _lastHeaderClicked != headerClicked)

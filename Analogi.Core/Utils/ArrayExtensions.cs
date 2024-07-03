@@ -5,7 +5,7 @@
 using System;
 using System.Linq;
 
-namespace Analogi.Support
+namespace Analogi.Core.Utils
 {
     internal static class ArrayExtensions
     {
@@ -23,7 +23,7 @@ namespace Analogi.Support
                 return source;
             }
 
-            var result = new T[finalLength];
+            T[] result = new T[finalLength];
             T[] padding = Enumerable.Repeat(paddingValue, finalLength - source.Length).ToArray();
 
             Array.Copy(source,

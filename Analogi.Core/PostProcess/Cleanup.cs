@@ -1,10 +1,13 @@
-﻿namespace Analogi.Core.PostProcess
+﻿using Analogi.Core.Interfaces;
+using Analogi.Core.Models;
+
+namespace Analogi.Core.PostProcess
 {
     public class Cleanup : IPipeline
     {
         public PipelineData Run(PipelineData data)
         {
-            data.Metadatas.Clear();
+            data.FileMetadataMappings.Clear();
             return data;
         }
     }

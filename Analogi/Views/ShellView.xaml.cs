@@ -1,9 +1,7 @@
-﻿using System.Text;
+﻿using Analogi.Views;
+using MaterialDesignThemes.Wpf;
 using System.Windows;
 using System.Windows.Input;
-using Analogi;
-using Analogi.Core;
-using MaterialDesignThemes.Wpf;
 
 namespace Analogi.Core
 {
@@ -65,13 +63,13 @@ namespace Analogi.Core
         {
             if (lResult.SelectedItem != null)
             {
-                if (lResult.SelectedItem is DetectionResult d)
-                {                                                   
-                    var dro = new DResultView(d)
+                if (lResult.SelectedItem is DetectionResultViewModel d)
+                {
+                    DResultView dro = new(d)
                     {
-                        Height = this.Height - 40
+                        Height = Height - 40
                     };
-                    DialogHost.Show(dro, dialogIdentifier: "MainDH");
+                    _ = DialogHost.Show(dro, dialogIdentifier: "MainDH");
                 }
             }
         }
@@ -80,7 +78,7 @@ namespace Analogi.Core
         {
             if (e.Key == Key.Enter)
             {
-                ViewModel.StartTask();
+                ViewModel.InitiateScanProcess();
             }
         }
 

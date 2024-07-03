@@ -2,14 +2,13 @@
  * MIT
  */
 
+using Analogi.Core.Interfaces;
 using System;
 using System.Collections.Generic;
 
-using Analogi.Interfaces;
-
 // ReSharper disable LoopCanBeConvertedToQuery
 
-namespace Analogi
+namespace Analogi.Core.Algorithm
 {
     public class Cosine : TFBased, IStringSimilarity, IStringDistance
     {
@@ -30,13 +29,11 @@ namespace Analogi
 
         public double Similarity(string s1, string s2)
         {
-            // Pastikan Tidak ada argumen yang kosong.
             if (s1 == null || s2 == null)
             {
                 throw new ArgumentNullException(nameof(s2));
             }
 
-            // Jika argumen 1 = argumen 2 maka langsung dipastikan itu sama.
             if (s1.Equals(s2))
             {
                 return 1;
@@ -52,7 +49,7 @@ namespace Analogi
         /// <param name="profile1"></param>
         /// <param name="profile2"></param>
         /// <returns></returns>
-        public double Similarity(IDictionary<string, int> profile1, IDictionary<string, int> profile2)
+        public static double Similarity(IDictionary<string, int> profile1, IDictionary<string, int> profile2)
         {
             return DotProduct(profile1, profile2) /
                   (Norm(profile1) * Norm(profile2));

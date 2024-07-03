@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Analogi.Core.Algorithm;
+using Analogi.Core.Interfaces;
+using System;
 using System.IO;
 
-namespace Analogi.Core
+namespace Analogi.Core.Reasons
 {
     public class IdenticalStructureReason : IReason
     {

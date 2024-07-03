@@ -1,4 +1,6 @@
-﻿using Analogi.Core.Extractors;
+﻿using Analogi.Core;
+using Analogi.Core.Extractors;
+using Analogi.Core.Interfaces;
 using Analogi.Framework;
 using MaterialDesignThemes.Wpf;
 using Ookii.Dialogs.Wpf;
@@ -11,11 +13,11 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace Analogi.Core
+namespace Analogi.Views
 {
     internal class ShellViewModel : ViewModel
     {
-        private readonly BackgroundWorker worker = new BackgroundWorker();
+        private readonly BackgroundWorker worker = new();
 
         #region Properties
 
@@ -23,44 +25,34 @@ namespace Analogi.Core
 
         public ICollectionView CollectionView { get; private set; }
 
-        public ObservableCollection<DetectionResult> DistanceFiltered
+        public ObservableCollection<DetectionResultViewModel> DistanceFiltered
         {
             get
             {
-                if (distances == null) return distances;
+                if (distances == null)
+                {
+                    return distances;
+                }
 
-                IEnumerable<DetectionResult> collection = distances.Where(c =>
+                IEnumerable<DetectionResultViewModel> collection = distances.Where(c =>
                    {
-                       switch (FilterMode)
+                       return FilterMode switch
                        {
-                           case PlagiarismLevel.Extreme:
-                           case PlagiarismLevel.VeryHigh:
-                               return (int)c.PlagiarismLevel == (int)PlagiarismLevel.VeryHigh || (int)c.PlagiarismLevel == (int)PlagiarismLevel.Extreme;
-                           case PlagiarismLevel.High:
-                           case PlagiarismLevel.Moderate:
-                               return (int)c.PlagiarismLevel == (int)PlagiarismLevel.Moderate || (int)c.PlagiarismLevel == (int)PlagiarismLevel.High;
-                           case PlagiarismLevel.Low:
-                           case PlagiarismLevel.Minor:
-                               return (int)c.PlagiarismLevel == (int)PlagiarismLevel.Minor || (int)c.PlagiarismLevel == (int)PlagiarismLevel.Low;
-                           case PlagiarismLevel.Original:
-                           case PlagiarismLevel.None:
-                               return (int)c.PlagiarismLevel == (int)PlagiarismLevel.Original;
-                           case PlagiarismLevel.All:
-                               return c != null;
-                           default:
-                               return c.Index > 0;
-                       }
+                           PlagiarismLevel.Extreme or PlagiarismLevel.VeryHigh => (int)c.Model.PlagiarismLevel is ((int)PlagiarismLevel.VeryHigh) or ((int)PlagiarismLevel.Extreme),
+                           PlagiarismLevel.High or PlagiarismLevel.Moderate => (int)c.Model.PlagiarismLevel is ((int)PlagiarismLevel.Moderate) or ((int)PlagiarismLevel.High),
+                           PlagiarismLevel.Low or PlagiarismLevel.Minor => (int)c.Model.PlagiarismLevel is ((int)PlagiarismLevel.Minor) or ((int)PlagiarismLevel.Low),
+                           PlagiarismLevel.Original or PlagiarismLevel.None => c.Model.PlagiarismLevel == (int)PlagiarismLevel.Original,
+                           PlagiarismLevel.All => c != null,
+                           _ => c.Model.Index > 0,
+                       };
                    }
                 );
-                return new ObservableCollection<DetectionResult>(collection);
+                return new ObservableCollection<DetectionResultViewModel>(collection);
             }
 
-            set
-            {
-                RaisePropertyChanged(nameof(DistanceFiltered));
-            }
+            set => RaisePropertyChanged(nameof(DistanceFiltered));
         }
-        public ObservableCollection<DetectionResult> Distances { get => distances; set { distances = value; RaisePropertyChanged(nameof(Distances)); } }
+        public ObservableCollection<DetectionResultViewModel> Distances { get => distances; set { distances = value; RaisePropertyChanged(nameof(Distances)); } }
         public ICommand FilterOriginalCommand => new DelegateCommand(FilterOriginal);
         public ICommand FilterAnyCommand => new DelegateCommand(FilterAny);
         public ICommand FilterAllCommand => new DelegateCommand(FilterAll);
@@ -68,7 +60,7 @@ namespace Analogi.Core
         public ICommand FilterMediumCommand => new DelegateCommand(FilterMedium);
         public ICommand FilterLowCommand => new DelegateCommand(FilterLow);
         public ICommand ResetViewCommand => new DelegateCommand(ResetView);
-        public string Path { get => path; set { path = value; RaisePropertyChanged(nameof(Path)); if (!string.IsNullOrEmpty(Path)) { StartVisible = Visibility.Visible; } else { StartVisible = Visibility.Collapsed; } } }
+        public string Path { get => path; set { path = value; RaisePropertyChanged(nameof(Path)); StartVisible = !string.IsNullOrEmpty(Path) ? Visibility.Visible : Visibility.Collapsed; } }
         public ICommand ScanCommand => new DelegateCommand(ScanFolder);
         public Visibility StartVisible { get => startVisible; set { startVisible = value; RaisePropertyChanged(nameof(StartVisible)); } }
         public Visibility FilterVisible { get => filterVisible; set { filterVisible = value; RaisePropertyChanged(nameof(FilterVisible)); } }
@@ -104,7 +96,7 @@ namespace Analogi.Core
 
         #region Fields
 
-        private ObservableCollection<DetectionResult> distances;
+        private ObservableCollection<DetectionResultViewModel> distances;
         private PlagiarismLevel FilterMode = PlagiarismLevel.Original;
         private string path = @"No Folder Selected";
         private Visibility startVisible = Visibility.Collapsed;
@@ -113,31 +105,31 @@ namespace Analogi.Core
 
         #endregion Fields
 
-        #region Methods
-        //untuk upload sesuai dengan file dengan ekstensi yang disetujui
+        #region Methods 
+        // upload based on file with approved extension
         public void ScanFolder()
         {
-            if (path == "" || path == "No Folder Selected")
+            if (path is "" or "No Folder Selected")
             {
-                MessageBox.Show("What should i do, there's no directory to scan");
+                _ = MessageBox.Show("What should i do, there's no directory to scan");
                 return;
             }
 
             if (!System.IO.Directory.Exists(path))
             {
-                MessageBox.Show("What should i do, you've entered wrong directory, it doesn't exist");
+                _ = MessageBox.Show("What should i do, you've entered wrong directory, it doesn't exist");
                 return;
             }
 
-            StartTask();
+            InitiateScanProcess();
 
         }
 
-        public void StartTask()
+        public void InitiateScanProcess()
         {
             if (!worker.IsBusy)
             {
-                var content = new StackPanel()
+                StackPanel content = new()
                 {
                     MinHeight = 100,
                     MinWidth = 100,
@@ -151,20 +143,19 @@ namespace Analogi.Core
                 _ = DialogHost.Show(content, dialogIdentifier: "MainDH");
 
 
-                worker.DoWork += worker_DoWork;
-                worker.RunWorkerCompleted += worker_RunWorkerCompleted;
+                worker.DoWork += Worker_DoWork;
+                worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
                 engine = InitEngine();
                 worker.RunWorkerAsync();
             }
         }
-        private void worker_DoWork(object sender, DoWorkEventArgs e)
+        private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            //Antarmuka, Abaikan    
             engine.Start();
             e.Result = engine;
         }
 
-        private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             DialogHost.CloseDialogCommand.Execute(null, null);
             if (e.Cancelled)
@@ -180,7 +171,7 @@ namespace Analogi.Core
                 Debug.WriteLine("Operation Completed :" + e.Result);
 
                 DialogHost.CloseDialogCommand.Execute(null, null);
-                Distances = new ObservableCollection<DetectionResult>(engine.DetectionResults);
+                Distances = new ObservableCollection<DetectionResultViewModel>(engine.DetectionResults);
                 FilterMode = PlagiarismLevel.All; RaisePropertyChanged(nameof(DistanceFiltered));
                 FilterVisible = Visibility.Visible;
             }
@@ -190,54 +181,48 @@ namespace Analogi.Core
         private MOSSEngine InitEngine()
         {
 
-            // Inisialisasi Scanner
+            // Initiate Scanner
             IScanner scanner;
-            // pembacaan file yang di upload berupa folder atau sub folder
-            if (System.IO.Directory.EnumerateFiles(Path).Count() == 0 && System.IO.Directory.EnumerateDirectories(Path).Count() > 1)
+            // file scanning that is uploaded in the form of a folder or subfolder
+            if (!System.IO.Directory.EnumerateFiles(Path).Any() && System.IO.Directory.EnumerateDirectories(Path).Any())
             {
-                // Jika path adalah folder dengan banyak Subfolder
-                scanner = new Scanner.SubfolderScanner(Path);
+                // if the path is a folder with subfolders
+                scanner = new Core.Scanner.SubfolderScanner(Path);
             }
             else
             {
-                // Jika path adalah folder dengan banyak file
-                scanner = new Scanner.FolderScanner(Path);
+                // if the path is a folder with files
+                scanner = new Core.Scanner.FolderScanner(Path);
             }
 
-            var engine = new MOSSEngine()
+            MOSSEngine engine = new()
             {
                 Scanner = scanner,
 
-                // definisikan proses pemisahan metadata
-                Extractors = new List<IExtractor>() {
+                // define the extractors
+                Extractors = [
+                    new CodeExtractor(),
+                    new CommentExtractor(),
+                    new StructureExtractor(),
+                ],
 
-                            new CodeExtractor(), // Pemisahan Kode
-                            new CommentExtractor(), // Pemisahan Komentar  
-                            new StructureExtractor(), // Pemisahan Stuktur
-                },
-
-                // definisi proses.
-                Pipelines = new List<IPipeline>() {   
-                            // PREPROSES
-                            new PreProcessors.CodeFilter(),             // menghapus spasi ganda
-                            new PreProcessors.Lowercaser(),             //  proses case folding
+                // define the pipelines
+                Pipelines = [   
+                            // Preprocessors
+                            new Core.PreProcessors.CodeFilter(),
+                            new Core.PreProcessors.CaseFold(),            
                             
                             // CORE PROCESS
-                            // daftar item yang dibandingkan berdasar pada keterangann bab 2
-                            new Analyzers.FileLengthAnalyzer(),         // berdasarkan panjang programnya
-                            new Analyzers.CommentLineAnalyzer(),        // berdasarkan panjang komentarnya
-                            new Analyzers.CodeLineAnalyzer(),           // berdasar jumlah baris kode
-                            new Analyzers.CosineSimilarityAnalyzer(),   // beradasarkan cosine similaritynya
+                            new Core.Analyzers.FileLengthAnalyzer(),
+                            new Core.Analyzers.CommentLineAnalyzer(),
+                            new Core.Analyzers.CodeLineAnalyzer(),
+                            new Core.Analyzers.CosineSimilarityAnalyzer(),
 
-                            // TODO : Yang mungkin bisa ditambahkan, belum diimplementasikan
+                            new Core.Analyzers.StructureAnalyzer(),     
+                            // new Analyzers.FunctionCountAnalyzer(),
 
-                            new Analyzers.StructureAnalyzer(),       // berdasarkan struktur codingannya
-                            // new Analyzers.FunctionCountAnalyzer(),   // berdasarkan jumlah fungsi
-
-                            // POST PROCESS
-                            // pembersihan data dari memori ketika selesai melakukan deteksi
-                            new PostProcess.Cleanup()
-                }
+                            new Core.PostProcess.Cleanup()
+                ]
             };
             return engine;
         }
@@ -252,7 +237,7 @@ namespace Analogi.Core
 
         private void BrowseFolder()
         {
-            var a = new VistaFolderBrowserDialog();
+            VistaFolderBrowserDialog a = new();
             if (a.ShowDialog() == true)
             {
                 Path = a.SelectedPath;

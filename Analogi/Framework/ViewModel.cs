@@ -2,49 +2,43 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Analogi.Framework
 {
 
     internal class ViewModel : INotifyPropertyChanged, IDataErrorInfo
     {
-        private readonly Dictionary<string, IList<string>> _validationErrors = new Dictionary<string, IList<string>>();
+        private readonly Dictionary<string, IList<string>> _validationErrors = [];
 
-        public string this[string propertyName]
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(propertyName))
-                    return Error;
+        public string this[string propertyName] => string.IsNullOrEmpty(propertyName)
+                    ? Error
+                    : _validationErrors.TryGetValue(propertyName, out IList<string> value) ? string.Join(Environment.NewLine, value) : string.Empty;
 
-                if (_validationErrors.ContainsKey(propertyName))
-                    return string.Join(Environment.NewLine, _validationErrors[propertyName]);
-
-                return string.Empty;
-            }
-        }
-
-        public string Error => String.Join(Environment.NewLine, GetAllErrors());
+        public string Error => string.Join(Environment.NewLine, GetAllErrors());
 
         private IEnumerable<string> GetAllErrors()
         {
-            return _validationErrors.SelectMany(kvp => kvp.Value).Where(e => !String.IsNullOrEmpty(e));
+            return _validationErrors.SelectMany(kvp => kvp.Value).Where(e => !string.IsNullOrEmpty(e));
         }
 
         public void AddValidationError(string propertyName, string errorMessage)
         {
-            if (!_validationErrors.ContainsKey(propertyName))
-                _validationErrors.Add(propertyName, new List<string>());
+            if (!_validationErrors.TryGetValue(propertyName, out IList<string> value))
+            {
+                _validationErrors.Add(propertyName, value);
+            }
 
-            _validationErrors[propertyName].Add(errorMessage);
+            value.Add(errorMessage);
         }
 
         public void ClearValidationErrors(string propertyName)
         {
-            if (_validationErrors.ContainsKey(propertyName))
-                _validationErrors.Remove(propertyName);
+            if (!_validationErrors.ContainsKey(propertyName))
+            {
+                return;
+            }
+
+            _ = _validationErrors.Remove(propertyName);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

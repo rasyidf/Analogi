@@ -7,10 +7,12 @@
     xmlns:local="clr-namespace:Analogi.Core"
     xmlns:m="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:views="clr-namespace:Analogi.Views"
     Title="Plagiarism Detect"
     Width="580"
-    Height="680"
+    Height="680" 
+    GlowBrush="{DynamicResource AccentColorBrush}"
+    BorderThickness="1"
     md:TransitionAssist.DisableTransitions="True"
     Icon="/Analogi;component/Assets/mainicon.ico"
     PreviewKeyDown="Window_PreviewKeyDown"
@@ -75,7 +77,7 @@
         </DataTemplate>
     </m:MetroWindow.Resources>
     <m:MetroWindow.DataContext>
-        <local:ShellViewModel />
+        <views:ShellViewModel />
     </m:MetroWindow.DataContext>
     <md:DialogHost
         x:Name="DH"
@@ -94,14 +96,6 @@
                 <RowDefinition Height="48" />
                 <RowDefinition Height="92*" />
             </Grid.RowDefinitions>
-            <TextBlock
-                Grid.Row="3"
-                Height="54"
-                Margin="0"
-                Text="Click Start to Continue"
-                TextAlignment="Center"
-                TextWrapping="Wrap"
-                Visibility="{Binding StartVisible}" />
             <ListView
                 x:Name="lResult"
                 Grid.Row="3"
@@ -115,7 +109,7 @@
                     <GridView>
                         <GridViewColumn
                             Width="170"
-                            DisplayMemberBinding="{Binding Name}"
+                            DisplayMemberBinding="{Binding Model.Name}"
                             Header="Name" />
 
                         <GridViewColumn Width="80" Header="index">
@@ -123,15 +117,15 @@
                                 <DataTemplate>
                                     <TextBlock
                                         VerticalAlignment="Center"
-                                        Background="{Binding IndexColor}"
-                                        Text="{Binding PlagiarismLevel}"
+                                        Background="{Binding Model.IndexColor}"
+                                        Text="{Binding Model.PlagiarismLevel}"
                                         TextAlignment="Center" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn
                             Width="327"
-                            DisplayMemberBinding="{Binding Reason}"
+                            DisplayMemberBinding="{Binding Model.Reason}"
                             Header="Reason" />
                     </GridView>
                 </ListView.View>
@@ -149,8 +143,7 @@
                         Command="{Binding BrowseCommand}"
                         Content="{DynamicResource Folder}"
                         PreviewDragEnter="Button_PreviewDragEnter"
-                        PreviewDrop="Button_PreviewDrop"
-                        Style="{StaticResource MaterialDesignRaisedDarkButton}" />
+                        PreviewDrop="Button_PreviewDrop" />
                     <TextBlock
                         x:Name="selectedFolderTb"
                         Height="16"
@@ -170,14 +163,13 @@
             <md:ColorZone
                 Grid.Row="1"
                 Height="80"
-                Mode="Accent"
+                Mode="SecondaryMid"
                 Visibility="{Binding StartVisible}">
                 <Button
                     x:Name="StartButton"
                     Height="Auto"
                     Command="{Binding ScanCommand}"
-                    Content="{DynamicResource Start}"
-                    Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                    Content="{DynamicResource Start}" 
                     Visibility="{Binding StartVisible}" />
             </md:ColorZone>
             <UniformGrid
@@ -185,36 +177,36 @@
                 Margin="5"
                 Rows="1"
                 Visibility="{Binding FilterVisible}">
-                <Button
+                <Button Style="{DynamicResource MaterialDesignFlatButton}" 
                     Height="Auto"
-                    Background="#FF9DE2FB"
+                     Foreground="white" Background="#228be6"
                     Command="{Binding FilterAllCommand}"
                     Content="All"
-                    Style="{StaticResource MaterialDesignFlatButton}" />
-                <Button
+                     />
+                <Button Style="{DynamicResource MaterialDesignFlatButton}"
                     Height="Auto"
-                    Background="#FFF0BCA8"
+                     Foreground="white" Background="#fab005"
                     Command="{Binding FilterHighCommand}"
                     Content="High"
-                    Style="{StaticResource MaterialDesignFlatButton}" />
-                <Button
+                     />
+                <Button Style="{DynamicResource MaterialDesignFlatButton}"
                     Height="Auto"
-                    Background="#FFFBE8B3"
+                     Foreground="white" Background="#fd7e14"
                     Command="{Binding FilterMediumCommand}"
                     Content="Medium"
-                    Style="{StaticResource MaterialDesignFlatButton}" />
-                <Button
+                     />
+                <Button Style="{DynamicResource MaterialDesignFlatButton}"
                     Height="Auto"
-                    Background="#FFE5FB98"
+                     Foreground="white" Background="#82c91e"
                     Command="{Binding FilterLowCommand}"
                     Content="Low"
-                    Style="{StaticResource MaterialDesignFlatButton}" />
-                <Button
+                     />
+                <Button Style="{DynamicResource MaterialDesignFlatButton}"
                     Height="Auto"
-                    Background="#FFD3FFC2"
+                     Foreground="white" Background="#40c057"
                     Command="{Binding FilterOriginalCommand}"
                     Content="None"
-                    Style="{StaticResource MaterialDesignFlatButton}" />
+                     />
             </UniformGrid>
         </Grid>
     </md:DialogHost>

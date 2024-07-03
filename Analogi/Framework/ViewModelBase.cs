@@ -1,8 +1,7 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Windows.Input;
 
-namespace Analogi.Core
+namespace Analogi.Framework
 {
     public class DelegateCommand : ICommand
     {

@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using Analogi.Core.Models;
+using System.Collections.Generic;
 
-namespace Analogi.Core
+namespace Analogi.Core.Interfaces
 {
-                    
-        public interface IScanner
-        {
-            IEnumerable<CodeFile> Scan();
-            string Path { get; set; }
-        }       
+
+    public interface IScanner
+    {
+        IEnumerable<CodeFile> Scan();
+        string Path { get; set; }
+    }
 }

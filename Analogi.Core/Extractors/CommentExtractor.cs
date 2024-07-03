@@ -1,34 +1,41 @@
-﻿using System.Collections.Generic;
-using System.Text.RegularExpressions;
+﻿using Analogi.Core.Interfaces;
+using Analogi.Core.Models;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Analogi.Core.Extractors
 {
-    public class CommentExtractor : IExtractor
+    public partial class CommentExtractor : IExtractor
     {
-        readonly Regex CommentRegex = new Regex("//[^(\n|\r)]*\n?");
+        private readonly Regex CommentRegex = SingleLineCommentRegex();
+        private readonly Regex CommentBlockRegex = MultiLineCommentRegex();
 
-        readonly Regex CommentBlockRegex = new Regex(@"/\*[^*]*\*+(?:[^/*][^*]*\*+)*/");
+        public void Run(ref PipelineData pd, string id, CodeFile data)
+        {
+            string file = data.ReadAll();
+            MatchCollection v = CommentBlockRegex.Matches(file);
+            MatchCollection w = CommentRegex.Matches(file);
 
-         public void Run(ref PipelineData pd, string id, CodeFile data)
-         {
-            var file = data.ReadAll();
-            var v = CommentBlockRegex.Matches(file);
-            var w = CommentRegex.Matches(file);
-            
-            pd.AddMetadata(Name, id,  Run(v,w) ); 
-             
+            pd.AddMetadata(Name, id, Run(v, w));
+
         }
 
-        private List<string> Run(MatchCollection v, MatchCollection w)
+        private static List<string> Run(MatchCollection v, MatchCollection w)
         {
-            var str = (from Match item in v
-                       select item.Value).ToList();
+            List<string> str = (from Match item in v
+                                select item.Value).ToList();
             str.AddRange(from Match item in w
                          select item.Value);
             return str;
         }
 
-        public string Name { get => "comment"; } 
+        public string Name => "comment";
+
+        [GeneratedRegex("//[^(\n|\r)]*\n?")]
+        private static partial Regex SingleLineCommentRegex();
+
+        [GeneratedRegex(@"/\*[^*]*\*+(?:[^/*][^*]*\*+)*/")]
+        private static partial Regex MultiLineCommentRegex();
     }
 }

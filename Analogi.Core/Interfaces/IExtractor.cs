@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Analogi.Core.Models;
 
-namespace Analogi.Core
+namespace Analogi.Core.Interfaces
 {
     public interface IExtractor
     {
-        string Name { get; }  
+        string Name { get; }
 
         void Run(ref PipelineData pd, string id, CodeFile data);
     }

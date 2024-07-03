@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
 
-namespace Analogi
+namespace Analogi.Core.Algorithm
 {
     /// <summary>
     /// Term frequency based tokenizer
@@ -16,7 +16,7 @@ namespace Analogi
         #region Fields
 
         /// <summary>Pattern for finding multiple following spaces</summary>
-        private static readonly Regex SPACE_REG = new Regex("\\s+");
+        private static readonly Regex SPACE_REG = new("\\s+");
 
         #endregion Fields
 
@@ -33,7 +33,7 @@ namespace Analogi
 
         protected IDictionary<string, int> Tokenize(string s)
         {
-            var tokens = new Dictionary<string, int>();
+            Dictionary<string, int> tokens = [];
 
             string[] string_no_space = SPACE_REG.Replace(s, " ").Split(' ');
 
