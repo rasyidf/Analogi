@@ -1,0 +1,81 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Analogi.App.ViewModels"
+        xmlns:models="using:Analogi.Core.Models"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="600"
+        x:Class="Analogi.App.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Title="Analogi — Code Clone Detector"
+        Width="950" Height="650"
+        MinWidth="700" MinHeight="450"
+        WindowStartupLocation="CenterScreen">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <DockPanel Margin="16">
+        <!-- Top: Folder selection + Scan button -->
+        <StackPanel DockPanel.Dock="Top" Spacing="8">
+            <TextBlock Text="Analogi" FontSize="24" FontWeight="Bold" Margin="0,0,0,8"/>
+            <TextBlock Text="Code clone detection for multiple languages (C++, Python, Java, C#)"
+                       Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                       Margin="0,0,0,12"/>
+
+            <Grid ColumnDefinitions="*,Auto,Auto" Margin="0,0,0,8">
+                <TextBox Grid.Column="0" 
+                         Text="{Binding FolderPath, Mode=TwoWay}"
+                         Watermark="Folder path (drag &amp; drop or type)..."
+                         Margin="0,0,8,0"/>
+                <Button Grid.Column="1" 
+                        Content="Browse"
+                        Command="{Binding BrowseCommand}"
+                        Margin="0,0,8,0"/>
+                <Button Grid.Column="2" 
+                        Content="Scan"
+                        Classes="accent"
+                        Command="{Binding ScanCommand}"/>
+            </Grid>
+
+            <!-- Progress -->
+            <ProgressBar Minimum="0" 
+                         Maximum="{Binding ProgressMax}" 
+                         Value="{Binding ProgressValue}"
+                         IsIndeterminate="{Binding IsScanning}"
+                         IsVisible="{Binding IsScanning}"/>
+
+            <!-- Filter buttons -->
+            <StackPanel Orientation="Horizontal" Spacing="4" Margin="0,8,0,0">
+                <TextBlock Text="Filter:" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                <Button Content="All" Command="{Binding SetFilterCommand}" CommandParameter="All" />
+                <Button Content="High+" Command="{Binding SetFilterCommand}" CommandParameter="High" />
+                <Button Content="Moderate+" Command="{Binding SetFilterCommand}" CommandParameter="Moderate" />
+                <Button Content="Low+" Command="{Binding SetFilterCommand}" CommandParameter="Low" />
+            </StackPanel>
+        </StackPanel>
+
+        <!-- Bottom: Status -->
+        <TextBlock DockPanel.Dock="Bottom" 
+                   Text="{Binding StatusText}" 
+                   Margin="0,8,0,0"
+                   Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+
+        <!-- Center: Results -->
+        <DataGrid Margin="0,12,0,0"
+                  ItemsSource="{Binding FilteredResults}"
+                  IsReadOnly="True"
+                  GridLinesVisibility="Horizontal"
+                  CanUserSortColumns="True"
+                  AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="File A" Binding="{Binding FileA.Name}" Width="*"/>
+                <DataGridTextColumn Header="File B" Binding="{Binding FileB.Name}" Width="*"/>
+                <DataGridTextColumn Header="Similarity" Binding="{Binding SimilarityPercent, StringFormat={}{0}%}" Width="90"/>
+                <DataGridTextColumn Header="Level" Binding="{Binding Level}" Width="90"/>
+                <DataGridTextColumn Header="Reasons" Binding="{Binding Reasons.Count}" Width="70"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</Window>

@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Analogi.App/Analogi.App.csproj" />
+  <Project Path="Analogi.Core/Analogi.Core.csproj" />
+</Solution>

@@ -1,22 +1,31 @@
-﻿using Analogi.Core.Interfaces;
+using Analogi.Core.Algorithm;
+using Analogi.Core.Interfaces;
 using Analogi.Core.Models;
-using Analogi.Core.Reasons;
 
-namespace Analogi.Core.Analyzers
+namespace Analogi.Core.Analyzers;
+
+/// <summary>
+/// Computes cosine similarity between the code of both files.
+/// </summary>
+public sealed class CosineSimilarityAnalyzer : IPipelineStep
 {
-    public class CosineSimilarityAnalyzer : IPipeline
+    public string Name => "CosineSimilarity";
+    private const double Threshold = 0.6;
+
+    public PipelineContext Run(PipelineContext ctx)
     {
-        public PipelineData Run(PipelineData data)
+        var codeA = string.Join("\n", ctx.GetMetadata("code.a"));
+        var codeB = string.Join("\n", ctx.GetMetadata("code.b"));
+
+        double score = CosineSimilarity.Compute(codeA, codeB);
+        if (score > Threshold)
         {
-            CosineSimilarityReason r = new();
-            string a = string.Join(" ", data.FileMetadataMappings["file.1.code"]);
-            string b = string.Join(" ", data.FileMetadataMappings["file.2.code"]);
-            _ = r.Check(a, b);
-            if (r.Index > r.Treshold)
-            {
-                data.AddReason(r, data.FileMetadataMappings["file.path"][1]);
-            }
-            return data;
+            ctx.Reasons.Add(new SimilarityReason(
+                Name,
+                $"Code cosine similarity: {score:P0}",
+                score,
+                Weight: 1.0));
         }
+        return ctx;
     }
 }

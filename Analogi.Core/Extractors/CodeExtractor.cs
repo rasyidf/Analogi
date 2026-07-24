@@ -1,39 +1,29 @@
-﻿using Analogi.Core.Interfaces;
+using Analogi.Core.Interfaces;
 using Analogi.Core.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
 
-namespace Analogi.Core.Extractors
+namespace Analogi.Core.Extractors;
+
+/// <summary>
+/// Extracts code lines (with comments removed) from both files.
+/// </summary>
+public sealed class CodeExtractor : IPipelineStep
 {
-    public partial class CodeExtractor : IExtractor
+    public string Name => "CodeExtractor";
+
+    public PipelineContext Run(PipelineContext ctx)
     {
-        private readonly Regex CommentRegex = SingleLineCommentRegex();
-        private readonly Regex CommentBlockRegex = MultiLineCommentRegex();
+        ctx.SetMetadata("code.a", Extract(ctx.FileA.Content, ctx.Language));
+        ctx.SetMetadata("code.b", Extract(ctx.FileB.Content, ctx.Language));
+        return ctx;
+    }
 
-        public void Run(ref PipelineData pd, string id, CodeFile data)
-        {
-            string file = data.ReadAll();
-            string v = CommentBlockRegex.Replace(file, "");
-            pd.AddMetadata(Name, id, Run(v.Split(separator, StringSplitOptions.RemoveEmptyEntries)));
-        }
-
-        public List<string> Run(IEnumerable<string> data)
-        {
-            List<string> a = [];
-            a.AddRange(from string item in data
-                       select CommentRegex.Replace(item, ""));
-            return a;
-        }
-
-        public string Name => "code";
-
-        private static readonly char[] separator = ['\n', '\r'];
-
-        [GeneratedRegex("//[^\n]*\n?")]
-        private static partial Regex SingleLineCommentRegex();
-        [GeneratedRegex(@"/\*[^*]*\*+(?:[^/*][^*]*\*+)*/")]
-        private static partial Regex MultiLineCommentRegex();
+    private static List<string> Extract(string content, ILanguageProfile lang)
+    {
+        var stripped = lang.MultiLineComment.Replace(content, "");
+        return stripped
+            .Split(['\n', '\r'], StringSplitOptions.RemoveEmptyEntries)
+            .Select(line => lang.SingleLineComment.Replace(line, "").Trim())
+            .Where(line => line.Length > 0)
+            .ToList();
     }
 }

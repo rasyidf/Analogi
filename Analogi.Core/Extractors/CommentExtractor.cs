@@ -1,41 +1,32 @@
-﻿using Analogi.Core.Interfaces;
-using Analogi.Core.Models;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
+using Analogi.Core.Interfaces;
+using Analogi.Core.Models;
 
-namespace Analogi.Core.Extractors
+namespace Analogi.Core.Extractors;
+
+/// <summary>
+/// Extracts comment text from both files.
+/// </summary>
+public sealed class CommentExtractor : IPipelineStep
 {
-    public partial class CommentExtractor : IExtractor
+    public string Name => "CommentExtractor";
+
+    public PipelineContext Run(PipelineContext ctx)
     {
-        private readonly Regex CommentRegex = SingleLineCommentRegex();
-        private readonly Regex CommentBlockRegex = MultiLineCommentRegex();
+        ctx.SetMetadata("comment.a", Extract(ctx.FileA.Content, ctx.Language));
+        ctx.SetMetadata("comment.b", Extract(ctx.FileB.Content, ctx.Language));
+        return ctx;
+    }
 
-        public void Run(ref PipelineData pd, string id, CodeFile data)
-        {
-            string file = data.ReadAll();
-            MatchCollection v = CommentBlockRegex.Matches(file);
-            MatchCollection w = CommentRegex.Matches(file);
+    private static List<string> Extract(string content, ILanguageProfile lang)
+    {
+        var comments = new List<string>();
 
-            pd.AddMetadata(Name, id, Run(v, w));
+        foreach (Match m in lang.MultiLineComment.Matches(content))
+            comments.Add(m.Value);
+        foreach (Match m in lang.SingleLineComment.Matches(content))
+            comments.Add(m.Value);
 
-        }
-
-        private static List<string> Run(MatchCollection v, MatchCollection w)
-        {
-            List<string> str = (from Match item in v
-                                select item.Value).ToList();
-            str.AddRange(from Match item in w
-                         select item.Value);
-            return str;
-        }
-
-        public string Name => "comment";
-
-        [GeneratedRegex("//[^(\n|\r)]*\n?")]
-        private static partial Regex SingleLineCommentRegex();
-
-        [GeneratedRegex(@"/\*[^*]*\*+(?:[^/*][^*]*\*+)*/")]
-        private static partial Regex MultiLineCommentRegex();
+        return comments;
     }
 }

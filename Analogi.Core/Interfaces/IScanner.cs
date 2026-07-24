@@ -1,12 +1,8 @@
-﻿using Analogi.Core.Models;
-using System.Collections.Generic;
+using Analogi.Core.Models;
 
-namespace Analogi.Core.Interfaces
+namespace Analogi.Core.Interfaces;
+
+public interface IScanner
 {
-
-    public interface IScanner
-    {
-        IEnumerable<CodeFile> Scan();
-        string Path { get; set; }
-    }
+    IReadOnlyList<CodeFile> Scan();
 }

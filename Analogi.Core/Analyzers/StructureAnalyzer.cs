@@ -1,35 +1,40 @@
-﻿using Analogi.Core.Interfaces;
+using Analogi.Core.Interfaces;
 using Analogi.Core.Models;
-using Analogi.Core.Reasons;
 
+namespace Analogi.Core.Analyzers;
 
-namespace Analogi.Core.Analyzers
+/// <summary>
+/// Compares function names between files. High overlap suggests copied structure.
+/// </summary>
+public sealed class StructureAnalyzer : IPipelineStep
 {
-    public class StructureAnalyzer : IPipeline
+    public string Name => "StructureSimilarity";
+    private const double Threshold = 0.5;
+
+    public PipelineContext Run(PipelineContext ctx)
     {
-        public PipelineData Run(PipelineData data)
+        var funcsA = ctx.GetMetadata("functions.a");
+        var funcsB = ctx.GetMetadata("functions.b");
+
+        if (funcsA.Count == 0 && funcsB.Count == 0) return ctx;
+
+        var setA = new HashSet<string>(funcsA, StringComparer.OrdinalIgnoreCase);
+        var setB = new HashSet<string>(funcsB, StringComparer.OrdinalIgnoreCase);
+
+        int union = setA.Union(setB).Count();
+        if (union == 0) return ctx;
+
+        int intersection = setA.Intersect(setB).Count();
+        double jaccard = (double)intersection / union;
+
+        if (jaccard > Threshold)
         {
-            string[] regions = ["header", "main", "subroutine"];
-            foreach (string region in regions)
-            {
-                CheckSimilarity(ref data, region);
-            }
-
-            return data;
+            ctx.Reasons.Add(new SimilarityReason(
+                Name,
+                $"Function name overlap (Jaccard): {jaccard:P0}",
+                jaccard,
+                Weight: 0.5));
         }
-
-        private static void CheckSimilarity(ref PipelineData data, string region)
-        {
-            IdenticalStructureReason reason = new();
-            string a = string.Join(" ", data.FileMetadataMappings["file.1." + region + ".structure"]);
-            string b = string.Join(" ", data.FileMetadataMappings["file.2." + region + ".structure"]);
-
-            _ = reason.Check(a, b);
-            if (reason.Index > reason.Treshold)
-            {
-                reason.Region = region;
-                data.AddReason(reason, data.FileMetadataMappings["file.path"][1]);
-            }
-        }
+        return ctx;
     }
 }
