@@ -26,7 +26,6 @@
                 <StackPanel Spacing="4">
                     <ListBox x:Name="NavList"
                              SelectionChanged="NavList_SelectionChanged"
-                             SelectedIndex="0"
                              Margin="4">
                         <ListBoxItem Content="⊞  Scan" Tag="ScanPage"/>
                         <ListBoxItem Content="☰  Results" Tag="ResultsPage"/>

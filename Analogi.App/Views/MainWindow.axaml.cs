@@ -14,6 +14,8 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+        ContentFrame.Content = _scanPage;
+        NavList.SelectedIndex = 0;
     }
 
     protected override void OnDataContextChanged(EventArgs e)
@@ -25,12 +27,11 @@ public partial class MainWindow : Window
             _resultsPage.DataContext = vm.ResultsVm;
             _comparePage.DataContext = vm.CompareVm;
         }
-
-        ContentFrame.Content = _scanPage;
     }
 
     private void NavList_SelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
+        if (ContentFrame is null) return;
         if (sender is ListBox lb && lb.SelectedItem is ListBoxItem item && item.Tag is string tag)
         {
             ContentFrame.Content = tag switch
