@@ -3,6 +3,7 @@ using AvaloniaEdit;
 using AvaloniaEdit.TextMate;
 using TextMateSharp.Grammars;
 using Analogi.App.ViewModels.Pages;
+using Analogi.App.Views;
 
 namespace Analogi.App.Views.Pages;
 
@@ -21,6 +22,13 @@ public partial class ComparePage : UserControl
         if (DataContext is CompareViewModel vm)
         {
             InitTextMate();
+
+            // Wire back navigation
+            vm.OnBackRequested = () =>
+            {
+                if (TopLevel.GetTopLevel(this) is MainWindow mw)
+                    mw.NavigateToResults();
+            };
 
             vm.PropertyChanged += (_, args) =>
             {

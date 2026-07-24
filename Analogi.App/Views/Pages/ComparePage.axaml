@@ -9,13 +9,22 @@
              x:DataType="vm:CompareViewModel">
 
     <DockPanel Margin="28,24">
-        <!-- Header -->
-        <StackPanel DockPanel.Dock="Top" Spacing="4" Margin="0,0,0,16">
-            <TextBlock Text="Compare" FontSize="26" FontWeight="SemiBold"/>
-            <TextBlock Text="{Binding SimilarityText}"
-                       IsVisible="{Binding HasComparison}"
-                       FontSize="14" Opacity="0.7"/>
-        </StackPanel>
+        <!-- Header with back button -->
+        <Grid DockPanel.Dock="Top" ColumnDefinitions="Auto,*" Margin="0,0,0,16">
+            <Button Grid.Column="0" Command="{Binding GoBackCommand}"
+                    Padding="8,6" Background="Transparent" CornerRadius="6"
+                    VerticalAlignment="Center" Margin="0,0,12,0"
+                    ToolTip.Tip="Back to Results">
+                <PathIcon Data="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
+                          Width="16" Height="16"/>
+            </Button>
+            <StackPanel Grid.Column="1" Spacing="4">
+                <TextBlock Text="Compare" FontSize="26" FontWeight="SemiBold"/>
+                <TextBlock Text="{Binding SimilarityText}"
+                           IsVisible="{Binding HasComparison}"
+                           FontSize="14" Opacity="0.7"/>
+            </StackPanel>
+        </Grid>
 
         <!-- Empty state -->
         <Border IsVisible="{Binding !HasComparison}"
@@ -35,6 +44,34 @@
 
         <!-- Comparison view -->
         <DockPanel IsVisible="{Binding HasComparison}">
+            <!-- File pair selector (submission mode only) -->
+            <Border DockPanel.Dock="Top"
+                    IsVisible="{Binding IsSubmissionMode}"
+                    Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                    CornerRadius="6" Padding="12,8" Margin="0,0,0,12"
+                    BorderThickness="1" BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}">
+                <StackPanel Orientation="Horizontal" Spacing="10">
+                    <TextBlock Text="File pair:" VerticalAlignment="Center" FontSize="12" Opacity="0.7"/>
+                    <ComboBox ItemsSource="{Binding FilePairs}"
+                              SelectedItem="{Binding SelectedFilePair}"
+                              MinWidth="300" FontSize="12"
+                              x:CompileBindings="False">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                    <Run Text="{Binding FileA.Name}"/>
+                                    <Run Text=" ↔ " Foreground="Gray"/>
+                                    <Run Text="{Binding FileB.Name}"/>
+                                    <Run Text=" (" Foreground="Gray"/>
+                                    <Run Text="{Binding SimilarityPercent}"/>
+                                    <Run Text="%)" Foreground="Gray"/>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </StackPanel>
+            </Border>
+
             <!-- Reasons panel -->
             <Border DockPanel.Dock="Bottom"
                     Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
@@ -52,14 +89,13 @@
 
             <!-- Side-by-side code -->
             <Grid ColumnDefinitions="*,1,*">
-                <!-- File A -->
                 <Border Grid.Column="0" CornerRadius="8"
                         BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}"
                         BorderThickness="1" ClipToBounds="True">
                     <DockPanel>
                         <Border DockPanel.Dock="Top" Padding="14,8"
                                 Background="{DynamicResource CardBackgroundFillColorDefaultBrush}">
-                            <TextBlock Text="{Binding FileAName}" FontWeight="Medium" FontSize="12"/>
+                            <TextBlock Text="{Binding HeaderA}" FontWeight="Medium" FontSize="12"/>
                         </Border>
                         <ae:TextEditor x:Name="EditorA"
                                        IsReadOnly="True"
@@ -69,17 +105,16 @@
                     </DockPanel>
                 </Border>
 
-                <!-- Divider -->
-                <Rectangle Grid.Column="1" Width="1" Fill="{DynamicResource CardStrokeColorDefaultBrush}" Margin="4,0"/>
+                <Rectangle Grid.Column="1" Width="1"
+                           Fill="{DynamicResource CardStrokeColorDefaultBrush}" Margin="4,0"/>
 
-                <!-- File B -->
                 <Border Grid.Column="2" CornerRadius="8"
                         BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}"
                         BorderThickness="1" ClipToBounds="True">
                     <DockPanel>
                         <Border DockPanel.Dock="Top" Padding="14,8"
                                 Background="{DynamicResource CardBackgroundFillColorDefaultBrush}">
-                            <TextBlock Text="{Binding FileBName}" FontWeight="Medium" FontSize="12"/>
+                            <TextBlock Text="{Binding HeaderB}" FontWeight="Medium" FontSize="12"/>
                         </Border>
                         <ae:TextEditor x:Name="EditorB"
                                        IsReadOnly="True"
