@@ -19,6 +19,99 @@ public sealed class AnalysisEngine
     }
 
     /// <summary>
+    /// Run a submission-level scan. Each subdirectory of the given path is treated as
+    /// one student submission. All files within a submission are compared against all
+    /// files in other submissions.
+    /// </summary>
+    public async Task<SubmissionScanResult> ScanSubmissionsAsync(
+        string path,
+        IProgress<(int current, int total)>? progress = null,
+        CancellationToken ct = default)
+    {
+        return await Task.Run(() => ScanSubmissionsCore(path, progress, ct), ct);
+    }
+
+    private SubmissionScanResult ScanSubmissionsCore(
+        string path,
+        IProgress<(int current, int total)>? progress,
+        CancellationToken ct)
+    {
+        var sw = System.Diagnostics.Stopwatch.StartNew();
+        var submissions = LoadSubmissions(path);
+        int totalPairs = submissions.Count * (submissions.Count - 1) / 2;
+        int done = 0;
+
+        var results = new List<SubmissionPairResult>();
+
+        for (int i = 0; i < submissions.Count; i++)
+        {
+            for (int j = i + 1; j < submissions.Count; j++)
+            {
+                ct.ThrowIfCancellationRequested();
+
+                var pair = CompareSubmissions(submissions[i], submissions[j]);
+                if (pair != null)
+                    results.Add(pair);
+
+                done++;
+                progress?.Report((done, totalPairs));
+            }
+        }
+
+        sw.Stop();
+        return new SubmissionScanResult(results, submissions.Count, sw.Elapsed);
+    }
+
+    private SubmissionPairResult? CompareSubmissions(Submission a, Submission b)
+    {
+        var filePairs = new List<FilePairResult>();
+        var allReasons = new List<SimilarityReason>();
+
+        // Compare every file in A against every file in B
+        foreach (var fileA in a.Files)
+        {
+            foreach (var fileB in b.Files)
+            {
+                var pair = ComparePair(fileA, fileB);
+                if (pair != null)
+                {
+                    filePairs.Add(pair);
+                    allReasons.AddRange(pair.Reasons);
+                }
+            }
+        }
+
+        if (allReasons.Count == 0) return null;
+
+        // Aggregate: take the best score per analyzer (max across all file pairs)
+        var aggregated = allReasons
+            .GroupBy(r => r.AnalyzerName)
+            .Select(g => g.OrderByDescending(r => r.Score).First())
+            .ToList();
+
+        return new SubmissionPairResult(a, b, aggregated, filePairs);
+    }
+
+    private List<Submission> LoadSubmissions(string path)
+    {
+        var extensions = new HashSet<string>(_languages.AllExtensions, StringComparer.OrdinalIgnoreCase);
+        var submissions = new List<Submission>();
+
+        foreach (var dir in Directory.EnumerateDirectories(path))
+        {
+            var files = Directory.EnumerateFiles(dir, "*", SearchOption.AllDirectories)
+                .Where(f => extensions.Contains(Path.GetExtension(f)))
+                .Select(f => new CodeFile(f))
+                .ToList();
+
+            if (files.Count > 0)
+                submissions.Add(new Submission(dir, files));
+        }
+
+        return submissions;
+    }
+
+    /// <summary>
     /// Run a full scan on the given path. Compares all files pairwise (i &lt; j only).
     /// </summary>
     public async Task<ScanResult> ScanAsync(
@@ -123,7 +216,7 @@ public sealed class AnalysisEngine
         new IdentifierNormalize(),
         // Analysis
         new CosineSimilarityAnalyzer(),
-        new NgramFingerprintAnalyzer(),
+        new WinnowingAnalyzer(),
         new StructureAnalyzer(),
         new ImportOverlapAnalyzer(),
         new CommentSimilarityAnalyzer(),
