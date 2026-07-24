@@ -13,6 +13,7 @@ namespace Analogi.Core.Analyzers;
 public sealed class WinnowingAnalyzer : IPipelineStep
 {
     public string Name => "Winnowing";
+    public bool IsEnabled { get; set; } = true;
     private const int KgramSize = 5;
     private const int WindowSize = 4;
     private const double Threshold = 0.3;

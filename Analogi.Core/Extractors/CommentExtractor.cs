@@ -10,6 +10,7 @@ namespace Analogi.Core.Extractors;
 public sealed class CommentExtractor : IPipelineStep
 {
     public string Name => "CommentExtractor";
+    public bool IsEnabled { get; set; } = true;
 
     public PipelineContext Run(PipelineContext ctx)
     {

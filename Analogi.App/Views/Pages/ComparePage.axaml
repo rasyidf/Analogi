@@ -8,52 +8,56 @@
              x:Class="Analogi.App.Views.Pages.ComparePage"
              x:DataType="vm:CompareViewModel">
 
-    <DockPanel Margin="24">
+    <DockPanel Margin="28,24">
         <!-- Header -->
-        <StackPanel DockPanel.Dock="Top" Spacing="4" Margin="0,0,0,12">
-            <TextBlock Text="Code Comparison" FontSize="28" FontWeight="SemiBold"/>
+        <StackPanel DockPanel.Dock="Top" Spacing="4" Margin="0,0,0,16">
+            <TextBlock Text="Compare" FontSize="26" FontWeight="SemiBold"/>
             <TextBlock Text="{Binding SimilarityText}"
                        IsVisible="{Binding HasComparison}"
-                       FontSize="16"
-                       Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                       FontSize="14" Opacity="0.7"/>
         </StackPanel>
 
-        <!-- No comparison state -->
-        <TextBlock IsVisible="{Binding !HasComparison}"
-                   Text="Select a pair from the Results page to compare code side-by-side."
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Center"
-                   Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+        <!-- Empty state -->
+        <Border IsVisible="{Binding !HasComparison}"
+                CornerRadius="8" Padding="40"
+                Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                BorderThickness="1"
+                BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}"
+                VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel Spacing="8" HorizontalAlignment="Center">
+                <TextBlock Text="No Comparison Selected" FontSize="16" FontWeight="Medium" HorizontalAlignment="Center"/>
+                <TextBlock Text="Select a pair from the Results page to view&#10;the side-by-side code comparison."
+                           TextAlignment="Center" Opacity="0.6" FontSize="13"/>
+            </StackPanel>
+        </Border>
 
-        <!-- Comparison content -->
+        <!-- Comparison view -->
         <DockPanel IsVisible="{Binding HasComparison}">
-            <!-- Reasons panel at bottom -->
+            <!-- Reasons panel -->
             <Border DockPanel.Dock="Bottom"
                     Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
                     CornerRadius="8" Padding="16" Margin="0,12,0,0"
-                    MaxHeight="120">
+                    MaxHeight="130" BorderThickness="1"
+                    BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}">
                 <ScrollViewer>
                     <StackPanel Spacing="4">
-                        <TextBlock Text="Analysis Reasons" FontWeight="SemiBold" FontSize="13"/>
+                        <TextBlock Text="Analysis Breakdown" FontWeight="Medium" FontSize="12"/>
                         <TextBlock Text="{Binding ReasonsText}"
-                                   TextWrapping="Wrap"
-                                   FontSize="12"
-                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                                   TextWrapping="Wrap" FontSize="12" Opacity="0.75" LineHeight="18"/>
                     </StackPanel>
                 </ScrollViewer>
             </Border>
 
-            <!-- Side-by-side editors -->
-            <Grid ColumnDefinitions="*,8,*">
+            <!-- Side-by-side code -->
+            <Grid ColumnDefinitions="*,1,*">
                 <!-- File A -->
-                <Border Grid.Column="0" CornerRadius="6"
-                        BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"
-                        BorderThickness="1">
+                <Border Grid.Column="0" CornerRadius="8"
+                        BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}"
+                        BorderThickness="1" ClipToBounds="True">
                     <DockPanel>
-                        <Border DockPanel.Dock="Top"
-                                Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
-                                Padding="12,8">
-                            <TextBlock Text="{Binding FileAName}" FontWeight="SemiBold" FontSize="12"/>
+                        <Border DockPanel.Dock="Top" Padding="14,8"
+                                Background="{DynamicResource CardBackgroundFillColorDefaultBrush}">
+                            <TextBlock Text="{Binding FileAName}" FontWeight="Medium" FontSize="12"/>
                         </Border>
                         <ae:TextEditor x:Name="EditorA"
                                        IsReadOnly="True"
@@ -63,17 +67,17 @@
                     </DockPanel>
                 </Border>
 
-                <GridSplitter Grid.Column="1" ResizeDirection="Columns"/>
+                <!-- Divider -->
+                <Rectangle Grid.Column="1" Width="1" Fill="{DynamicResource CardStrokeColorDefaultBrush}" Margin="4,0"/>
 
                 <!-- File B -->
-                <Border Grid.Column="2" CornerRadius="6"
-                        BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"
-                        BorderThickness="1">
+                <Border Grid.Column="2" CornerRadius="8"
+                        BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}"
+                        BorderThickness="1" ClipToBounds="True">
                     <DockPanel>
-                        <Border DockPanel.Dock="Top"
-                                Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
-                                Padding="12,8">
-                            <TextBlock Text="{Binding FileBName}" FontWeight="SemiBold" FontSize="12"/>
+                        <Border DockPanel.Dock="Top" Padding="14,8"
+                                Background="{DynamicResource CardBackgroundFillColorDefaultBrush}">
+                            <TextBlock Text="{Binding FileBName}" FontWeight="Medium" FontSize="12"/>
                         </Border>
                         <ae:TextEditor x:Name="EditorB"
                                        IsReadOnly="True"

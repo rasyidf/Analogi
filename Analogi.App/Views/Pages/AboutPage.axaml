@@ -2,51 +2,84 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="400"
+             mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="500"
              x:Class="Analogi.App.Views.Pages.AboutPage">
 
-    <ScrollViewer Padding="32">
-        <StackPanel Spacing="12" MaxWidth="600">
-            <TextBlock Text="Analogi" FontSize="32" FontWeight="Bold"/>
-            <TextBlock Text="Code Clone Detector" FontSize="16"
-                       Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+    <ScrollViewer Padding="32,24">
+        <StackPanel Spacing="20" MaxWidth="520">
+            <StackPanel Spacing="4">
+                <TextBlock Text="Analogi" FontSize="28" FontWeight="Bold"/>
+                <TextBlock Text="Code Clone Detector for Education" FontSize="14" Opacity="0.6"/>
+            </StackPanel>
 
-            <TextBlock Text="Version 0.6" Margin="0,8,0,0"/>
-
+            <!-- Version -->
             <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
-                    CornerRadius="8" Padding="20" Margin="0,16,0,0">
-                <StackPanel Spacing="8">
-                    <TextBlock Text="About" FontWeight="SemiBold"/>
-                    <TextBlock TextWrapping="Wrap"
-                               Text="Analogi is a plagiarism detection tool designed for educational use. It helps professors identify code similarities across student submissions using multiple analysis techniques including cosine similarity, MOSS-style winnowing, structural analysis, and more."/>
+                    CornerRadius="8" Padding="20" BorderThickness="1"
+                    BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}">
+                <Grid ColumnDefinitions="*,Auto">
+                    <StackPanel Spacing="4">
+                        <TextBlock Text="Version" FontWeight="Medium" FontSize="12"/>
+                        <TextBlock Text="0.7-dev" FontSize="13" Opacity="0.7"/>
+                    </StackPanel>
+                    <TextBlock Grid.Column="1" Text=".NET 10 + Avalonia 12"
+                               VerticalAlignment="Center" FontSize="12" Opacity="0.5"/>
+                </Grid>
+            </Border>
+
+            <!-- About -->
+            <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                    CornerRadius="8" Padding="20" BorderThickness="1"
+                    BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}">
+                <StackPanel Spacing="10">
+                    <TextBlock Text="About" FontWeight="Medium" FontSize="13"/>
+                    <TextBlock TextWrapping="Wrap" FontSize="13" Opacity="0.75" LineHeight="20"
+                               Text="Analogi helps educators detect code plagiarism across student programming assignments. It uses multiple analysis techniques — cosine similarity, MOSS-style winnowing, structural comparison, and more — to identify copied work even when students rename variables, reorder code, or change strings."/>
                 </StackPanel>
             </Border>
 
+            <!-- Languages -->
             <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
-                    CornerRadius="8" Padding="20" Margin="0,8,0,0">
+                    CornerRadius="8" Padding="20" BorderThickness="1"
+                    BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}">
                 <StackPanel Spacing="8">
-                    <TextBlock Text="Supported Languages" FontWeight="SemiBold"/>
-                    <TextBlock Text="• C/C++ (.c, .cpp, .cc, .h, .hpp)" />
-                    <TextBlock Text="• Python (.py)" />
-                    <TextBlock Text="• Java (.java)" />
-                    <TextBlock Text="• C# (.cs)" />
-                    <TextBlock Text="• JavaScript/TypeScript (.js, .jsx, .ts, .tsx)" />
+                    <TextBlock Text="Supported Languages" FontWeight="Medium" FontSize="13"/>
+                    <WrapPanel Orientation="Horizontal">
+                        <Border CornerRadius="4" Padding="8,4" Margin="0,0,6,6"
+                                Background="{DynamicResource SystemAccentColorLight3}">
+                            <TextBlock Text="C/C++" FontSize="11"/>
+                        </Border>
+                        <Border CornerRadius="4" Padding="8,4" Margin="0,0,6,6"
+                                Background="{DynamicResource SystemAccentColorLight3}">
+                            <TextBlock Text="Python" FontSize="11"/>
+                        </Border>
+                        <Border CornerRadius="4" Padding="8,4" Margin="0,0,6,6"
+                                Background="{DynamicResource SystemAccentColorLight3}">
+                            <TextBlock Text="Java" FontSize="11"/>
+                        </Border>
+                        <Border CornerRadius="4" Padding="8,4" Margin="0,0,6,6"
+                                Background="{DynamicResource SystemAccentColorLight3}">
+                            <TextBlock Text="C#" FontSize="11"/>
+                        </Border>
+                        <Border CornerRadius="4" Padding="8,4" Margin="0,0,6,6"
+                                Background="{DynamicResource SystemAccentColorLight3}">
+                            <TextBlock Text="JavaScript / TypeScript" FontSize="11"/>
+                        </Border>
+                    </WrapPanel>
                 </StackPanel>
             </Border>
 
+            <!-- Tech -->
             <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
-                    CornerRadius="8" Padding="20" Margin="0,8,0,0">
+                    CornerRadius="8" Padding="20" BorderThickness="1"
+                    BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}">
                 <StackPanel Spacing="8">
-                    <TextBlock Text="Technology" FontWeight="SemiBold"/>
-                    <TextBlock Text="• .NET 10 + AvaloniaUI 12 (cross-platform)" />
-                    <TextBlock Text="• FluentAvalonia for modern UI" />
-                    <TextBlock Text="• CommunityToolkit.Mvvm for clean MVVM" />
-                    <TextBlock Text="• AvaloniaEdit for syntax-highlighted code view" />
+                    <TextBlock Text="Built With" FontWeight="Medium" FontSize="13"/>
+                    <TextBlock FontSize="12" Opacity="0.7" LineHeight="20"
+                               Text="• .NET 10 (cross-platform)&#10;• Avalonia 12 + Fluid.Avalonia theme&#10;• AvaloniaEdit for code viewing&#10;• CommunityToolkit.Mvvm"/>
                 </StackPanel>
             </Border>
 
-            <TextBlock Text="MIT License" Margin="0,16,0,0"
-                       Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+            <TextBlock Text="MIT License • github.com/rasyidf/Analogi" FontSize="11" Opacity="0.4" Margin="0,4,0,0"/>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

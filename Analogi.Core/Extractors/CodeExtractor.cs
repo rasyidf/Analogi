@@ -9,6 +9,7 @@ namespace Analogi.Core.Extractors;
 public sealed class CodeExtractor : IPipelineStep
 {
     public string Name => "CodeExtractor";
+    public bool IsEnabled { get; set; } = true;
 
     public PipelineContext Run(PipelineContext ctx)
     {

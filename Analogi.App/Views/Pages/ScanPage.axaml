@@ -7,40 +7,42 @@
              x:Class="Analogi.App.Views.Pages.ScanPage"
              x:DataType="vm:ScanViewModel">
 
-    <ScrollViewer Padding="32">
-        <StackPanel Spacing="16" MaxWidth="700">
-            <!-- Header -->
-            <TextBlock Text="Code Clone Scanner" FontSize="28" FontWeight="SemiBold"/>
-            <TextBlock Text="Detect plagiarism across student programming assignments."
-                       Foreground="{DynamicResource TextFillColorSecondaryBrush}"
-                       TextWrapping="Wrap"/>
+    <ScrollViewer Padding="32,24">
+        <StackPanel Spacing="20" MaxWidth="640">
+            <!-- Hero -->
+            <StackPanel Spacing="4" Margin="0,0,0,8">
+                <TextBlock Text="Scan for Code Clones" FontSize="26" FontWeight="SemiBold"/>
+                <TextBlock Text="Select a folder containing student source files to analyze for similarity."
+                           Opacity="0.65" TextWrapping="Wrap" FontSize="13"/>
+            </StackPanel>
 
-            <!-- Folder Selection -->
+            <!-- Folder Input Card -->
             <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
-                    CornerRadius="8" Padding="20" Margin="0,8,0,0">
-                <StackPanel Spacing="12">
-                    <TextBlock Text="Source Folder" FontWeight="SemiBold"/>
-                    <Grid ColumnDefinitions="*,Auto">
+                    CornerRadius="8" Padding="20" BorderThickness="1"
+                    BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}">
+                <StackPanel Spacing="14">
+                    <TextBlock Text="Source Folder" FontWeight="Medium" FontSize="13"/>
+                    <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,4">
                         <TextBox Grid.Column="0"
                                  Text="{Binding FolderPath, Mode=TwoWay}"
-                                 PlaceholderText="Path to folder containing source files..."
-                                 Margin="0,0,8,0"/>
+                                 PlaceholderText="C:\courses\cs101\submissions"
+                                 Margin="0,0,10,0"/>
                         <Button Grid.Column="1"
-                                Content="Browse..."
-                                Command="{Binding BrowseCommand}"/>
+                                Content="Browse"
+                                Command="{Binding BrowseCommand}"
+                                Padding="16,8"/>
                     </Grid>
 
-                    <!-- Mode Toggle -->
-                    <StackPanel Orientation="Horizontal" Spacing="8">
-                        <CheckBox Content="Submission mode (compare subfolders as students)"
-                                  IsChecked="{Binding IsSubmissionMode}"/>
-                    </StackPanel>
+                    <CheckBox Content="Submission mode — treat each subfolder as one student"
+                              IsChecked="{Binding IsSubmissionMode}"
+                              Margin="0,4,0,0"/>
 
-                    <!-- Scan Button -->
                     <Button Content="Start Scan"
                             Classes="accent"
+                            Command="{Binding ScanCommand}"
                             HorizontalAlignment="Left"
-                            Command="{Binding ScanCommand}"/>
+                            Padding="24,10"
+                            Margin="0,8,0,0"/>
                 </StackPanel>
             </Border>
 
@@ -48,28 +50,31 @@
             <StackPanel IsVisible="{Binding IsScanning}" Spacing="8">
                 <ProgressBar Minimum="0"
                              Maximum="{Binding ProgressMax}"
-                             Value="{Binding ProgressValue}"
-                             IsIndeterminate="False"/>
+                             Value="{Binding ProgressValue}"/>
+                <TextBlock Text="{Binding StatusText}" FontSize="12" Opacity="0.7"/>
             </StackPanel>
 
-            <!-- Status -->
+            <!-- Status (when not scanning) -->
             <TextBlock Text="{Binding StatusText}"
-                       TextWrapping="Wrap"
-                       Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                       IsVisible="{Binding !IsScanning}"
+                       TextWrapping="Wrap" FontSize="13" Opacity="0.7"/>
 
-            <!-- Info Card -->
+            <!-- Info Cards -->
             <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
-                    CornerRadius="8" Padding="20" Margin="0,8,0,0">
-                <StackPanel Spacing="8">
-                    <TextBlock Text="Supported Languages" FontWeight="SemiBold"/>
-                    <TextBlock Text="C/C++ (.c, .cpp, .h) • Python (.py) • Java (.java) • C# (.cs) • JavaScript/TypeScript (.js, .ts, .jsx, .tsx)"
-                               TextWrapping="Wrap"
-                               Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
-                    <TextBlock Text="Analysis Methods" FontWeight="SemiBold" Margin="0,8,0,0"/>
-                    <TextBlock Text="Cosine Similarity • MOSS Winnowing • Structure Analysis • Comment Matching • Import Overlap • File Metrics"
-                               TextWrapping="Wrap"
-                               Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
-                </StackPanel>
+                    CornerRadius="8" Padding="20" BorderThickness="1"
+                    BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}">
+                <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto">
+                    <StackPanel Grid.Column="0" Grid.Row="0" Spacing="6" Margin="0,0,12,16">
+                        <TextBlock Text="Languages" FontWeight="Medium" FontSize="12"/>
+                        <TextBlock Text="C/C++  •  Python  •  Java&#10;C#  •  JavaScript/TypeScript"
+                                   FontSize="12" Opacity="0.65" LineHeight="18"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Grid.Row="0" Spacing="6" Margin="12,0,0,16">
+                        <TextBlock Text="Analysis" FontWeight="Medium" FontSize="12"/>
+                        <TextBlock Text="Cosine Similarity  •  Winnowing&#10;Structure  •  Comments  •  Imports"
+                                   FontSize="12" Opacity="0.65" LineHeight="18"/>
+                    </StackPanel>
+                </Grid>
             </Border>
         </StackPanel>
     </ScrollViewer>

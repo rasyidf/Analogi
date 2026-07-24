@@ -1,7 +1,7 @@
 title: Analogi Documentation
 description: Code clone detection for educational use — algorithms, API, and user guides.
-url: "https://rasyidf.github.io"
-baseurl: "/Analogi"
+url: "https://analogi.rasyid.dev"
+baseurl: ""
 
 remote_theme: just-the-docs/just-the-docs
 
@@ -12,6 +12,10 @@ permalink: pretty
 exclude:
   - node_modules/
   - vendor/
+  - Gemfile.lock
+
+plugins:
+  - jekyll-remote-theme
 
 aux_links:
   "GitHub":

@@ -11,6 +11,7 @@ namespace Analogi.Core.PreProcessors;
 public sealed partial class StringLiteralNormalize : IPipelineStep
 {
     public string Name => "StringLiteralNormalize";
+    public bool IsEnabled { get; set; } = true;
 
     public PipelineContext Run(PipelineContext ctx)
     {

@@ -11,6 +11,7 @@ namespace Analogi.Core.Analyzers;
 public sealed class CommentSimilarityAnalyzer : IPipelineStep
 {
     public string Name => "CommentSimilarity";
+    public bool IsEnabled { get; set; } = true;
     private const double Threshold = 0.7;
 
     public PipelineContext Run(PipelineContext ctx)

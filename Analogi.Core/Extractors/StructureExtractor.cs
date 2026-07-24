@@ -9,6 +9,7 @@ namespace Analogi.Core.Extractors;
 public sealed class StructureExtractor : IPipelineStep
 {
     public string Name => "StructureExtractor";
+    public bool IsEnabled { get; set; } = true;
 
     public PipelineContext Run(PipelineContext ctx)
     {

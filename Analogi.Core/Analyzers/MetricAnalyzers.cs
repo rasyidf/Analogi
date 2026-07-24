@@ -9,6 +9,7 @@ namespace Analogi.Core.Analyzers;
 public sealed class FileSizeAnalyzer : IPipelineStep
 {
     public string Name => "FileSizeRatio";
+    public bool IsEnabled { get; set; } = true;
     private const double Threshold = 0.95;
 
     public PipelineContext Run(PipelineContext ctx)
@@ -36,6 +37,7 @@ public sealed class FileSizeAnalyzer : IPipelineStep
 public sealed class LineCountAnalyzer : IPipelineStep
 {
     public string Name => "LineCountMatch";
+    public bool IsEnabled { get; set; } = true;
     private const double Threshold = 0.95;
 
     public PipelineContext Run(PipelineContext ctx)

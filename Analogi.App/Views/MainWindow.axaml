@@ -7,8 +7,8 @@
         mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="700"
         x:Class="Analogi.App.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
-        Title="Analogi — Code Clone Detector"
-        Width="1050" Height="700"
+        Title="Analogi"
+        Width="1100" Height="720"
         MinWidth="800" MinHeight="500"
         WindowStartupLocation="CenterScreen">
 
@@ -16,28 +16,31 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <SplitView IsPaneOpen="True"
-               DisplayMode="CompactInline"
-               OpenPaneLength="180"
-               CompactPaneLength="48">
-        <SplitView.Pane>
-            <Border Background="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}"
-                    Padding="0,8">
-                <StackPanel Spacing="4">
-                    <ListBox x:Name="NavList"
-                             SelectionChanged="NavList_SelectionChanged"
-                             Margin="4">
-                        <ListBoxItem Content="⊞  Scan" Tag="ScanPage"/>
-                        <ListBoxItem Content="☰  Results" Tag="ResultsPage"/>
-                        <ListBoxItem Content="⇄  Compare" Tag="ComparePage"/>
-                        <ListBoxItem Content="ⓘ  About" Tag="AboutPage"/>
-                    </ListBox>
-                </StackPanel>
-            </Border>
-        </SplitView.Pane>
+    <DockPanel>
+        <!-- Top nav bar -->
+        <Border DockPanel.Dock="Top" Padding="16,12"
+                BorderThickness="0,0,0,1"
+                BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}">
+            <Grid ColumnDefinitions="Auto,*,Auto">
+                <!-- App title -->
+                <TextBlock Grid.Column="0" Text="Analogi"
+                           FontSize="16" FontWeight="Bold"
+                           VerticalAlignment="Center" Margin="0,0,24,0"/>
 
-        <SplitView.Content>
-            <TransitioningContentControl x:Name="ContentFrame"/>
-        </SplitView.Content>
-    </SplitView>
+                <!-- Navigation tabs -->
+                <TabStrip Grid.Column="1" x:Name="NavTabs"
+                          SelectedIndex="0"
+                          SelectionChanged="NavTabs_SelectionChanged">
+                    <TabStripItem Content="Scan"/>
+                    <TabStripItem Content="Results"/>
+                    <TabStripItem Content="Compare"/>
+                    <TabStripItem Content="Settings"/>
+                    <TabStripItem Content="About"/>
+                </TabStrip>
+            </Grid>
+        </Border>
+
+        <!-- Content -->
+        <TransitioningContentControl x:Name="ContentFrame"/>
+    </DockPanel>
 </Window>

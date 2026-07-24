@@ -10,6 +10,7 @@ namespace Analogi.Core.Analyzers;
 public sealed class CosineSimilarityAnalyzer : IPipelineStep
 {
     public string Name => "CosineSimilarity";
+    public bool IsEnabled { get; set; } = true;
     private const double Threshold = 0.6;
 
     public PipelineContext Run(PipelineContext ctx)
