@@ -11,16 +11,15 @@
         MinWidth="800" MinHeight="500"
         WindowStartupLocation="CenterScreen"
         ExtendClientAreaToDecorationsHint="True"
-        ExtendClientAreaTitleBarHeightHint="48">
+        ExtendClientAreaTitleBarHeightHint="32">
 
     <Design.DataContext>
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <Grid ColumnDefinitions="64,*" Margin="0,48,0,0">
+    <Grid ColumnDefinitions="64,*" Margin="0,32,0,0">
         <!-- Sidebar -->
         <Border Grid.Column="0"
-                Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
                 Padding="0,12,0,8">
             <DockPanel>
                 <!-- Theme toggle at bottom -->
