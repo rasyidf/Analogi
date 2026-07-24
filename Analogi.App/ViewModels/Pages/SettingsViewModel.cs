@@ -17,7 +17,11 @@ public partial class SettingsViewModel : ViewModelBase
     [NotifyPropertyChangedFor(nameof(IsListView))]
     private bool _isGraphView = true;
 
-    public bool IsListView => !IsGraphView;
+    public bool IsListView
+    {
+        get => !IsGraphView;
+        set => IsGraphView = !value;
+    }
 
     public SettingsViewModel()
     {
@@ -34,12 +38,6 @@ public partial class SettingsViewModel : ViewModelBase
                 case "Analyzer": Analyzers.Add(vm); break;
             }
         }
-    }
-
-    [RelayCommand]
-    private void SetView(string mode)
-    {
-        IsGraphView = mode == "Graph";
     }
 }
 

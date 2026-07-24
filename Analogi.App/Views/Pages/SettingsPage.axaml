@@ -9,22 +9,27 @@
 
     <ScrollViewer Padding="32,24">
         <StackPanel Spacing="20" MaxWidth="760">
-            <!-- Header with view toggle -->
+            <!-- Header -->
             <Grid ColumnDefinitions="*,Auto">
                 <StackPanel Grid.Column="0" Spacing="4">
                     <TextBlock Text="Pipeline Settings" FontSize="24" FontWeight="SemiBold"/>
                     <TextBlock Text="Toggle steps on/off. Disabled steps are skipped during scanning."
                                Opacity="0.6" FontSize="13"/>
                 </StackPanel>
-                <Border Grid.Column="1" CornerRadius="6" Padding="2"
+                <!-- Segmented control -->
+                <Border Grid.Column="1" CornerRadius="8" Padding="3"
                         Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
                         BorderThickness="1" BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}"
                         VerticalAlignment="Top">
-                    <StackPanel Orientation="Horizontal" Spacing="2">
-                        <Button Content="Graph" Command="{Binding SetViewCommand}" CommandParameter="Graph"
-                                Padding="14,6" FontSize="11" CornerRadius="4"/>
-                        <Button Content="List" Command="{Binding SetViewCommand}" CommandParameter="List"
-                                Padding="14,6" FontSize="11" CornerRadius="4"/>
+                    <StackPanel Orientation="Horizontal" Spacing="0">
+                        <RadioButton Content="Graph" GroupName="ViewMode"
+                                     IsChecked="{Binding IsGraphView}"
+                                     Padding="14,7" FontSize="12"
+                                     Classes="segmented"/>
+                        <RadioButton Content="List" GroupName="ViewMode"
+                                     IsChecked="{Binding IsListView}"
+                                     Padding="14,7" FontSize="12"
+                                     Classes="segmented"/>
                     </StackPanel>
                 </Border>
             </Grid>
@@ -35,20 +40,19 @@
                     CornerRadius="8" Padding="28,24" BorderThickness="1"
                     BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}">
                 <StackPanel Spacing="0">
-                    <!-- Input node -->
-                    <Border CornerRadius="20" Padding="16,8"
-                            Background="#2E7D32" HorizontalAlignment="Left">
+                    <!-- Input -->
+                    <Border CornerRadius="20" Padding="16,8" Background="#2E7D32" HorizontalAlignment="Left">
                         <TextBlock Text="Input (Source Files)" FontSize="11" Foreground="White" FontWeight="Medium"/>
                     </Border>
 
-                    <!-- Arrow -->
-                    <Canvas Height="32" Width="24" HorizontalAlignment="Left" Margin="24,0,0,0">
-                        <Line StartPoint="12,2" EndPoint="12,24" Stroke="{DynamicResource CardStrokeColorDefaultBrush}" StrokeThickness="1.5"/>
-                        <Path Data="M7,22 L12,30 L17,22" Fill="{DynamicResource CardStrokeColorDefaultBrush}"/>
+                    <!-- Arrow (uses foreground color = adapts to theme) -->
+                    <Canvas Height="30" Width="24" HorizontalAlignment="Left" Margin="24,0,0,0">
+                        <Line StartPoint="12,2" EndPoint="12,22" Stroke="{DynamicResource TextFillColorSecondaryBrush}" StrokeThickness="1.5"/>
+                        <Path Data="M7,20 L12,28 L17,20" Fill="{DynamicResource TextFillColorSecondaryBrush}"/>
                     </Canvas>
 
-                    <!-- Extractors section -->
-                    <Border CornerRadius="6" Padding="16,12" Margin="0,0,0,0"
+                    <!-- Extractors -->
+                    <Border CornerRadius="6" Padding="16,12"
                             Background="{DynamicResource CardBackgroundFillColorSecondaryBrush}"
                             BorderThickness="1" BorderBrush="#334FC3F7">
                         <StackPanel Spacing="8">
@@ -76,12 +80,12 @@
                     </Border>
 
                     <!-- Arrow -->
-                    <Canvas Height="32" Width="24" HorizontalAlignment="Left" Margin="24,0,0,0">
-                        <Line StartPoint="12,2" EndPoint="12,24" Stroke="{DynamicResource CardStrokeColorDefaultBrush}" StrokeThickness="1.5"/>
-                        <Path Data="M7,22 L12,30 L17,22" Fill="{DynamicResource CardStrokeColorDefaultBrush}"/>
+                    <Canvas Height="30" Width="24" HorizontalAlignment="Left" Margin="24,0,0,0">
+                        <Line StartPoint="12,2" EndPoint="12,22" Stroke="{DynamicResource TextFillColorSecondaryBrush}" StrokeThickness="1.5"/>
+                        <Path Data="M7,20 L12,28 L17,20" Fill="{DynamicResource TextFillColorSecondaryBrush}"/>
                     </Canvas>
 
-                    <!-- PreProcessors section -->
+                    <!-- PreProcessors -->
                     <Border CornerRadius="6" Padding="16,12"
                             Background="{DynamicResource CardBackgroundFillColorSecondaryBrush}"
                             BorderThickness="1" BorderBrush="#33FFB74D">
@@ -110,12 +114,12 @@
                     </Border>
 
                     <!-- Arrow -->
-                    <Canvas Height="32" Width="24" HorizontalAlignment="Left" Margin="24,0,0,0">
-                        <Line StartPoint="12,2" EndPoint="12,24" Stroke="{DynamicResource CardStrokeColorDefaultBrush}" StrokeThickness="1.5"/>
-                        <Path Data="M7,22 L12,30 L17,22" Fill="{DynamicResource CardStrokeColorDefaultBrush}"/>
+                    <Canvas Height="30" Width="24" HorizontalAlignment="Left" Margin="24,0,0,0">
+                        <Line StartPoint="12,2" EndPoint="12,22" Stroke="{DynamicResource TextFillColorSecondaryBrush}" StrokeThickness="1.5"/>
+                        <Path Data="M7,20 L12,28 L17,20" Fill="{DynamicResource TextFillColorSecondaryBrush}"/>
                     </Canvas>
 
-                    <!-- Analyzers section -->
+                    <!-- Analyzers -->
                     <Border CornerRadius="6" Padding="16,12"
                             Background="{DynamicResource CardBackgroundFillColorSecondaryBrush}"
                             BorderThickness="1" BorderBrush="#3381C784">
@@ -144,63 +148,94 @@
                     </Border>
 
                     <!-- Arrow -->
-                    <Canvas Height="32" Width="24" HorizontalAlignment="Left" Margin="24,0,0,0">
-                        <Line StartPoint="12,2" EndPoint="12,24" Stroke="{DynamicResource CardStrokeColorDefaultBrush}" StrokeThickness="1.5"/>
-                        <Path Data="M7,22 L12,30 L17,22" Fill="{DynamicResource CardStrokeColorDefaultBrush}"/>
+                    <Canvas Height="30" Width="24" HorizontalAlignment="Left" Margin="24,0,0,0">
+                        <Line StartPoint="12,2" EndPoint="12,22" Stroke="{DynamicResource TextFillColorSecondaryBrush}" StrokeThickness="1.5"/>
+                        <Path Data="M7,20 L12,28 L17,20" Fill="{DynamicResource TextFillColorSecondaryBrush}"/>
                     </Canvas>
 
-                    <!-- Output node -->
-                    <Border CornerRadius="20" Padding="16,8"
-                            Background="#C62828" HorizontalAlignment="Left">
+                    <!-- Output -->
+                    <Border CornerRadius="20" Padding="16,8" Background="#C62828" HorizontalAlignment="Left">
                         <TextBlock Text="Output (Similarity Score)" FontSize="11" Foreground="White" FontWeight="Medium"/>
                     </Border>
 
-                    <TextBlock Text="Click a step to toggle on/off" FontSize="11" Opacity="0.4" Margin="0,16,0,0"/>
+                    <TextBlock Text="Click a step to toggle on/off" FontSize="11" Opacity="0.35" Margin="0,16,0,0"/>
                 </StackPanel>
             </Border>
 
-            <!-- ═══════ LIST VIEW ═══════ -->
-            <Border IsVisible="{Binding IsListView}"
-                    Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
-                    CornerRadius="8" Padding="24,20" BorderThickness="1"
-                    BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}">
-                <StackPanel Spacing="6">
-                    <TextBlock Text="Step Controls" FontWeight="SemiBold" FontSize="14" Margin="0,0,0,10"/>
-                    <ItemsControl ItemsSource="{Binding Steps}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate x:DataType="vm:PipelineStepViewModel">
-                                <Border Padding="14,10" Margin="0,0,0,3"
-                                        CornerRadius="6"
-                                        Background="{DynamicResource CardBackgroundFillColorSecondaryBrush}"
-                                        BorderThickness="1"
-                                        BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}">
-                                    <Grid ColumnDefinitions="Auto,*,Auto">
-                                        <Border Grid.Column="0" CornerRadius="4"
-                                                Padding="8,3" Margin="0,0,12,0"
-                                                VerticalAlignment="Center" MinWidth="90">
-                                            <Border.Background>
-                                                <SolidColorBrush Color="{Binding CategoryColor}" Opacity="0.12"/>
-                                            </Border.Background>
-                                            <TextBlock Text="{Binding Category}" FontSize="10"
-                                                       HorizontalAlignment="Center" FontWeight="Medium">
-                                                <TextBlock.Foreground>
-                                                    <SolidColorBrush Color="{Binding CategoryColor}"/>
-                                                </TextBlock.Foreground>
-                                            </TextBlock>
-                                        </Border>
-                                        <TextBlock Grid.Column="1" Text="{Binding Name}"
-                                                   VerticalAlignment="Center" FontSize="13"/>
-                                        <ToggleSwitch Grid.Column="2"
-                                                      IsChecked="{Binding IsEnabled}"
-                                                      VerticalAlignment="Center"
-                                                      OnContent="On" OffContent="Off"/>
-                                    </Grid>
-                                </Border>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </StackPanel>
-            </Border>
+            <!-- ═══════ LIST VIEW (grouped) ═══════ -->
+            <StackPanel IsVisible="{Binding IsListView}" Spacing="12">
+                <!-- Extractors group -->
+                <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                        CornerRadius="8" Padding="20,16" BorderThickness="1"
+                        BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}">
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="Extractors" FontWeight="SemiBold" FontSize="13" Foreground="#4FC3F7" Margin="0,0,0,6"/>
+                        <ItemsControl ItemsSource="{Binding Extractors}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="vm:PipelineStepViewModel">
+                                    <Border Padding="14,10" Margin="0,0,0,3" CornerRadius="6"
+                                            Background="{DynamicResource CardBackgroundFillColorSecondaryBrush}"
+                                            BorderThickness="1" BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}">
+                                        <Grid ColumnDefinitions="*,Auto">
+                                            <TextBlock Text="{Binding Name}" VerticalAlignment="Center" FontSize="13"/>
+                                            <ToggleSwitch Grid.Column="1" IsChecked="{Binding IsEnabled}"
+                                                          OnContent="On" OffContent="Off"/>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+
+                <!-- PreProcessors group -->
+                <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                        CornerRadius="8" Padding="20,16" BorderThickness="1"
+                        BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}">
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="PreProcessors" FontWeight="SemiBold" FontSize="13" Foreground="#FFB74D" Margin="0,0,0,6"/>
+                        <ItemsControl ItemsSource="{Binding PreProcessors}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="vm:PipelineStepViewModel">
+                                    <Border Padding="14,10" Margin="0,0,0,3" CornerRadius="6"
+                                            Background="{DynamicResource CardBackgroundFillColorSecondaryBrush}"
+                                            BorderThickness="1" BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}">
+                                        <Grid ColumnDefinitions="*,Auto">
+                                            <TextBlock Text="{Binding Name}" VerticalAlignment="Center" FontSize="13"/>
+                                            <ToggleSwitch Grid.Column="1" IsChecked="{Binding IsEnabled}"
+                                                          OnContent="On" OffContent="Off"/>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+
+                <!-- Analyzers group -->
+                <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                        CornerRadius="8" Padding="20,16" BorderThickness="1"
+                        BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}">
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="Analyzers" FontWeight="SemiBold" FontSize="13" Foreground="#81C784" Margin="0,0,0,6"/>
+                        <ItemsControl ItemsSource="{Binding Analyzers}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="vm:PipelineStepViewModel">
+                                    <Border Padding="14,10" Margin="0,0,0,3" CornerRadius="6"
+                                            Background="{DynamicResource CardBackgroundFillColorSecondaryBrush}"
+                                            BorderThickness="1" BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}">
+                                        <Grid ColumnDefinitions="*,Auto">
+                                            <TextBlock Text="{Binding Name}" VerticalAlignment="Center" FontSize="13"/>
+                                            <ToggleSwitch Grid.Column="1" IsChecked="{Binding IsEnabled}"
+                                                          OnContent="On" OffContent="Off"/>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

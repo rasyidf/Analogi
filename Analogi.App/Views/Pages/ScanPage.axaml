@@ -3,79 +3,83 @@
              xmlns:vm="using:Analogi.App.ViewModels.Pages"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="700" d:DesignHeight="500"
+             mc:Ignorable="d" d:DesignWidth="700" d:DesignHeight="600"
              x:Class="Analogi.App.Views.Pages.ScanPage"
              x:DataType="vm:ScanViewModel">
 
-    <ScrollViewer Padding="32,24">
-        <StackPanel Spacing="20" MaxWidth="640">
-            <!-- Hero -->
-            <StackPanel Spacing="4" Margin="0,0,0,8">
-                <TextBlock Text="Scan for Code Clones" FontSize="26" FontWeight="SemiBold"/>
-                <TextBlock Text="Select a folder containing student source files to analyze for similarity."
-                           Opacity="0.65" TextWrapping="Wrap" FontSize="13"/>
+    <Grid RowDefinitions="*,Auto">
+        <!-- Centered hero area -->
+        <StackPanel Grid.Row="0" Spacing="20"
+                    VerticalAlignment="Center" HorizontalAlignment="Center"
+                    MaxWidth="500" Margin="32">
+
+            <!-- Title -->
+            <StackPanel Spacing="6" HorizontalAlignment="Center">
+                <TextBlock Text="Analogi" FontSize="32" FontWeight="Bold" HorizontalAlignment="Center"/>
+                <TextBlock Text="Code Clone Detector for Education"
+                           FontSize="14" Opacity="0.5" HorizontalAlignment="Center"/>
             </StackPanel>
 
-            <!-- Folder Input Card -->
-            <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
-                    CornerRadius="8" Padding="20" BorderThickness="1"
-                    BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}">
+            <!-- Drop zone / Input area -->
+            <Border x:Name="DropZone" CornerRadius="12" Padding="24,20"
+                    Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                    BorderThickness="2" BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}"
+                    HorizontalAlignment="Stretch">
                 <StackPanel Spacing="14">
-                    <TextBlock Text="Source Folder" FontWeight="Medium" FontSize="13"/>
-                    <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,4">
+                    <!-- Path input -->
+                    <Grid ColumnDefinitions="*,Auto">
                         <TextBox Grid.Column="0"
                                  Text="{Binding FolderPath, Mode=TwoWay}"
-                                 PlaceholderText="C:\courses\cs101\submissions"
-                                 Margin="0,0,10,0"/>
-                        <Button Grid.Column="1"
-                                Content="Browse"
+                                 PlaceholderText="Drop a folder here or type a path..."
+                                 Margin="0,0,8,0"
+                                 CornerRadius="8"/>
+                        <Button Grid.Column="1" Content="Browse"
                                 Command="{Binding BrowseCommand}"
-                                Padding="16,8"/>
+                                Padding="16,8" CornerRadius="8"/>
                     </Grid>
 
-                    <CheckBox Content="Submission mode — treat each subfolder as one student"
-                              IsChecked="{Binding IsSubmissionMode}"
-                              Margin="0,4,0,0"/>
+                    <!-- Options row -->
+                    <StackPanel Orientation="Horizontal" Spacing="16">
+                        <CheckBox Content="Submission mode"
+                                  IsChecked="{Binding IsSubmissionMode}"
+                                  FontSize="12"/>
+                    </StackPanel>
 
-                    <Button Content="Start Scan"
+                    <!-- Scan button -->
+                    <Button Content="Scan"
                             Classes="accent"
                             Command="{Binding ScanCommand}"
-                            HorizontalAlignment="Left"
-                            Padding="24,10"
-                            Margin="0,8,0,0"/>
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Center"
+                            Padding="0,12" CornerRadius="8" FontWeight="Medium"/>
                 </StackPanel>
             </Border>
 
-            <!-- Progress -->
+            <!-- Progress (appears during scan) -->
             <StackPanel IsVisible="{Binding IsScanning}" Spacing="8">
-                <ProgressBar Minimum="0"
-                             Maximum="{Binding ProgressMax}"
-                             Value="{Binding ProgressValue}"/>
-                <TextBlock Text="{Binding StatusText}" FontSize="12" Opacity="0.7"/>
+                <ProgressBar Minimum="0" Maximum="{Binding ProgressMax}"
+                             Value="{Binding ProgressValue}" CornerRadius="4"/>
+                <TextBlock Text="{Binding StatusText}" FontSize="12" Opacity="0.6"
+                           HorizontalAlignment="Center"/>
             </StackPanel>
 
-            <!-- Status (when not scanning) -->
+            <!-- Status -->
             <TextBlock Text="{Binding StatusText}"
                        IsVisible="{Binding !IsScanning}"
-                       TextWrapping="Wrap" FontSize="13" Opacity="0.7"/>
-
-            <!-- Info Cards -->
-            <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
-                    CornerRadius="8" Padding="20" BorderThickness="1"
-                    BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}">
-                <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto">
-                    <StackPanel Grid.Column="0" Grid.Row="0" Spacing="6" Margin="0,0,12,16">
-                        <TextBlock Text="Languages" FontWeight="Medium" FontSize="12"/>
-                        <TextBlock Text="C/C++  •  Python  •  Java&#10;C#  •  JavaScript/TypeScript"
-                                   FontSize="12" Opacity="0.65" LineHeight="18"/>
-                    </StackPanel>
-                    <StackPanel Grid.Column="1" Grid.Row="0" Spacing="6" Margin="12,0,0,16">
-                        <TextBlock Text="Analysis" FontWeight="Medium" FontSize="12"/>
-                        <TextBlock Text="Cosine Similarity  •  Winnowing&#10;Structure  •  Comments  •  Imports"
-                                   FontSize="12" Opacity="0.65" LineHeight="18"/>
-                    </StackPanel>
-                </Grid>
-            </Border>
+                       HorizontalAlignment="Center"
+                       FontSize="12" Opacity="0.5"/>
         </StackPanel>
-    </ScrollViewer>
+
+        <!-- Footer info -->
+        <Border Grid.Row="1" Padding="24,12"
+                Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                CornerRadius="8,8,0,0">
+            <StackPanel Orientation="Horizontal" Spacing="32" HorizontalAlignment="Center">
+                <TextBlock FontSize="11" Opacity="0.5"
+                           Text="C/C++ • Python • Java • C# • JS/TS"/>
+                <TextBlock FontSize="11" Opacity="0.5"
+                           Text="Cosine • Winnowing • Structure • Comments • Imports"/>
+            </StackPanel>
+        </Border>
+    </Grid>
 </UserControl>

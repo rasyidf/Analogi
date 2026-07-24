@@ -21,7 +21,7 @@
         <!-- Sidebar -->
         <Border Grid.Column="0" Padding="0,8,0,8">
             <DockPanel>
-                <!-- Bottom section: Settings, About, Theme -->
+                <!-- Bottom: Settings, About, Theme -->
                 <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Center" Spacing="2">
                     <ListBox x:Name="NavListBottom"
                              SelectionChanged="NavList_SelectionChanged"
@@ -39,11 +39,13 @@
                             </Style>
                         </ListBox.Styles>
                         <ListBoxItem Tag="Settings" ToolTip.Tip="Settings">
-                            <PathIcon Data="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"
+                            <!-- Fluent: Settings -->
+                            <PathIcon Data="M12.012 2.25c.734.008 1.465.093 2.182.253a.75.75 0 0 1 .582.649l.17 1.527a1.384 1.384 0 0 0 1.927 1.116l1.401-.615a.75.75 0 0 1 .85.174 9.792 9.792 0 0 1 2.204 3.792.75.75 0 0 1-.271.825l-1.242.916a1.381 1.381 0 0 0 0 2.226l1.243.915a.75.75 0 0 1 .272.826 9.797 9.797 0 0 1-2.204 3.792.75.75 0 0 1-.848.175l-1.407-.617a1.38 1.38 0 0 0-1.926 1.114l-.169 1.526a.75.75 0 0 1-.572.647 9.518 9.518 0 0 1-4.406 0 .75.75 0 0 1-.572-.647l-.168-1.524a1.382 1.382 0 0 0-1.926-1.11l-1.406.616a.75.75 0 0 1-.849-.175 9.798 9.798 0 0 1-2.204-3.796.75.75 0 0 1 .272-.826l1.243-.916a1.38 1.38 0 0 0 0-2.226l-1.243-.914a.75.75 0 0 1-.271-.826 9.793 9.793 0 0 1 2.204-3.792.75.75 0 0 1 .85-.174l1.4.615a1.387 1.387 0 0 0 1.93-1.118l.17-1.526a.75.75 0 0 1 .583-.65c.717-.159 1.45-.243 2.201-.252zM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"
                                       Width="16" Height="16"/>
                         </ListBoxItem>
                         <ListBoxItem Tag="About" ToolTip.Tip="About">
-                            <PathIcon Data="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                            <!-- Fluent: Info -->
+                            <PathIcon Data="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm0 9h-1a1 1 0 0 0-.117 1.993L11 13v3.5a.5.5 0 0 0 .41.492l.09.008h1a1 1 0 0 0 .117-1.993L12.5 15v-3.5a.5.5 0 0 0-.41-.492L12 11zm0-3.5a1.25 1.25 0 1 0 0 2.5 1.25 1.25 0 0 0 0-2.5z"
                                       Width="16" Height="16"/>
                         </ListBoxItem>
                     </ListBox>
@@ -51,12 +53,13 @@
                             Padding="8" Background="Transparent" CornerRadius="6"
                             Command="{Binding ToggleThemeCommand}"
                             ToolTip.Tip="Toggle theme">
-                        <PathIcon Data="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18V4c4.41 0 8 3.59 8 8s-3.59 8-8 8z"
+                        <!-- Fluent: Dark theme -->
+                        <PathIcon Data="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zm0-2V4a8 8 0 1 1 0 16z"
                                   Width="16" Height="16"/>
                     </Button>
                 </StackPanel>
 
-                <!-- Top nav: main pages -->
+                <!-- Top: main pages -->
                 <ListBox x:Name="NavList"
                          SelectionChanged="NavList_SelectionChanged"
                          SelectedIndex="0"
@@ -74,26 +77,28 @@
                         </Style>
                     </ListBox.Styles>
                     <ListBoxItem Tag="Scan" ToolTip.Tip="Scan">
-                        <PathIcon Data="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                        <!-- Fluent: Scan/Document search -->
+                        <PathIcon Data="M11.5 2a9.5 9.5 0 0 1 6.38 16.55l4.03 4.03a.75.75 0 0 1-1.06 1.06l-4.03-4.03A9.5 9.5 0 1 1 11.5 2zm0 1.5a8 8 0 1 0 0 16 8 8 0 0 0 0-16z"
                                   Width="16" Height="16"/>
                     </ListBoxItem>
                     <ListBoxItem Tag="Results" ToolTip.Tip="Results">
-                        <PathIcon Data="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"
+                        <!-- Fluent: List -->
+                        <PathIcon Data="M2.75 4.5a.75.75 0 0 0 0 1.5h18.5a.75.75 0 0 0 0-1.5H2.75zm0 7a.75.75 0 0 0 0 1.5h18.5a.75.75 0 0 0 0-1.5H2.75zm0 7a.75.75 0 0 0 0 1.5h18.5a.75.75 0 0 0 0-1.5H2.75z"
                                   Width="16" Height="16"/>
                     </ListBoxItem>
                     <ListBoxItem Tag="Compare" ToolTip.Tip="Compare">
-                        <PathIcon Data="M9 3L5 6.99h3V14h2V6.99h3L9 3zm7 14.01V10h-2v7.01h-3L15 21l4-3.99h-3z"
+                        <!-- Fluent: Split -->
+                        <PathIcon Data="M8.293 3.293a1 1 0 0 1 1.414 0l4 4a1 1 0 0 1-1.414 1.414L10 6.414V17.5a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5V6.414L5.707 8.707a1 1 0 0 1-1.414-1.414l4-4zM14 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v11.086l2.293-2.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L14 17.586V6.5z"
                                   Width="16" Height="16"/>
                     </ListBoxItem>
                 </ListBox>
             </DockPanel>
         </Border>
 
-        <!-- Main content -->
+        <!-- Content -->
         <Border Grid.Column="1"
                 Background="{DynamicResource CardBackgroundFillColorSecondaryBrush}"
-                CornerRadius="8,0,0,0"
-                ClipToBounds="True">
+                CornerRadius="8,0,0,0" ClipToBounds="True">
             <TransitioningContentControl x:Name="ContentFrame"/>
         </Border>
     </Grid>
