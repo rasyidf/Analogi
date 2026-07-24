@@ -2,84 +2,94 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="500"
+             mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="600"
              x:Class="Analogi.App.Views.Pages.AboutPage">
 
     <ScrollViewer Padding="32,24">
-        <StackPanel Spacing="20" MaxWidth="520">
-            <StackPanel Spacing="4">
-                <TextBlock Text="Analogi" FontSize="28" FontWeight="Bold"/>
-                <TextBlock Text="Code Clone Detector for Education" FontSize="14" Opacity="0.6"/>
+        <StackPanel Spacing="16" MaxWidth="560" HorizontalAlignment="Center">
+            <!-- App identity -->
+            <StackPanel Spacing="6" HorizontalAlignment="Center" Margin="0,16,0,8">
+                <TextBlock Text="Analogi" FontSize="32" FontWeight="Bold" HorizontalAlignment="Center"/>
+                <TextBlock Text="Code Clone Detector for Education"
+                           FontSize="14" Opacity="0.6" HorizontalAlignment="Center"/>
+                <TextBlock Text="v0.7-dev" FontSize="12" Opacity="0.4" HorizontalAlignment="Center" Margin="0,4,0,0"/>
             </StackPanel>
 
-            <!-- Version -->
+            <!-- Description -->
             <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
                     CornerRadius="8" Padding="20" BorderThickness="1"
                     BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}">
-                <Grid ColumnDefinitions="*,Auto">
-                    <StackPanel Spacing="4">
-                        <TextBlock Text="Version" FontWeight="Medium" FontSize="12"/>
-                        <TextBlock Text="0.7-dev" FontSize="13" Opacity="0.7"/>
-                    </StackPanel>
-                    <TextBlock Grid.Column="1" Text=".NET 10 + Avalonia 12"
-                               VerticalAlignment="Center" FontSize="12" Opacity="0.5"/>
-                </Grid>
+                <TextBlock TextWrapping="Wrap" FontSize="13" Opacity="0.8" LineHeight="20"
+                           Text="Analogi helps educators detect code plagiarism across student programming assignments. It uses multiple analysis techniques — cosine similarity, MOSS-style winnowing, structural comparison, and more — to identify copied work even when students rename variables, reorder code, or change strings."/>
             </Border>
 
-            <!-- About -->
+            <!-- Links -->
             <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
                     CornerRadius="8" Padding="20" BorderThickness="1"
                     BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}">
                 <StackPanel Spacing="10">
-                    <TextBlock Text="About" FontWeight="Medium" FontSize="13"/>
-                    <TextBlock TextWrapping="Wrap" FontSize="13" Opacity="0.75" LineHeight="20"
-                               Text="Analogi helps educators detect code plagiarism across student programming assignments. It uses multiple analysis techniques — cosine similarity, MOSS-style winnowing, structural comparison, and more — to identify copied work even when students rename variables, reorder code, or change strings."/>
+                    <TextBlock Text="Links" FontWeight="SemiBold" FontSize="13"/>
+                    <StackPanel Spacing="6">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <PathIcon Data="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"
+                                      Width="16" Height="16" Opacity="0.7"/>
+                            <TextBlock Text="github.com/rasyidf/Analogi" FontSize="13"
+                                       Foreground="{DynamicResource SystemAccentColor}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <PathIcon Data="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"
+                                      Width="16" Height="16" Opacity="0.7"/>
+                            <TextBlock Text="analogi.rasyid.dev" FontSize="13"
+                                       Foreground="{DynamicResource SystemAccentColor}"/>
+                        </StackPanel>
+                    </StackPanel>
                 </StackPanel>
             </Border>
 
-            <!-- Languages -->
+            <!-- Tech stack -->
             <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
                     CornerRadius="8" Padding="20" BorderThickness="1"
                     BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}">
-                <StackPanel Spacing="8">
-                    <TextBlock Text="Supported Languages" FontWeight="Medium" FontSize="13"/>
-                    <WrapPanel Orientation="Horizontal">
-                        <Border CornerRadius="4" Padding="8,4" Margin="0,0,6,6"
-                                Background="{DynamicResource SystemAccentColorLight3}">
-                            <TextBlock Text="C/C++" FontSize="11"/>
-                        </Border>
-                        <Border CornerRadius="4" Padding="8,4" Margin="0,0,6,6"
-                                Background="{DynamicResource SystemAccentColorLight3}">
-                            <TextBlock Text="Python" FontSize="11"/>
-                        </Border>
-                        <Border CornerRadius="4" Padding="8,4" Margin="0,0,6,6"
-                                Background="{DynamicResource SystemAccentColorLight3}">
-                            <TextBlock Text="Java" FontSize="11"/>
-                        </Border>
-                        <Border CornerRadius="4" Padding="8,4" Margin="0,0,6,6"
-                                Background="{DynamicResource SystemAccentColorLight3}">
-                            <TextBlock Text="C#" FontSize="11"/>
-                        </Border>
-                        <Border CornerRadius="4" Padding="8,4" Margin="0,0,6,6"
-                                Background="{DynamicResource SystemAccentColorLight3}">
-                            <TextBlock Text="JavaScript / TypeScript" FontSize="11"/>
-                        </Border>
-                    </WrapPanel>
+                <StackPanel Spacing="10">
+                    <TextBlock Text="Technology" FontWeight="SemiBold" FontSize="13"/>
+                    <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto,Auto" Margin="0,4,0,0">
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Runtime" FontSize="12" Opacity="0.5"/>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text=".NET 10" FontSize="12"/>
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="UI Framework" FontSize="12" Opacity="0.5" Margin="0,4,0,0"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="Avalonia 12.1 + Fluid.Avalonia" FontSize="12" Margin="0,4,0,0"/>
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Code Editor" FontSize="12" Opacity="0.5" Margin="0,4,0,0"/>
+                        <TextBlock Grid.Row="2" Grid.Column="1" Text="AvaloniaEdit + TextMate" FontSize="12" Margin="0,4,0,0"/>
+                        <TextBlock Grid.Row="3" Grid.Column="0" Text="MVVM" FontSize="12" Opacity="0.5" Margin="0,4,0,0"/>
+                        <TextBlock Grid.Row="3" Grid.Column="1" Text="CommunityToolkit.Mvvm" FontSize="12" Margin="0,4,0,0"/>
+                    </Grid>
                 </StackPanel>
             </Border>
 
-            <!-- Tech -->
+            <!-- Supported languages -->
             <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
                     CornerRadius="8" Padding="20" BorderThickness="1"
                     BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}">
-                <StackPanel Spacing="8">
-                    <TextBlock Text="Built With" FontWeight="Medium" FontSize="13"/>
+                <StackPanel Spacing="10">
+                    <TextBlock Text="Supported Languages" FontWeight="SemiBold" FontSize="13"/>
                     <TextBlock FontSize="12" Opacity="0.7" LineHeight="20"
-                               Text="• .NET 10 (cross-platform)&#10;• Avalonia 12 + Fluid.Avalonia theme&#10;• AvaloniaEdit for code viewing&#10;• CommunityToolkit.Mvvm"/>
+                               Text="C/C++ (.c, .cpp, .h, .hpp)&#10;Python (.py)&#10;Java (.java)&#10;C# (.cs)&#10;JavaScript / TypeScript (.js, .ts, .jsx, .tsx)"/>
                 </StackPanel>
             </Border>
 
-            <TextBlock Text="MIT License • github.com/rasyidf/Analogi" FontSize="11" Opacity="0.4" Margin="0,4,0,0"/>
+            <!-- Credits -->
+            <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                    CornerRadius="8" Padding="20" BorderThickness="1"
+                    BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}">
+                <StackPanel Spacing="10">
+                    <TextBlock Text="Credits" FontWeight="SemiBold" FontSize="13"/>
+                    <TextBlock FontSize="12" Opacity="0.7" LineHeight="20" TextWrapping="Wrap"
+                               Text="Winnowing algorithm: Schleimer, Wilkerson, Aiken (2003)&#10;Inspired by MOSS (Stanford University)&#10;Fluid.Avalonia theme by Alpaq92&#10;Fluent System Icons by Microsoft"/>
+                </StackPanel>
+            </Border>
+
+            <!-- License -->
+            <TextBlock Text="MIT License © 2024 rasyidf" FontSize="11" Opacity="0.4"
+                       HorizontalAlignment="Center" Margin="0,8,0,16"/>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

@@ -13,6 +13,14 @@ public partial class ResultsViewModel : ViewModelBase
     [ObservableProperty]
     private string _filterLabel = "All";
 
+    [ObservableProperty]
+    private bool _hasResults;
+
+    public Action? OnBackRequested { get; set; }
+
+    [RelayCommand]
+    private void GoBack() => OnBackRequested?.Invoke();
+
     public ObservableCollection<ResultItemViewModel> FilteredResults { get; } = [];
 
     private readonly List<ResultItemViewModel> _allResults = [];
@@ -26,6 +34,7 @@ public partial class ResultsViewModel : ViewModelBase
 
         _filterLevel = null;
         ApplyFilter();
+        HasResults = true;
         SummaryText = $"{result.TotalFiles} files scanned, {result.Pairs.Count} similar pairs found.";
     }
 
@@ -37,6 +46,7 @@ public partial class ResultsViewModel : ViewModelBase
 
         _filterLevel = null;
         ApplyFilter();
+        HasResults = true;
         SummaryText = $"{result.TotalSubmissions} submissions scanned, {result.Pairs.Count} similar pairs found.";
     }
 

@@ -10,11 +10,20 @@
     <DockPanel Margin="28,24">
         <!-- Header -->
         <StackPanel DockPanel.Dock="Top" Spacing="6" Margin="0,0,0,16">
-            <TextBlock Text="Results" FontSize="26" FontWeight="SemiBold"/>
+            <StackPanel Orientation="Horizontal" Spacing="12">
+                <Button Command="{Binding GoBackCommand}"
+                        Padding="8,6" Background="Transparent" CornerRadius="6"
+                        VerticalAlignment="Center" ToolTip.Tip="Back to Scan">
+                    <PathIcon Data="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
+                              Width="16" Height="16"/>
+                </Button>
+                <TextBlock Text="Results" FontSize="26" FontWeight="SemiBold" VerticalAlignment="Center"/>
+            </StackPanel>
             <TextBlock Text="{Binding SummaryText}" FontSize="13" Opacity="0.65"/>
 
-            <!-- Filter bar -->
-            <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+            <!-- Filter bar (only when has results) -->
+            <Border IsVisible="{Binding HasResults}"
+                    Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
                     CornerRadius="6" Padding="12,8" Margin="0,10,0,0"
                     BorderThickness="1"
                     BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}">
@@ -30,8 +39,24 @@
             </Border>
         </StackPanel>
 
+        <!-- Empty state -->
+        <Border IsVisible="{Binding !HasResults}"
+                CornerRadius="8" Padding="48"
+                Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                BorderThickness="1" BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}"
+                HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Spacing="10" HorizontalAlignment="Center">
+                <PathIcon Data="M2.75 4.5a.75.75 0 0 0 0 1.5h18.5a.75.75 0 0 0 0-1.5H2.75zm0 7a.75.75 0 0 0 0 1.5h18.5a.75.75 0 0 0 0-1.5H2.75zm0 7a.75.75 0 0 0 0 1.5h18.5a.75.75 0 0 0 0-1.5H2.75z"
+                          Width="32" Height="32" Opacity="0.3"/>
+                <TextBlock Text="No Results Yet" FontSize="16" FontWeight="Medium" HorizontalAlignment="Center"/>
+                <TextBlock Text="Run a scan first to see similarity results here."
+                           TextAlignment="Center" Opacity="0.5" FontSize="13"/>
+            </StackPanel>
+        </Border>
+
         <!-- Results grid -->
-        <DataGrid ItemsSource="{Binding FilteredResults}"
+        <DataGrid IsVisible="{Binding HasResults}"
+                  ItemsSource="{Binding FilteredResults}"
                   IsReadOnly="True"
                   GridLinesVisibility="Horizontal"
                   CanUserSortColumns="True"

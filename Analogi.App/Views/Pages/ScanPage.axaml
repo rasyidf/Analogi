@@ -11,7 +11,7 @@
         <!-- Centered hero area -->
         <StackPanel Grid.Row="0" Spacing="20"
                     VerticalAlignment="Center" HorizontalAlignment="Center"
-                    MaxWidth="500" Margin="32">
+                    MinWidth="360" MaxWidth="560" Margin="32">
 
             <!-- Title -->
             <StackPanel Spacing="6" HorizontalAlignment="Center">

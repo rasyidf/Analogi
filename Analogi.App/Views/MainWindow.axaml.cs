@@ -31,7 +31,17 @@ public partial class MainWindow : Window
 
             // Auto-navigate to results after scan completes
             vm.ScanVm.OnScanCompleted = () => NavigateToResults();
+            vm.ResultsVm.OnBackRequested = () => NavigateToScan();
         }
+    }
+
+    public void NavigateToScan()
+    {
+        _handlingSelection = true;
+        NavList.SelectedIndex = 0;
+        NavListBottom.SelectedIndex = -1;
+        ContentFrame.Content = _scanPage;
+        _handlingSelection = false;
     }
 
     public void NavigateToResults()
