@@ -1,5 +1,4 @@
 using Avalonia.Controls;
-using Avalonia.Controls.Primitives;
 using Analogi.App.ViewModels;
 using Analogi.App.Views.Pages;
 
@@ -31,18 +30,18 @@ public partial class MainWindow : Window
         }
     }
 
-    private void NavTabs_SelectionChanged(object? sender, SelectionChangedEventArgs e)
+    private void NavList_SelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
         if (ContentFrame is null) return;
-        if (sender is TabStrip tabs)
+        if (sender is ListBox lb && lb.SelectedItem is ListBoxItem item && item.Tag is string tag)
         {
-            ContentFrame.Content = tabs.SelectedIndex switch
+            ContentFrame.Content = tag switch
             {
-                0 => _scanPage,
-                1 => _resultsPage,
-                2 => _comparePage,
-                3 => _settingsPage,
-                4 => _aboutPage,
+                "Scan" => _scanPage,
+                "Results" => _resultsPage,
+                "Compare" => _comparePage,
+                "Settings" => _settingsPage,
+                "About" => _aboutPage,
                 _ => _scanPage
             };
         }

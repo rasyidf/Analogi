@@ -1,7 +1,6 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:Analogi.App.ViewModels"
-        xmlns:pages="using:Analogi.App.Views.Pages"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="700"
@@ -16,31 +15,62 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <DockPanel>
-        <!-- Top nav bar -->
-        <Border DockPanel.Dock="Top" Padding="16,12"
-                BorderThickness="0,0,0,1"
+    <Grid ColumnDefinitions="56,*">
+        <!-- Sidebar rail (NavigationView compact style) -->
+        <Border Grid.Column="0"
+                Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                BorderThickness="0,0,1,0"
                 BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}">
-            <Grid ColumnDefinitions="Auto,*,Auto">
-                <!-- App title -->
-                <TextBlock Grid.Column="0" Text="Analogi"
-                           FontSize="16" FontWeight="Bold"
-                           VerticalAlignment="Center" Margin="0,0,24,0"/>
+            <DockPanel>
+                <!-- Bottom: Theme toggle -->
+                <Button DockPanel.Dock="Bottom"
+                        Content="◑"
+                        FontSize="18"
+                        HorizontalAlignment="Center"
+                        Margin="0,0,0,12"
+                        Padding="8"
+                        Background="Transparent"
+                        Command="{Binding ToggleThemeCommand}"
+                        ToolTip.Tip="Toggle theme"/>
 
-                <!-- Navigation tabs -->
-                <TabStrip Grid.Column="1" x:Name="NavTabs"
-                          SelectedIndex="0"
-                          SelectionChanged="NavTabs_SelectionChanged">
-                    <TabStripItem Content="Scan"/>
-                    <TabStripItem Content="Results"/>
-                    <TabStripItem Content="Compare"/>
-                    <TabStripItem Content="Settings"/>
-                    <TabStripItem Content="About"/>
-                </TabStrip>
-            </Grid>
+                <!-- Nav items -->
+                <ListBox x:Name="NavList"
+                         SelectionChanged="NavList_SelectionChanged"
+                         SelectedIndex="0"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         Margin="0,8,0,0"
+                         HorizontalAlignment="Center">
+                    <ListBox.Styles>
+                        <Style Selector="ListBoxItem">
+                            <Setter Property="Padding" Value="10,12"/>
+                            <Setter Property="Margin" Value="0,2"/>
+                            <Setter Property="CornerRadius" Value="8"/>
+                            <Setter Property="Width" Value="42"/>
+                            <Setter Property="Height" Value="42"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        </Style>
+                    </ListBox.Styles>
+                    <ListBoxItem Tag="Scan" ToolTip.Tip="Scan">
+                        <TextBlock Text="⊞" FontSize="18"/>
+                    </ListBoxItem>
+                    <ListBoxItem Tag="Results" ToolTip.Tip="Results">
+                        <TextBlock Text="☰" FontSize="18"/>
+                    </ListBoxItem>
+                    <ListBoxItem Tag="Compare" ToolTip.Tip="Compare">
+                        <TextBlock Text="⇄" FontSize="18"/>
+                    </ListBoxItem>
+                    <ListBoxItem Tag="Settings" ToolTip.Tip="Settings">
+                        <TextBlock Text="⚙" FontSize="18"/>
+                    </ListBoxItem>
+                    <ListBoxItem Tag="About" ToolTip.Tip="About">
+                        <TextBlock Text="ⓘ" FontSize="18"/>
+                    </ListBoxItem>
+                </ListBox>
+            </DockPanel>
         </Border>
 
-        <!-- Content -->
-        <TransitioningContentControl x:Name="ContentFrame"/>
-    </DockPanel>
+        <!-- Content area -->
+        <TransitioningContentControl Grid.Column="1" x:Name="ContentFrame"/>
+    </Grid>
 </Window>

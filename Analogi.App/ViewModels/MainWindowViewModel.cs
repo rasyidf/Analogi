@@ -1,5 +1,8 @@
+using Avalonia;
+using Avalonia.Styling;
 using Analogi.App.ViewModels.Pages;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace Analogi.App.ViewModels;
 
@@ -16,5 +19,16 @@ public partial class MainWindowViewModel : ViewModelBase
         CompareVm = new CompareViewModel();
         SettingsVm = new SettingsViewModel();
         ScanVm = new ScanViewModel(ResultsVm, CompareVm);
+    }
+
+    [RelayCommand]
+    private void ToggleTheme()
+    {
+        var app = Application.Current;
+        if (app is null) return;
+
+        app.RequestedThemeVariant = app.ActualThemeVariant == ThemeVariant.Dark
+            ? ThemeVariant.Light
+            : ThemeVariant.Dark;
     }
 }

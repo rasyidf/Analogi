@@ -3,30 +3,82 @@
              xmlns:vm="using:Analogi.App.ViewModels.Pages"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="700"
              x:Class="Analogi.App.Views.Pages.SettingsPage"
              x:DataType="vm:SettingsViewModel">
 
     <ScrollViewer Padding="32,24">
-        <StackPanel Spacing="20" MaxWidth="720">
+        <StackPanel Spacing="24" MaxWidth="760">
             <!-- Header -->
             <StackPanel Spacing="4">
                 <TextBlock Text="Pipeline Settings" FontSize="26" FontWeight="SemiBold"/>
-                <TextBlock Text="Toggle analysis steps on or off. Disabled steps are skipped during scanning."
+                <TextBlock Text="Configure which analysis steps run during scanning. Disabled steps are skipped."
                            Opacity="0.65" FontSize="13" TextWrapping="Wrap"/>
             </StackPanel>
 
-            <!-- Pipeline Flow Visualizer -->
+            <!-- Pipeline Graph Visualizer -->
             <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
-                    CornerRadius="8" Padding="20" BorderThickness="1"
+                    CornerRadius="8" Padding="24" BorderThickness="1"
                     BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}">
-                <StackPanel Spacing="12">
-                    <TextBlock Text="Pipeline Flow" FontWeight="Medium" FontSize="13"/>
-                    <TextBlock Text="Input → Extractors → PreProcessors → Analyzers → Score"
-                               FontSize="12" Opacity="0.5" FontFamily="Cascadia Code,Consolas,monospace"/>
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Pipeline Graph" FontWeight="Medium" FontSize="14" Margin="0,0,0,8"/>
 
-                    <!-- Pipeline cards -->
-                    <ItemsControl ItemsSource="{Binding Steps}">
+                    <!-- Graph: Input node -->
+                    <Border CornerRadius="6" Padding="12,8"
+                            Background="#2E7D32" HorizontalAlignment="Left">
+                        <TextBlock Text="Input (Source Files)" FontSize="11" Foreground="White" FontWeight="Medium"/>
+                    </Border>
+
+                    <!-- Extractors group -->
+                    <TextBlock Text="  │" FontFamily="Consolas,monospace" Opacity="0.4" FontSize="12"/>
+                    <TextBlock Text="  ▼  Extractors" FontFamily="Consolas,monospace" Opacity="0.6" FontSize="11"/>
+                    <ItemsControl ItemsSource="{Binding Extractors}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" Spacing="6"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="vm:PipelineStepViewModel">
+                                <Border CornerRadius="5" Padding="10,6"
+                                        Opacity="{Binding Opacity}"
+                                        Background="#1A4FC3F7" BorderThickness="1" BorderBrush="#4FC3F7">
+                                    <StackPanel Orientation="Horizontal" Spacing="6">
+                                        <Ellipse Width="6" Height="6" Fill="#4FC3F7" VerticalAlignment="Center"/>
+                                        <TextBlock Text="{Binding Name}" FontSize="11"/>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <!-- PreProcessors group -->
+                    <TextBlock Text="  │" FontFamily="Consolas,monospace" Opacity="0.4" FontSize="12"/>
+                    <TextBlock Text="  ▼  PreProcessors" FontFamily="Consolas,monospace" Opacity="0.6" FontSize="11"/>
+                    <ItemsControl ItemsSource="{Binding PreProcessors}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" Spacing="6"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="vm:PipelineStepViewModel">
+                                <Border CornerRadius="5" Padding="10,6"
+                                        Opacity="{Binding Opacity}"
+                                        Background="#1AFFB74D" BorderThickness="1" BorderBrush="#FFB74D">
+                                    <StackPanel Orientation="Horizontal" Spacing="6">
+                                        <Ellipse Width="6" Height="6" Fill="#FFB74D" VerticalAlignment="Center"/>
+                                        <TextBlock Text="{Binding Name}" FontSize="11"/>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <!-- Analyzers group -->
+                    <TextBlock Text="  │" FontFamily="Consolas,monospace" Opacity="0.4" FontSize="12"/>
+                    <TextBlock Text="  ▼  Analyzers" FontFamily="Consolas,monospace" Opacity="0.6" FontSize="11"/>
+                    <ItemsControl ItemsSource="{Binding Analyzers}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel Orientation="Horizontal"/>
@@ -34,56 +86,39 @@
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate x:DataType="vm:PipelineStepViewModel">
-                                <Border Margin="0,0,8,8"
-                                        CornerRadius="6"
-                                        Padding="12,8"
-                                        BorderThickness="1"
+                                <Border CornerRadius="5" Padding="10,6" Margin="0,0,6,6"
                                         Opacity="{Binding Opacity}"
-                                        BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}"
-                                        Background="{DynamicResource CardBackgroundFillColorSecondaryBrush}">
-                                    <StackPanel Orientation="Horizontal" Spacing="8">
-                                        <!-- Category dot -->
-                                        <Ellipse Width="8" Height="8" VerticalAlignment="Center">
-                                            <Ellipse.Fill>
-                                                <SolidColorBrush Color="{Binding CategoryColor}"/>
-                                            </Ellipse.Fill>
-                                        </Ellipse>
-                                        <TextBlock Text="{Binding Name}" FontSize="11" VerticalAlignment="Center"/>
+                                        Background="#1A81C784" BorderThickness="1" BorderBrush="#81C784">
+                                    <StackPanel Orientation="Horizontal" Spacing="6">
+                                        <Ellipse Width="6" Height="6" Fill="#81C784" VerticalAlignment="Center"/>
+                                        <TextBlock Text="{Binding Name}" FontSize="11"/>
                                     </StackPanel>
                                 </Border>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
 
-                    <!-- Legend -->
-                    <StackPanel Orientation="Horizontal" Spacing="16" Margin="0,4,0,0">
-                        <StackPanel Orientation="Horizontal" Spacing="4">
-                            <Ellipse Width="8" Height="8" Fill="#4FC3F7"/>
-                            <TextBlock Text="Extractor" FontSize="10" Opacity="0.6"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Spacing="4">
-                            <Ellipse Width="8" Height="8" Fill="#FFB74D"/>
-                            <TextBlock Text="PreProcessor" FontSize="10" Opacity="0.6"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Spacing="4">
-                            <Ellipse Width="8" Height="8" Fill="#81C784"/>
-                            <TextBlock Text="Analyzer" FontSize="10" Opacity="0.6"/>
-                        </StackPanel>
-                    </StackPanel>
+                    <!-- Output node -->
+                    <TextBlock Text="  │" FontFamily="Consolas,monospace" Opacity="0.4" FontSize="12"/>
+                    <TextBlock Text="  ▼" FontFamily="Consolas,monospace" Opacity="0.6" FontSize="11"/>
+                    <Border CornerRadius="6" Padding="12,8"
+                            Background="#C62828" HorizontalAlignment="Left">
+                        <TextBlock Text="Output (Similarity Score)" FontSize="11" Foreground="White" FontWeight="Medium"/>
+                    </Border>
                 </StackPanel>
             </Border>
 
-            <!-- Toggle List -->
+            <!-- Step Controls -->
             <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
-                    CornerRadius="8" Padding="20" BorderThickness="1"
+                    CornerRadius="8" Padding="24" BorderThickness="1"
                     BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}">
                 <StackPanel Spacing="8">
-                    <TextBlock Text="Step Controls" FontWeight="Medium" FontSize="13" Margin="0,0,0,8"/>
+                    <TextBlock Text="Step Controls" FontWeight="Medium" FontSize="14" Margin="0,0,0,8"/>
 
                     <ItemsControl ItemsSource="{Binding Steps}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate x:DataType="vm:PipelineStepViewModel">
-                                <Border Padding="12,10" Margin="0,0,0,4"
+                                <Border Padding="14,10" Margin="0,0,0,4"
                                         CornerRadius="6"
                                         Background="{DynamicResource CardBackgroundFillColorSecondaryBrush}">
                                     <Grid ColumnDefinitions="Auto,*,Auto">
@@ -91,12 +126,12 @@
                                         <Border Grid.Column="0" CornerRadius="4"
                                                 Padding="8,3" Margin="0,0,12,0"
                                                 VerticalAlignment="Center"
-                                                MinWidth="90">
+                                                MinWidth="95">
                                             <Border.Background>
-                                                <SolidColorBrush Color="{Binding CategoryColor}" Opacity="0.2"/>
+                                                <SolidColorBrush Color="{Binding CategoryColor}" Opacity="0.15"/>
                                             </Border.Background>
                                             <TextBlock Text="{Binding Category}" FontSize="10"
-                                                       HorizontalAlignment="Center">
+                                                       HorizontalAlignment="Center" FontWeight="Medium">
                                                 <TextBlock.Foreground>
                                                     <SolidColorBrush Color="{Binding CategoryColor}"/>
                                                 </TextBlock.Foreground>
@@ -110,7 +145,8 @@
                                         <!-- Toggle -->
                                         <ToggleSwitch Grid.Column="2"
                                                       IsChecked="{Binding IsEnabled}"
-                                                      VerticalAlignment="Center"/>
+                                                      VerticalAlignment="Center"
+                                                      OnContent="On" OffContent="Off"/>
                                     </Grid>
                                 </Border>
                             </DataTemplate>

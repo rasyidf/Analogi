@@ -8,13 +8,24 @@ namespace Analogi.App.ViewModels.Pages;
 public partial class SettingsViewModel : ViewModelBase
 {
     public ObservableCollection<PipelineStepViewModel> Steps { get; } = [];
+    public ObservableCollection<PipelineStepViewModel> Extractors { get; } = [];
+    public ObservableCollection<PipelineStepViewModel> PreProcessors { get; } = [];
+    public ObservableCollection<PipelineStepViewModel> Analyzers { get; } = [];
 
     public SettingsViewModel()
     {
         var engine = new AnalysisEngine();
         foreach (var step in engine.Steps)
         {
-            Steps.Add(new PipelineStepViewModel(step));
+            var vm = new PipelineStepViewModel(step);
+            Steps.Add(vm);
+
+            switch (vm.Category)
+            {
+                case "Extractor": Extractors.Add(vm); break;
+                case "PreProcessor": PreProcessors.Add(vm); break;
+                case "Analyzer": Analyzers.Add(vm); break;
+            }
         }
     }
 }
@@ -52,7 +63,7 @@ public partial class PipelineStepViewModel : ObservableObject
     [NotifyPropertyChangedFor(nameof(Opacity))]
     private bool _isEnabled;
 
-    public double Opacity => IsEnabled ? 1.0 : 0.4;
+    public double Opacity => IsEnabled ? 1.0 : 0.35;
 
     public PipelineStepViewModel(IPipelineStep step)
     {
