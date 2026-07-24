@@ -4,7 +4,6 @@
         xmlns:pages="using:Analogi.App.Views.Pages"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:ui="using:FluentAvalonia.UI.Controls"
         mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="700"
         x:Class="Analogi.App.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
@@ -17,24 +16,29 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <ui:NavigationView x:Name="NavView"
-                       PaneDisplayMode="Left"
-                       IsSettingsVisible="False"
-                       IsPaneOpen="True"
-                       OpenPaneLength="200"
-                       SelectionChanged="NavView_SelectionChanged">
-        <ui:NavigationView.MenuItems>
-            <ui:NavigationViewItem Content="Scan" Tag="ScanPage" IconSource="Find"/>
-            <ui:NavigationViewItem Content="Results" Tag="ResultsPage" IconSource="List"/>
-            <ui:NavigationViewItem Content="Compare" Tag="ComparePage" IconSource="Copy"/>
-        </ui:NavigationView.MenuItems>
+    <SplitView IsPaneOpen="True"
+               DisplayMode="CompactInline"
+               OpenPaneLength="180"
+               CompactPaneLength="48">
+        <SplitView.Pane>
+            <Border Background="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}"
+                    Padding="0,8">
+                <StackPanel Spacing="4">
+                    <ListBox x:Name="NavList"
+                             SelectionChanged="NavList_SelectionChanged"
+                             SelectedIndex="0"
+                             Margin="4">
+                        <ListBoxItem Content="⊞  Scan" Tag="ScanPage"/>
+                        <ListBoxItem Content="☰  Results" Tag="ResultsPage"/>
+                        <ListBoxItem Content="⇄  Compare" Tag="ComparePage"/>
+                        <ListBoxItem Content="ⓘ  About" Tag="AboutPage"/>
+                    </ListBox>
+                </StackPanel>
+            </Border>
+        </SplitView.Pane>
 
-        <ui:NavigationView.FooterMenuItems>
-            <ui:NavigationViewItem Content="About" Tag="AboutPage" IconSource="Help"/>
-        </ui:NavigationView.FooterMenuItems>
-
-        <ui:NavigationView.Content>
+        <SplitView.Content>
             <TransitioningContentControl x:Name="ContentFrame"/>
-        </ui:NavigationView.Content>
-    </ui:NavigationView>
+        </SplitView.Content>
+    </SplitView>
 </Window>

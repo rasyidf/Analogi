@@ -1,10 +1,9 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:fa="using:FluentAvalonia.Styling"
              x:Class="Analogi.App.App"
              RequestedThemeVariant="Default">
     <Application.Styles>
-        <fa:FluentAvaloniaTheme />
+        <FluentTheme />
         <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml"/>
         <StyleInclude Source="avares://AvaloniaEdit/Themes/Fluent/AvaloniaEdit.xaml"/>
     </Application.Styles>

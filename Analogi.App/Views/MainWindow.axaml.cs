@@ -1,7 +1,6 @@
 using Avalonia.Controls;
 using Analogi.App.ViewModels;
 using Analogi.App.Views.Pages;
-using FluentAvalonia.UI.Controls;
 
 namespace Analogi.App.Views;
 
@@ -27,13 +26,12 @@ public partial class MainWindow : Window
             _comparePage.DataContext = vm.CompareVm;
         }
 
-        // Navigate to scan page by default
         ContentFrame.Content = _scanPage;
     }
 
-    private void NavView_SelectionChanged(object? sender, NavigationViewSelectionChangedEventArgs e)
+    private void NavList_SelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
-        if (e.SelectedItem is NavigationViewItem item && item.Tag is string tag)
+        if (sender is ListBox lb && lb.SelectedItem is ListBoxItem item && item.Tag is string tag)
         {
             ContentFrame.Content = tag switch
             {
