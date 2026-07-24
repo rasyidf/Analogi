@@ -11,6 +11,7 @@ public partial class MainWindow : Window
     private readonly ComparePage _comparePage = new();
     private readonly SettingsPage _settingsPage = new();
     private readonly AboutPage _aboutPage = new();
+    private bool _handlingSelection;
 
     public MainWindow()
     {
@@ -32,9 +33,15 @@ public partial class MainWindow : Window
 
     private void NavList_SelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
-        if (ContentFrame is null) return;
+        if (ContentFrame is null || _handlingSelection) return;
         if (sender is ListBox lb && lb.SelectedItem is ListBoxItem item && item.Tag is string tag)
         {
+            _handlingSelection = true;
+
+            // Deselect the other ListBox
+            if (sender == NavList) NavListBottom.SelectedIndex = -1;
+            else NavList.SelectedIndex = -1;
+
             ContentFrame.Content = tag switch
             {
                 "Scan" => _scanPage,
@@ -44,6 +51,8 @@ public partial class MainWindow : Window
                 "About" => _aboutPage,
                 _ => _scanPage
             };
+
+            _handlingSelection = false;
         }
     }
 }

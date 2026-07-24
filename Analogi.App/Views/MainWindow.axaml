@@ -17,71 +17,82 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <Grid ColumnDefinitions="64,*" Margin="0,32,0,0">
+    <Grid ColumnDefinitions="52,*" Margin="0,32,0,0">
         <!-- Sidebar -->
-        <Border Grid.Column="0"
-                Padding="0,12,0,8">
+        <Border Grid.Column="0" Padding="0,8,0,8">
             <DockPanel>
-                <!-- Theme toggle at bottom -->
-                <Button DockPanel.Dock="Bottom"
-                        HorizontalAlignment="Center"
-                        Margin="0,0,0,4"
-                        Padding="10"
-                        Background="Transparent"
-                        CornerRadius="8"
-                        Command="{Binding ToggleThemeCommand}"
-                        ToolTip.Tip="Toggle Light/Dark theme">
-                    <PathIcon Data="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18V4c4.41 0 8 3.59 8 8s-3.59 8-8 8z"
-                              Width="18" Height="18"/>
-                </Button>
+                <!-- Bottom section: Settings, About, Theme -->
+                <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Center" Spacing="2">
+                    <ListBox x:Name="NavListBottom"
+                             SelectionChanged="NavList_SelectionChanged"
+                             Background="Transparent" BorderThickness="0"
+                             HorizontalAlignment="Center">
+                        <ListBox.Styles>
+                            <Style Selector="ListBoxItem">
+                                <Setter Property="Padding" Value="0"/>
+                                <Setter Property="Margin" Value="0,1"/>
+                                <Setter Property="CornerRadius" Value="6"/>
+                                <Setter Property="Width" Value="36"/>
+                                <Setter Property="Height" Value="36"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                            </Style>
+                        </ListBox.Styles>
+                        <ListBoxItem Tag="Settings" ToolTip.Tip="Settings">
+                            <PathIcon Data="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"
+                                      Width="16" Height="16"/>
+                        </ListBoxItem>
+                        <ListBoxItem Tag="About" ToolTip.Tip="About">
+                            <PathIcon Data="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                                      Width="16" Height="16"/>
+                        </ListBoxItem>
+                    </ListBox>
+                    <Button HorizontalAlignment="Center"
+                            Padding="8" Background="Transparent" CornerRadius="6"
+                            Command="{Binding ToggleThemeCommand}"
+                            ToolTip.Tip="Toggle theme">
+                        <PathIcon Data="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18V4c4.41 0 8 3.59 8 8s-3.59 8-8 8z"
+                                  Width="16" Height="16"/>
+                    </Button>
+                </StackPanel>
 
-                <!-- Nav items -->
+                <!-- Top nav: main pages -->
                 <ListBox x:Name="NavList"
                          SelectionChanged="NavList_SelectionChanged"
                          SelectedIndex="0"
-                         Background="Transparent"
-                         BorderThickness="0"
+                         Background="Transparent" BorderThickness="0"
                          HorizontalAlignment="Center">
                     <ListBox.Styles>
                         <Style Selector="ListBoxItem">
                             <Setter Property="Padding" Value="0"/>
-                            <Setter Property="Margin" Value="0,2"/>
-                            <Setter Property="CornerRadius" Value="8"/>
-                            <Setter Property="Width" Value="44"/>
-                            <Setter Property="Height" Value="44"/>
+                            <Setter Property="Margin" Value="0,1"/>
+                            <Setter Property="CornerRadius" Value="6"/>
+                            <Setter Property="Width" Value="36"/>
+                            <Setter Property="Height" Value="36"/>
                             <Setter Property="HorizontalContentAlignment" Value="Center"/>
                             <Setter Property="VerticalContentAlignment" Value="Center"/>
                         </Style>
                     </ListBox.Styles>
                     <ListBoxItem Tag="Scan" ToolTip.Tip="Scan">
                         <PathIcon Data="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
-                                  Width="20" Height="20"/>
+                                  Width="16" Height="16"/>
                     </ListBoxItem>
                     <ListBoxItem Tag="Results" ToolTip.Tip="Results">
                         <PathIcon Data="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"
-                                  Width="20" Height="20"/>
+                                  Width="16" Height="16"/>
                     </ListBoxItem>
                     <ListBoxItem Tag="Compare" ToolTip.Tip="Compare">
                         <PathIcon Data="M9 3L5 6.99h3V14h2V6.99h3L9 3zm7 14.01V10h-2v7.01h-3L15 21l4-3.99h-3z"
-                                  Width="20" Height="20"/>
-                    </ListBoxItem>
-                    <ListBoxItem Tag="Settings" ToolTip.Tip="Settings">
-                        <PathIcon Data="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"
-                                  Width="20" Height="20"/>
-                    </ListBoxItem>
-                    <ListBoxItem Tag="About" ToolTip.Tip="About">
-                        <PathIcon Data="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
-                                  Width="20" Height="20"/>
+                                  Width="16" Height="16"/>
                     </ListBoxItem>
                 </ListBox>
             </DockPanel>
         </Border>
 
-        <!-- Main content with rounded card -->
+        <!-- Main content -->
         <Border Grid.Column="1"
                 Background="{DynamicResource CardBackgroundFillColorSecondaryBrush}"
                 CornerRadius="8,0,0,0"
-                Margin="0,0,0,0"
                 ClipToBounds="True">
             <TransitioningContentControl x:Name="ContentFrame"/>
         </Border>
