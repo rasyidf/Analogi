@@ -1,0 +1,52 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="400"
+             x:Class="Analogi.App.Views.Pages.AboutPage">
+
+    <ScrollViewer Padding="32">
+        <StackPanel Spacing="12" MaxWidth="600">
+            <TextBlock Text="Analogi" FontSize="32" FontWeight="Bold"/>
+            <TextBlock Text="Code Clone Detector" FontSize="16"
+                       Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+
+            <TextBlock Text="Version 0.6" Margin="0,8,0,0"/>
+
+            <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                    CornerRadius="8" Padding="20" Margin="0,16,0,0">
+                <StackPanel Spacing="8">
+                    <TextBlock Text="About" FontWeight="SemiBold"/>
+                    <TextBlock TextWrapping="Wrap"
+                               Text="Analogi is a plagiarism detection tool designed for educational use. It helps professors identify code similarities across student submissions using multiple analysis techniques including cosine similarity, MOSS-style winnowing, structural analysis, and more."/>
+                </StackPanel>
+            </Border>
+
+            <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                    CornerRadius="8" Padding="20" Margin="0,8,0,0">
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Supported Languages" FontWeight="SemiBold"/>
+                    <TextBlock Text="• C/C++ (.c, .cpp, .cc, .h, .hpp)" />
+                    <TextBlock Text="• Python (.py)" />
+                    <TextBlock Text="• Java (.java)" />
+                    <TextBlock Text="• C# (.cs)" />
+                    <TextBlock Text="• JavaScript/TypeScript (.js, .jsx, .ts, .tsx)" />
+                </StackPanel>
+            </Border>
+
+            <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                    CornerRadius="8" Padding="20" Margin="0,8,0,0">
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Technology" FontWeight="SemiBold"/>
+                    <TextBlock Text="• .NET 10 + AvaloniaUI 12 (cross-platform)" />
+                    <TextBlock Text="• FluentAvalonia for modern UI" />
+                    <TextBlock Text="• CommunityToolkit.Mvvm for clean MVVM" />
+                    <TextBlock Text="• AvaloniaEdit for syntax-highlighted code view" />
+                </StackPanel>
+            </Border>
+
+            <TextBlock Text="MIT License" Margin="0,16,0,0"
+                       Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

@@ -1,0 +1,76 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Analogi.App.ViewModels.Pages"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="700" d:DesignHeight="500"
+             x:Class="Analogi.App.Views.Pages.ScanPage"
+             x:DataType="vm:ScanViewModel">
+
+    <ScrollViewer Padding="32">
+        <StackPanel Spacing="16" MaxWidth="700">
+            <!-- Header -->
+            <TextBlock Text="Code Clone Scanner" FontSize="28" FontWeight="SemiBold"/>
+            <TextBlock Text="Detect plagiarism across student programming assignments."
+                       Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                       TextWrapping="Wrap"/>
+
+            <!-- Folder Selection -->
+            <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                    CornerRadius="8" Padding="20" Margin="0,8,0,0">
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Source Folder" FontWeight="SemiBold"/>
+                    <Grid ColumnDefinitions="*,Auto">
+                        <TextBox Grid.Column="0"
+                                 Text="{Binding FolderPath, Mode=TwoWay}"
+                                 PlaceholderText="Path to folder containing source files..."
+                                 Margin="0,0,8,0"/>
+                        <Button Grid.Column="1"
+                                Content="Browse..."
+                                Command="{Binding BrowseCommand}"/>
+                    </Grid>
+
+                    <!-- Mode Toggle -->
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <CheckBox Content="Submission mode (compare subfolders as students)"
+                                  IsChecked="{Binding IsSubmissionMode}"/>
+                    </StackPanel>
+
+                    <!-- Scan Button -->
+                    <Button Content="Start Scan"
+                            Classes="accent"
+                            HorizontalAlignment="Left"
+                            Command="{Binding ScanCommand}"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Progress -->
+            <StackPanel IsVisible="{Binding IsScanning}" Spacing="8">
+                <ProgressBar Minimum="0"
+                             Maximum="{Binding ProgressMax}"
+                             Value="{Binding ProgressValue}"
+                             IsIndeterminate="False"/>
+            </StackPanel>
+
+            <!-- Status -->
+            <TextBlock Text="{Binding StatusText}"
+                       TextWrapping="Wrap"
+                       Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+
+            <!-- Info Card -->
+            <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                    CornerRadius="8" Padding="20" Margin="0,8,0,0">
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Supported Languages" FontWeight="SemiBold"/>
+                    <TextBlock Text="C/C++ (.c, .cpp, .h) • Python (.py) • Java (.java) • C# (.cs) • JavaScript/TypeScript (.js, .ts, .jsx, .tsx)"
+                               TextWrapping="Wrap"
+                               Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                    <TextBlock Text="Analysis Methods" FontWeight="SemiBold" Margin="0,8,0,0"/>
+                    <TextBlock Text="Cosine Similarity • MOSS Winnowing • Structure Analysis • Comment Matching • Import Overlap • File Metrics"
+                               TextWrapping="Wrap"
+                               Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

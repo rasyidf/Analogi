@@ -1,0 +1,27 @@
+title: Analogi Documentation
+description: Code clone detection for educational use — algorithms, API, and user guides.
+url: "https://rasyidf.github.io"
+baseurl: "/Analogi"
+
+remote_theme: just-the-docs/just-the-docs
+
+color_scheme: dark
+
+permalink: pretty
+
+exclude:
+  - node_modules/
+  - vendor/
+
+aux_links:
+  "GitHub":
+    - "https://github.com/rasyidf/Analogi"
+
+nav_sort: case_insensitive
+
+heading_anchors: true
+
+search_enabled: true
+
+back_to_top: true
+back_to_top_text: "Back to top"

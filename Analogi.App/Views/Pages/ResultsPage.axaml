@@ -1,0 +1,49 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Analogi.App.ViewModels.Pages"
+             xmlns:models="using:Analogi.Core.Models"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="700" d:DesignHeight="500"
+             x:Class="Analogi.App.Views.Pages.ResultsPage"
+             x:DataType="vm:ResultsViewModel">
+
+    <DockPanel Margin="24">
+        <!-- Header -->
+        <StackPanel DockPanel.Dock="Top" Spacing="8" Margin="0,0,0,16">
+            <TextBlock Text="Scan Results" FontSize="28" FontWeight="SemiBold"/>
+            <TextBlock Text="{Binding SummaryText}"
+                       Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+
+            <!-- Filters -->
+            <StackPanel Orientation="Horizontal" Spacing="4" Margin="0,8,0,0">
+                <TextBlock Text="Filter:" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                <Button Content="All" Command="{Binding SetFilterCommand}" CommandParameter="All"/>
+                <Button Content="High+" Command="{Binding SetFilterCommand}" CommandParameter="High"/>
+                <Button Content="Moderate+" Command="{Binding SetFilterCommand}" CommandParameter="Moderate"/>
+                <Button Content="Low+" Command="{Binding SetFilterCommand}" CommandParameter="Low"/>
+                <TextBlock Text="{Binding FilterLabel, StringFormat='Current: {0}'}"
+                           VerticalAlignment="Center" Margin="16,0,0,0"
+                           Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- File Mode Results -->
+        <DataGrid IsVisible="{Binding IsFileMode}"
+                  ItemsSource="{Binding FilteredResults}"
+                  IsReadOnly="True"
+                  GridLinesVisibility="Horizontal"
+                  CanUserSortColumns="True"
+                  AutoGenerateColumns="False"
+                  x:CompileBindings="False"
+                  SelectionChanged="DataGrid_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="File A" Binding="{Binding FileA.Name}" Width="*"/>
+                <DataGridTextColumn Header="File B" Binding="{Binding FileB.Name}" Width="*"/>
+                <DataGridTextColumn Header="Similarity" Binding="{Binding SimilarityPercent, StringFormat={}{0}%}" Width="90"/>
+                <DataGridTextColumn Header="Level" Binding="{Binding Level}" Width="90"/>
+                <DataGridTextColumn Header="Reasons" Binding="{Binding Reasons.Count}" Width="70"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</UserControl>

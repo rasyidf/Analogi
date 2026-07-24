@@ -1,0 +1,88 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Analogi.App.ViewModels.Pages"
+             xmlns:ae="using:AvaloniaEdit"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+             x:Class="Analogi.App.Views.Pages.ComparePage"
+             x:DataType="vm:CompareViewModel">
+
+    <DockPanel Margin="24">
+        <!-- Header -->
+        <StackPanel DockPanel.Dock="Top" Spacing="4" Margin="0,0,0,12">
+            <TextBlock Text="Code Comparison" FontSize="28" FontWeight="SemiBold"/>
+            <TextBlock Text="{Binding SimilarityText}"
+                       IsVisible="{Binding HasComparison}"
+                       FontSize="16"
+                       Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+        </StackPanel>
+
+        <!-- No comparison state -->
+        <TextBlock IsVisible="{Binding !HasComparison}"
+                   Text="Select a pair from the Results page to compare code side-by-side."
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+
+        <!-- Comparison content -->
+        <DockPanel IsVisible="{Binding HasComparison}">
+            <!-- Reasons panel at bottom -->
+            <Border DockPanel.Dock="Bottom"
+                    Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                    CornerRadius="8" Padding="16" Margin="0,12,0,0"
+                    MaxHeight="120">
+                <ScrollViewer>
+                    <StackPanel Spacing="4">
+                        <TextBlock Text="Analysis Reasons" FontWeight="SemiBold" FontSize="13"/>
+                        <TextBlock Text="{Binding ReasonsText}"
+                                   TextWrapping="Wrap"
+                                   FontSize="12"
+                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+
+            <!-- Side-by-side editors -->
+            <Grid ColumnDefinitions="*,8,*">
+                <!-- File A -->
+                <Border Grid.Column="0" CornerRadius="6"
+                        BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"
+                        BorderThickness="1">
+                    <DockPanel>
+                        <Border DockPanel.Dock="Top"
+                                Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                                Padding="12,8">
+                            <TextBlock Text="{Binding FileAName}" FontWeight="SemiBold" FontSize="12"/>
+                        </Border>
+                        <ae:TextEditor x:Name="EditorA"
+                                       IsReadOnly="True"
+                                       ShowLineNumbers="True"
+                                       FontFamily="Cascadia Code,JetBrains Mono,Consolas,monospace"
+                                       FontSize="12"/>
+                    </DockPanel>
+                </Border>
+
+                <GridSplitter Grid.Column="1" ResizeDirection="Columns"/>
+
+                <!-- File B -->
+                <Border Grid.Column="2" CornerRadius="6"
+                        BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"
+                        BorderThickness="1">
+                    <DockPanel>
+                        <Border DockPanel.Dock="Top"
+                                Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                                Padding="12,8">
+                            <TextBlock Text="{Binding FileBName}" FontWeight="SemiBold" FontSize="12"/>
+                        </Border>
+                        <ae:TextEditor x:Name="EditorB"
+                                       IsReadOnly="True"
+                                       ShowLineNumbers="True"
+                                       FontFamily="Cascadia Code,JetBrains Mono,Consolas,monospace"
+                                       FontSize="12"/>
+                    </DockPanel>
+                </Border>
+            </Grid>
+        </DockPanel>
+    </DockPanel>
+</UserControl>
