@@ -119,9 +119,14 @@ public sealed class AnalysisEngine
         // Preprocessing
         new CaseFold(),
         new WhitespaceNormalize(),
+        new StringLiteralNormalize(),
+        new IdentifierNormalize(),
         // Analysis
         new CosineSimilarityAnalyzer(),
+        new NgramFingerprintAnalyzer(),
         new StructureAnalyzer(),
+        new ImportOverlapAnalyzer(),
+        new CommentSimilarityAnalyzer(),
         new FileSizeAnalyzer(),
         new LineCountAnalyzer(),
     ];

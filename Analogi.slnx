@@ -1,4 +1,6 @@
 <Solution>
   <Project Path="Analogi.App/Analogi.App.csproj" />
+  <Project Path="Analogi.CLI/Analogi.CLI.csproj" />
   <Project Path="Analogi.Core/Analogi.Core.csproj" />
+  <Project Path="Analogi.Tests/Analogi.Tests.csproj" />
 </Solution>

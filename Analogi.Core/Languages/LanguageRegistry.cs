@@ -15,6 +15,7 @@ public sealed class LanguageRegistry
         _profiles.Add(new PythonProfile());
         _profiles.Add(new JavaProfile());
         _profiles.Add(new CSharpProfile());
+        _profiles.Add(new JavaScriptProfile());
     }
 
     public void Register(ILanguageProfile profile) => _profiles.Add(profile);
