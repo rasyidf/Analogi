@@ -28,7 +28,28 @@ public partial class MainWindow : Window
             _resultsPage.DataContext = vm.ResultsVm;
             _comparePage.DataContext = vm.CompareVm;
             _settingsPage.DataContext = vm.SettingsVm;
+
+            // Auto-navigate to results after scan completes
+            vm.ScanVm.OnScanCompleted = () => NavigateToResults();
         }
+    }
+
+    public void NavigateToResults()
+    {
+        _handlingSelection = true;
+        NavList.SelectedIndex = 1; // Results
+        NavListBottom.SelectedIndex = -1;
+        ContentFrame.Content = _resultsPage;
+        _handlingSelection = false;
+    }
+
+    public void NavigateToCompare()
+    {
+        _handlingSelection = true;
+        NavList.SelectedIndex = 2; // Compare
+        NavListBottom.SelectedIndex = -1;
+        ContentFrame.Content = _comparePage;
+        _handlingSelection = false;
     }
 
     private void NavList_SelectionChanged(object? sender, SelectionChangedEventArgs e)
@@ -37,8 +58,6 @@ public partial class MainWindow : Window
         if (sender is ListBox lb && lb.SelectedItem is ListBoxItem item && item.Tag is string tag)
         {
             _handlingSelection = true;
-
-            // Deselect the other ListBox
             if (sender == NavList) NavListBottom.SelectedIndex = -1;
             else NavList.SelectedIndex = -1;
 
@@ -51,7 +70,6 @@ public partial class MainWindow : Window
                 "About" => _aboutPage,
                 _ => _scanPage
             };
-
             _handlingSelection = false;
         }
     }

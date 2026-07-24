@@ -37,16 +37,16 @@
                   CanUserSortColumns="True"
                   AutoGenerateColumns="False"
                   x:CompileBindings="False"
-                  SelectionChanged="DataGrid_SelectionChanged"
+                  DoubleTapped="DataGrid_DoubleTapped"
                   CornerRadius="6"
                   BorderThickness="1"
                   BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="File A" Binding="{Binding FileA.Name}" Width="*"/>
-                <DataGridTextColumn Header="File B" Binding="{Binding FileB.Name}" Width="*"/>
+                <DataGridTextColumn Header="Name A" Binding="{Binding NameA}" Width="*"/>
+                <DataGridTextColumn Header="Name B" Binding="{Binding NameB}" Width="*"/>
                 <DataGridTextColumn Header="Similarity" Binding="{Binding SimilarityPercent, StringFormat={}{0}%}" Width="100"/>
                 <DataGridTextColumn Header="Level" Binding="{Binding Level}" Width="100"/>
-                <DataGridTextColumn Header="Reasons" Binding="{Binding Reasons.Count}" Width="80"/>
+                <DataGridTextColumn Header="Reasons" Binding="{Binding ReasonCount}" Width="80"/>
             </DataGrid.Columns>
         </DataGrid>
     </DockPanel>

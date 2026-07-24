@@ -13,26 +13,16 @@ public partial class ResultsViewModel : ViewModelBase
     [ObservableProperty]
     private string _filterLabel = "All";
 
-    public ObservableCollection<FilePairResult> FilePairResults { get; } = [];
-    public ObservableCollection<SubmissionPairResult> SubmissionPairResults { get; } = [];
-    public ObservableCollection<object> FilteredResults { get; } = [];
+    public ObservableCollection<ResultItemViewModel> FilteredResults { get; } = [];
 
-    [ObservableProperty]
-    private bool _isFileMode = true;
-
-    private ScanResult? _scanResult;
-    private SubmissionScanResult? _submissionResult;
+    private readonly List<ResultItemViewModel> _allResults = [];
     private PlagiarismLevel? _filterLevel;
 
     public void LoadFileResults(ScanResult result)
     {
-        _scanResult = result;
-        _submissionResult = null;
-        IsFileMode = true;
-
-        FilePairResults.Clear();
+        _allResults.Clear();
         foreach (var pair in result.Pairs.OrderByDescending(p => p.SimilarityIndex))
-            FilePairResults.Add(pair);
+            _allResults.Add(new ResultItemViewModel(pair));
 
         _filterLevel = null;
         ApplyFilter();
@@ -41,13 +31,9 @@ public partial class ResultsViewModel : ViewModelBase
 
     public void LoadSubmissionResults(SubmissionScanResult result)
     {
-        _submissionResult = result;
-        _scanResult = null;
-        IsFileMode = false;
-
-        SubmissionPairResults.Clear();
+        _allResults.Clear();
         foreach (var pair in result.Pairs.OrderByDescending(p => p.SimilarityIndex))
-            SubmissionPairResults.Add(pair);
+            _allResults.Add(new ResultItemViewModel(pair));
 
         _filterLevel = null;
         ApplyFilter();
@@ -71,21 +57,51 @@ public partial class ResultsViewModel : ViewModelBase
     private void ApplyFilter()
     {
         FilteredResults.Clear();
-        if (IsFileMode)
+        foreach (var r in _allResults)
         {
-            foreach (var r in FilePairResults)
-            {
-                if (_filterLevel == null || (int)r.Level >= (int)_filterLevel)
-                    FilteredResults.Add(r);
-            }
+            if (_filterLevel == null || (int)r.Level >= (int)_filterLevel)
+                FilteredResults.Add(r);
         }
-        else
-        {
-            foreach (var r in SubmissionPairResults)
-            {
-                if (_filterLevel == null || (int)r.Level >= (int)_filterLevel)
-                    FilteredResults.Add(r);
-            }
-        }
+    }
+}
+
+/// <summary>Unified row item for both file pairs and submission pairs.</summary>
+public class ResultItemViewModel
+{
+    private readonly FilePairResult? _filePair;
+    private readonly SubmissionPairResult? _subPair;
+
+    public string NameA { get; }
+    public string NameB { get; }
+    public int SimilarityPercent { get; }
+    public PlagiarismLevel Level { get; }
+    public int ReasonCount { get; }
+
+    public ResultItemViewModel(FilePairResult pair)
+    {
+        _filePair = pair;
+        NameA = pair.FileA.Name;
+        NameB = pair.FileB.Name;
+        SimilarityPercent = pair.SimilarityPercent;
+        Level = pair.Level;
+        ReasonCount = pair.Reasons.Count;
+    }
+
+    public ResultItemViewModel(SubmissionPairResult pair)
+    {
+        _subPair = pair;
+        NameA = pair.SubmissionA.Name;
+        NameB = pair.SubmissionB.Name;
+        SimilarityPercent = pair.SimilarityPercent;
+        Level = pair.Level;
+        ReasonCount = pair.Reasons.Count;
+    }
+
+    public void LoadIntoCompareVm(CompareViewModel vm)
+    {
+        if (_filePair != null)
+            vm.LoadFilePair(_filePair);
+        else if (_subPair != null)
+            vm.LoadSubmissionPair(_subPair);
     }
 }

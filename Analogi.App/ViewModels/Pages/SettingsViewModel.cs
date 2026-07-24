@@ -23,6 +23,12 @@ public partial class SettingsViewModel : ViewModelBase
         set => IsGraphView = !value;
     }
 
+    [RelayCommand]
+    private void SetGraph() => IsGraphView = true;
+
+    [RelayCommand]
+    private void SetList() => IsGraphView = false;
+
     public SettingsViewModel()
     {
         var engine = new AnalysisEngine();

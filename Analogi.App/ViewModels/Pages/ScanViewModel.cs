@@ -33,6 +33,9 @@ public partial class ScanViewModel : ViewModelBase
     /// <summary>Set by the View for platform folder picker access.</summary>
     public IAsyncRelayCommand? BrowseCommand { get; set; }
 
+    /// <summary>Called after scan completes to navigate to results page.</summary>
+    public Action? OnScanCompleted { get; set; }
+
     public ScanViewModel(ResultsViewModel resultsVm, CompareViewModel compareVm)
     {
         _resultsVm = resultsVm;
@@ -77,6 +80,8 @@ public partial class ScanViewModel : ViewModelBase
                 _resultsVm.LoadFileResults(result);
                 StatusText = $"✓ Done. {result.TotalFiles} files, {result.Pairs.Count} pairs in {result.Duration.TotalSeconds:F1}s.";
             }
+
+            OnScanCompleted?.Invoke();
         }
         catch (OperationCanceledException)
         {

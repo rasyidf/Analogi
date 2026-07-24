@@ -21,15 +21,15 @@
                         Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
                         BorderThickness="1" BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}"
                         VerticalAlignment="Top">
-                    <StackPanel Orientation="Horizontal" Spacing="0">
-                        <RadioButton Content="Graph" GroupName="ViewMode"
-                                     IsChecked="{Binding IsGraphView}"
-                                     Padding="14,7" FontSize="12"
-                                     Classes="segmented"/>
-                        <RadioButton Content="List" GroupName="ViewMode"
-                                     IsChecked="{Binding IsListView}"
-                                     Padding="14,7" FontSize="12"
-                                     Classes="segmented"/>
+                    <StackPanel Orientation="Horizontal" Spacing="2">
+                        <Button Content="Graph"
+                                Classes.accent="{Binding IsGraphView}"
+                                Command="{Binding SetGraphCommand}"
+                                Padding="14,7" FontSize="12" CornerRadius="6"/>
+                        <Button Content="List"
+                                Classes.accent="{Binding IsListView}"
+                                Command="{Binding SetListCommand}"
+                                Padding="14,7" FontSize="12" CornerRadius="6"/>
                     </StackPanel>
                 </Border>
             </Grid>

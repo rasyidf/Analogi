@@ -1,7 +1,7 @@
 using Avalonia.Controls;
+using Avalonia.Input;
 using Analogi.App.ViewModels;
 using Analogi.App.ViewModels.Pages;
-using Analogi.Core.Models;
 
 namespace Analogi.App.Views.Pages;
 
@@ -12,28 +12,20 @@ public partial class ResultsPage : UserControl
         InitializeComponent();
     }
 
-    private void DataGrid_SelectionChanged(object? sender, SelectionChangedEventArgs e)
+    private void DataGrid_DoubleTapped(object? sender, TappedEventArgs e)
     {
-        if (sender is DataGrid dg && dg.SelectedItem != null)
+        if (sender is DataGrid dg && dg.SelectedItem is ResultItemViewModel item)
         {
-            // Navigate to compare view with selected pair
-            var mainVm = FindMainViewModel();
+            var mainVm = (TopLevel.GetTopLevel(this)?.DataContext) as MainWindowViewModel;
             if (mainVm == null) return;
 
-            if (dg.SelectedItem is FilePairResult filePair)
+            item.LoadIntoCompareVm(mainVm.CompareVm);
+
+            // Navigate to Compare tab
+            if (TopLevel.GetTopLevel(this) is MainWindow mw)
             {
-                mainVm.CompareVm.LoadFilePair(filePair);
-            }
-            else if (dg.SelectedItem is SubmissionPairResult subPair)
-            {
-                mainVm.CompareVm.LoadSubmissionPair(subPair);
+                mw.NavigateToCompare();
             }
         }
-    }
-
-    private MainWindowViewModel? FindMainViewModel()
-    {
-        var topLevel = TopLevel.GetTopLevel(this);
-        return topLevel?.DataContext as MainWindowViewModel;
     }
 }
