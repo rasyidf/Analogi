@@ -9,5 +9,11 @@ namespace Analogi.Core.Interfaces;
 public interface IPipelineStep
 {
     string Name { get; }
+
+    /// <summary>
+    /// Whether this step is active. Disabled steps are skipped during pipeline execution.
+    /// </summary>
+    bool IsEnabled { get; set; }
+
     PipelineContext Run(PipelineContext context);
 }

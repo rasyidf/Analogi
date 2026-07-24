@@ -9,6 +9,7 @@ namespace Analogi.Core.Analyzers;
 public sealed class StructureAnalyzer : IPipelineStep
 {
     public string Name => "StructureSimilarity";
+    public bool IsEnabled { get; set; } = true;
     private const double Threshold = 0.5;
 
     public PipelineContext Run(PipelineContext ctx)

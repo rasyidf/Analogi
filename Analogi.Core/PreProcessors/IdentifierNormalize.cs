@@ -12,6 +12,7 @@ namespace Analogi.Core.PreProcessors;
 public sealed partial class IdentifierNormalize : IPipelineStep
 {
     public string Name => "IdentifierNormalize";
+    public bool IsEnabled { get; set; } = true;
 
     // ponytail: keywords are language-specific; this uses a common superset.
     // Upgrade path: pull keywords from ILanguageProfile if per-language accuracy is needed.

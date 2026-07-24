@@ -10,6 +10,7 @@ namespace Analogi.Core.Analyzers;
 public sealed class ImportOverlapAnalyzer : IPipelineStep
 {
     public string Name => "ImportOverlap";
+    public bool IsEnabled { get; set; } = true;
     private const double Threshold = 0.7;
 
     public PipelineContext Run(PipelineContext ctx)

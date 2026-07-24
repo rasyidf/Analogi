@@ -12,6 +12,8 @@ public sealed class AnalysisEngine
     private readonly LanguageRegistry _languages;
     private readonly List<IPipelineStep> _steps;
 
+    public IReadOnlyList<IPipelineStep> Steps => _steps;
+
     public AnalysisEngine(LanguageRegistry? languages = null, List<IPipelineStep>? steps = null)
     {
         _languages = languages ?? new LanguageRegistry();
@@ -164,6 +166,7 @@ public sealed class AnalysisEngine
         var ctx = new PipelineContext(a, b, lang);
         foreach (var step in _steps)
         {
+            if (!step.IsEnabled) continue;
             ctx = step.Run(ctx);
         }
 

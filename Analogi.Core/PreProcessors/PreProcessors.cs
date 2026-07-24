@@ -9,6 +9,7 @@ namespace Analogi.Core.PreProcessors;
 public sealed class CaseFold : IPipelineStep
 {
     public string Name => "CaseFold";
+    public bool IsEnabled { get; set; } = true;
 
     public PipelineContext Run(PipelineContext ctx)
     {
@@ -26,6 +27,7 @@ public sealed class CaseFold : IPipelineStep
 public sealed class WhitespaceNormalize : IPipelineStep
 {
     public string Name => "WhitespaceNormalize";
+    public bool IsEnabled { get; set; } = true;
 
     public PipelineContext Run(PipelineContext ctx)
     {
