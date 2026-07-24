@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using Analogi.Core.Interfaces;
 using Analogi.Core.Pipeline;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace Analogi.App.ViewModels.Pages;
 
@@ -11,6 +12,12 @@ public partial class SettingsViewModel : ViewModelBase
     public ObservableCollection<PipelineStepViewModel> Extractors { get; } = [];
     public ObservableCollection<PipelineStepViewModel> PreProcessors { get; } = [];
     public ObservableCollection<PipelineStepViewModel> Analyzers { get; } = [];
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsListView))]
+    private bool _isGraphView = true;
+
+    public bool IsListView => !IsGraphView;
 
     public SettingsViewModel()
     {
@@ -27,6 +34,12 @@ public partial class SettingsViewModel : ViewModelBase
                 case "Analyzer": Analyzers.Add(vm); break;
             }
         }
+    }
+
+    [RelayCommand]
+    private void SetView(string mode)
+    {
+        IsGraphView = mode == "Graph";
     }
 }
 
@@ -61,9 +74,11 @@ public partial class PipelineStepViewModel : ObservableObject
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(Opacity))]
+    [NotifyPropertyChangedFor(nameof(StatusIcon))]
     private bool _isEnabled;
 
     public double Opacity => IsEnabled ? 1.0 : 0.35;
+    public string StatusIcon => IsEnabled ? "✓" : "✗";
 
     public PipelineStepViewModel(IPipelineStep step)
     {
